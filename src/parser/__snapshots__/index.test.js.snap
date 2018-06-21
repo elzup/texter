@@ -60,75 +60,22 @@ exports[`works 4`] = `
 Object {
   "blocks": Array [
     Object {
-      "text": "【定期】",
+      "text": "",
       "type": "text",
     },
     Object {
-      "name": "message1",
-      "type": "input",
+      "texts": Array [
+        "a",
+        "b",
+      ],
+      "type": "select",
     },
     Object {
-      "text": " ",
+      "text": "",
       "type": "text",
     },
     Object {
-      "name": "teamA",
-      "type": "input",
-    },
-    Object {
-      "text": " vs ",
-      "type": "text",
-    },
-    Object {
-      "name": "teamB",
-      "type": "input",
-    },
-    Object {
-      "text": " 戦績",
-      "type": "text",
-    },
-    Object {
-      "name": "win",
-      "type": "input",
-    },
-    Object {
-      "text": "-",
-      "type": "text",
-    },
-    Object {
-      "name": "lose",
-      "type": "input",
-    },
-    Object {
-      "text": " ",
-      "type": "text",
-    },
-    Object {
-      "name": "stage",
-      "type": "input",
-    },
-    Object {
-      "text": "(",
-      "type": "text",
-    },
-    Object {
-      "name": "rule",
-      "type": "input",
-    },
-    Object {
-      "text": ")",
-      "type": "text",
-    },
-    Object {
-      "name": "result",
-      "type": "input",
-    },
-    Object {
-      "text": " ",
-      "type": "text",
-    },
-    Object {
-      "name": "message2",
+      "name": "a",
       "type": "input",
     },
     Object {
