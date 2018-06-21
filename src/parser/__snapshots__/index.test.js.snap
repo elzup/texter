@@ -16,7 +16,19 @@ exports[`works 2`] = `
 Object {
   "blocks": Array [
     Object {
-      "text": "私は[ゼニガメ|ヒトカゲ|フシギダネ]を選んだ",
+      "text": "私は",
+      "type": "text",
+    },
+    Object {
+      "texts": Array [
+        "ゼニガメ",
+        "ヒトカゲ",
+        "フシギダネ",
+      ],
+      "type": "select",
+    },
+    Object {
+      "text": "を選んだ",
       "type": "text",
     },
   ],
