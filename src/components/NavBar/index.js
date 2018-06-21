@@ -10,7 +10,7 @@ function SimpleAppBar(props: { doLogout: Function }) {
 			<AppBar position="static" color="primary">
 				<Toolbar color="inherit">
 					<Typography variant="title" color="inherit" style={{ flex: 1 }}>
-						Yubaba
+						texter
 					</Typography>
 				</Toolbar>
 			</AppBar>
