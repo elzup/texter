@@ -34,7 +34,6 @@ export type BlockType = 'text' | 'input' | 'select'
 export type TextBlock = {
 	type: 'text',
 	text: string,
-	value?: string,
 }
 
 export type InputBlock = {
