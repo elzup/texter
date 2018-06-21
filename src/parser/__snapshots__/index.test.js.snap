@@ -1,0 +1,129 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`works 1`] = `
+Object {
+  "blocks": Array [
+    Object {
+      "text": "kyoko kyoko toshino.",
+      "type": "text",
+    },
+  ],
+  "ok": true,
+}
+`;
+
+exports[`works 2`] = `
+Object {
+  "blocks": Array [
+    Object {
+      "text": "私は[ゼニガメ|ヒトカゲ|フシギダネ]を選んだ",
+      "type": "text",
+    },
+  ],
+  "ok": true,
+}
+`;
+
+exports[`works 3`] = `
+Object {
+  "blocks": Array [
+    Object {
+      "text": "my name is ",
+      "type": "text",
+    },
+    Object {
+      "name": "name",
+      "type": "input",
+    },
+    Object {
+      "text": ".",
+      "type": "text",
+    },
+  ],
+  "ok": true,
+}
+`;
+
+exports[`works 4`] = `
+Object {
+  "blocks": Array [
+    Object {
+      "text": "【定期】",
+      "type": "text",
+    },
+    Object {
+      "name": "message1",
+      "type": "input",
+    },
+    Object {
+      "text": " ",
+      "type": "text",
+    },
+    Object {
+      "name": "teamA",
+      "type": "input",
+    },
+    Object {
+      "text": " vs ",
+      "type": "text",
+    },
+    Object {
+      "name": "teamB",
+      "type": "input",
+    },
+    Object {
+      "text": " 戦績",
+      "type": "text",
+    },
+    Object {
+      "name": "win",
+      "type": "input",
+    },
+    Object {
+      "text": "-",
+      "type": "text",
+    },
+    Object {
+      "name": "lose",
+      "type": "input",
+    },
+    Object {
+      "text": " ",
+      "type": "text",
+    },
+    Object {
+      "name": "stage",
+      "type": "input",
+    },
+    Object {
+      "text": "(",
+      "type": "text",
+    },
+    Object {
+      "name": "rule",
+      "type": "input",
+    },
+    Object {
+      "text": ")",
+      "type": "text",
+    },
+    Object {
+      "name": "result",
+      "type": "input",
+    },
+    Object {
+      "text": " ",
+      "type": "text",
+    },
+    Object {
+      "name": "message2",
+      "type": "input",
+    },
+    Object {
+      "text": "",
+      "type": "text",
+    },
+  ],
+  "ok": true,
+}
+`;

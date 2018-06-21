@@ -34,16 +34,19 @@ export type BlockType = 'text' | 'input' | 'select'
 export type TextBlock = {
 	type: 'text',
 	text: string,
+	value?: string,
 }
 
 export type InputBlock = {
 	type: 'input',
 	name: string,
+	value?: string,
 }
 
 export type SelectBlock = {
 	type: 'select',
 	texts: string[],
+	value?: string,
 }
 
 export type Block = TextBlock | InputBlock | SelectBlock
