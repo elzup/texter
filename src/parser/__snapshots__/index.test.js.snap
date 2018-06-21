@@ -60,10 +60,6 @@ exports[`works 4`] = `
 Object {
   "blocks": Array [
     Object {
-      "text": "",
-      "type": "text",
-    },
-    Object {
       "texts": Array [
         "a",
         "b",
@@ -71,16 +67,8 @@ Object {
       "type": "select",
     },
     Object {
-      "text": "",
-      "type": "text",
-    },
-    Object {
       "name": "a",
       "type": "input",
-    },
-    Object {
-      "text": "",
-      "type": "text",
     },
   ],
   "ok": true,
