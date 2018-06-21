@@ -10,7 +10,7 @@ const RouteApp = () => (
 	<Router>
 		<Switch>
 			<Route exact path="/" component={HomeContainer} />
-			<Route exact path="/:id" component={HomeContainer} />
+			<Route exact path="/:text" component={HomeContainer} />
 		</Switch>
 	</Router>
 )

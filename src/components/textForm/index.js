@@ -5,9 +5,9 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 
 type Props = {
-	id: string,
-	handleLike: ({ id: string }) => void,
-	handleChange: ({ id: string }) => void,
+	text: string,
+	handleLike: ({ text: string }) => void,
+	handleChange: ({ text: string }) => void,
 }
 
 class textForm extends React.Component<Props> {
@@ -17,11 +17,18 @@ class textForm extends React.Component<Props> {
 		if (!this.textRef) {
 			return
 		}
-		this.props.handleLike({ id: this.textRef.value })
+		this.props.handleLike({ text: this.textRef.value })
 	}
 
 	onChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
-		this.props.handleChange({ id: e.target.value })
+		this.props.handleChange({ text: e.target.value })
+	}
+
+	componentWillReceiveProps(nextProps: Props) {
+		if (!this.textRef) {
+			return
+		}
+		this.textRef.value = nextProps.text
 	}
 
 	render() {
@@ -34,13 +41,13 @@ class textForm extends React.Component<Props> {
 					multiline
 					rows="4"
 					type="text"
-					defaultValue={props.id}
+					defaultValue={props.text}
 					inputRef={r => {
 						this.textRef = r
 					}}
 					onChange={this.onChange}
 					inputProps={{ 'data-test': 'event-interval-time-input' }}
-					data-test="id-input"
+					data-test="text-input"
 				/>
 				<Button onClick={this.onSubmit}>Like</Button>
 			</form>

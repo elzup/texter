@@ -4,9 +4,8 @@ import { connect } from 'react-redux'
 import { type Match, type RouterHistory } from 'react-router-dom'
 // import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
-import LogContainer from '../LogContainer'
 import NavBar from '../NavBarContainer'
-import IdForm from './IdForm'
+import TextForm from './TextForm'
 import ResultContainer from './ResultContainer'
 
 import type { State } from '../../types'
@@ -19,13 +18,13 @@ type OProps = {
 }
 
 type Props = {
-	id: string,
-	updateId: typeof logics.updateId,
+	text: string,
+	updateText: typeof logics.updateText,
 }
 
 class Container extends React.Component<Props> {
 	componentWillReceiveProps(nextProps) {
-		this.props.updateId({ id: nextProps.id })
+		this.props.updateText({ text: nextProps.text })
 	}
 	render() {
 		const { props } = this
@@ -33,9 +32,8 @@ class Container extends React.Component<Props> {
 		return (
 			<div>
 				<NavBar />
-				<IdForm id={props.id} />
-				<Typography variant="title">{props.id}</Typography>
-				<LogContainer />
+				<TextForm text={props.text} />
+				<Typography variant="title">{props.text}</Typography>
 				<ResultContainer />
 			</div>
 		)
@@ -43,10 +41,10 @@ class Container extends React.Component<Props> {
 }
 
 const ms = (state: State, op: OProps) => {
-	const id = op.match.params.id || ''
-	return { id }
+	const text = op.match.params.text || ''
+	return { text }
 }
 
-const conn = connect(ms, { updateId: logics.updateId })
+const conn = connect(ms, { updateText: logics.updateText })
 
 export default conn(Container)

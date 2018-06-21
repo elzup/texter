@@ -8,10 +8,10 @@ import * as actions from './actions'
 import * as logActions from '../LogContainer/actions'
 import * as logSelectors from '../LogContainer/selectors'
 
-export function updateId({ id }: { id: string }): ThunkAction {
+export function updateText({ text }: { text: string }): ThunkAction {
 	return async (dispatch, getState) => {
-		const judge = id === '' ? [] : nicename(id)
-		await dispatch(actions.updateJudge(id, judge))
+		const judge = text === '' ? [] : nicename(text)
+		await dispatch(actions.updateJudge(text, judge))
 	}
 }
 
