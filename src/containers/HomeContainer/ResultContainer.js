@@ -1,23 +1,17 @@
 // @flow
 import * as React from 'react'
 import { connect } from 'react-redux'
-import type { JudgeWithResult } from 'nicename/dist/types'
 
-import type { State } from '../../types'
+import type { State, ParseResult } from '../../types'
 import * as selectors from './selectors'
 
 type Props = {
-	id: string,
-	judge: JudgeWithResult,
+	result: ParseResult,
 }
 
-const Container = (props: Props) => <div>{JSON.stringify(props.judge)}</div>
+const Container = (props: Props) => <div>{JSON.stringify(props.result)}</div>
 
-const ms = (state: State) => {
-	return {
-		judge: selectors.getResult(state),
-	}
-}
+const ms = (state: State) => ({ result: selectors.getResult(state) })
 
 const conn = connect(ms, {})
 

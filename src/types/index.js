@@ -3,7 +3,6 @@
 import type { Store as ReduxStore, Dispatch as ReduxDispatch } from 'redux'
 import type { Action as _Action } from './action'
 import type { State as _State } from './state'
-import type { JudgeWithResult } from 'nicename/dist/types'
 
 type RehydrateAction = {
 	type: 'persist/REHYDRATE',
@@ -30,9 +29,33 @@ type ThunkDispatch<A> = (ta: ThunkAction) => A
 export type Dispatch = ReduxDispatch<Action> & ThunkDispatch<Action>
 export type Store = ReduxStore<State, Action, Dispatch>
 
+export type BlockType = 'text' | 'input' | 'select'
+
+export type TextBlock = {
+	type: 'text',
+	text: string,
+}
+
+export type InputBlock = {
+	type: 'input',
+	name: string,
+}
+
+export type SelectBlock = {
+	type: 'select',
+	texts: string[],
+}
+
+export type Block = TextBlock | InputBlock | SelectBlock
+
+export type ParseResult = {
+	ok: boolean,
+	blocks: Block[],
+}
+
 export type Home = {
-	id: string,
-	judge: JudgeWithResult[],
+	text: string,
+	result: ParseResult,
 }
 
 export type Log = {

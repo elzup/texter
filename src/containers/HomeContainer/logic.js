@@ -1,7 +1,6 @@
 // @flow
 import _ from 'lodash'
 import moment from 'moment'
-import nicename from 'nicename'
 
 import type { ThunkAction } from '../../types'
 import * as actions from './actions'
@@ -10,8 +9,8 @@ import * as logSelectors from '../LogContainer/selectors'
 
 export function updateText({ text }: { text: string }): ThunkAction {
 	return async (dispatch, getState) => {
-		const judge = text === '' ? [] : nicename(text)
-		await dispatch(actions.updateJudge(text, judge))
+		const result = { ok: false, blocks: [] }
+		await dispatch(actions.updateHome({ text, result }))
 	}
 }
 

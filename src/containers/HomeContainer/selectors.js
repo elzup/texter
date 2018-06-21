@@ -2,10 +2,10 @@
 
 import type { State } from '../../types'
 
-export function getId(state: State) {
-	return state.HomeContainer.id
+export function getText(state: State) {
+	return state.HomeContainer.text
 }
 
 export function getResult(state: State) {
-	return state.HomeContainer.judge
+	return state.HomeContainer.result
 }
