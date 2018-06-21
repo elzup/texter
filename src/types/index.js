@@ -44,11 +44,19 @@ export type InputBlock = {
 
 export type SelectBlock = {
 	type: 'select',
+	name: string,
 	texts: string[],
 	value?: string,
 }
 
-export type Block = TextBlock | InputBlock | SelectBlock
+export type SelectRepeatBlock = {
+	type: 'select-repeat',
+	name: string,
+	texts: string[],
+	value?: string[],
+}
+
+export type Block = TextBlock | InputBlock | SelectBlock | SelectRepeatBlock
 
 export type ParseResult = {
 	ok: boolean,

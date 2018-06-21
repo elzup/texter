@@ -32,10 +32,12 @@ function parseTexter(text: string): ParseResult {
 			blocks2.push(block)
 			return
 		}
-		const [hit, names]: [string, string] = m
+		const [hit, nameText]: [string, string] = m
 		const [head, tail] = block.text.split(hit)
+		const [name, textsText] = nameText.split(':')
+		const texts = textsText.split('|')
 		blocks2.push({ type: 'text', text: head })
-		blocks2.push({ type: 'select', texts: names.split('|') })
+		blocks2.push({ type: 'select', name, texts })
 		blocks2.push({ type: 'text', text: tail })
 	})
 	const blocks = blocks2.filter(noEmptyTextBlock)

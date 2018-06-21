@@ -20,6 +20,7 @@ Object {
       "type": "text",
     },
     Object {
+      "name": "poke",
       "texts": Array [
         "ゼニガメ",
         "ヒトカゲ",
@@ -60,6 +61,7 @@ exports[`works 4`] = `
 Object {
   "blocks": Array [
     Object {
+      "name": "ア",
       "texts": Array [
         "a",
         "b",
