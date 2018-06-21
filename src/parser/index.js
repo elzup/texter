@@ -36,9 +36,15 @@ function parseTexter(text: string): ParseResult {
 		const [head, tail] = block.text.split(hit)
 		const [name, textsText] = nameText.split(':')
 		const texts = textsText.split('|')
-		blocks2.push({ type: 'text', text: head })
-		blocks2.push({ type: 'select', name, texts })
-		blocks2.push({ type: 'text', text: tail })
+		if (name[name.length - 1] === '*') {
+			blocks2.push({ type: 'text', text: head })
+			blocks2.push({ type: 'select-repeat', name, texts })
+			blocks2.push({ type: 'text', text: tail })
+		} else {
+			blocks2.push({ type: 'text', text: head })
+			blocks2.push({ type: 'select', name, texts })
+			blocks2.push({ type: 'text', text: tail })
+		}
 	})
 	const blocks = blocks2.filter(noEmptyTextBlock)
 	return { ok: true, blocks }

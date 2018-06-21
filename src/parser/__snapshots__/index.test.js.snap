@@ -76,3 +76,23 @@ Object {
   "ok": true,
 }
 `;
+
+exports[`works 5`] = `
+Object {
+  "blocks": Array [
+    Object {
+      "name": "ア*",
+      "texts": Array [
+        "a",
+        "b",
+      ],
+      "type": "select-repeat",
+    },
+    Object {
+      "name": "a",
+      "type": "input",
+    },
+  ],
+  "ok": true,
+}
+`;
