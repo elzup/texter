@@ -6,4 +6,5 @@ test('works', () => {
 	expect(m('my name is {name}.')).toMatchSnapshot()
 	expect(m('[ア:a|b]{a}')).toMatchSnapshot()
 	expect(m('[ア*:a|b]{a}')).toMatchSnapshot()
+	expect(m('[ア*:a|b][イ:c|d][ウ:e|f]')).toMatchSnapshot()
 })

@@ -27,23 +27,29 @@ function parseTexter(text: string): ParseResult {
 			blocks2.push(block)
 			return
 		}
-		m = re2.exec(block.text)
-		if (!m) {
-			blocks2.push(block)
-			return
-		}
-		const [hit, nameText]: [string, string] = m
-		const [head, tail] = block.text.split(hit)
-		const [name, textsText] = nameText.split(':')
-		const texts = textsText.split('|')
-		if (name[name.length - 1] === '*') {
-			blocks2.push({ type: 'text', text: head })
-			blocks2.push({ type: 'select-repeat', name, texts })
-			blocks2.push({ type: 'text', text: tail })
-		} else {
-			blocks2.push({ type: 'text', text: head })
-			blocks2.push({ type: 'select', name, texts })
-			blocks2.push({ type: 'text', text: tail })
+		let remaining = block.text
+		m = re2.exec(remaining)
+		while (true) {
+			if (!m) {
+				blocks2.push({ type: 'text', text: remaining })
+				return
+			}
+			const [hit, nameText]: [string, string] = m
+			const [head, tail] = remaining.split(hit)
+			if (nameText.indexOf(':') === -1) {
+				return
+			}
+			const [name, textsText] = nameText.split(':')
+			const texts = textsText.split('|')
+			if (name[name.length - 1] === '*') {
+				blocks2.push({ type: 'text', text: head })
+				blocks2.push({ type: 'select-repeat', name, texts })
+			} else {
+				blocks2.push({ type: 'text', text: head })
+				blocks2.push({ type: 'select', name, texts })
+			}
+			remaining = tail
+			m = re2.exec(remaining)
 		}
 	})
 	const blocks = blocks2.filter(noEmptyTextBlock)

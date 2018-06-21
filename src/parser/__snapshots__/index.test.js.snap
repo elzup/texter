@@ -96,3 +96,35 @@ Object {
   "ok": true,
 }
 `;
+
+exports[`works 6`] = `
+Object {
+  "blocks": Array [
+    Object {
+      "name": "ア*",
+      "texts": Array [
+        "a",
+        "b",
+      ],
+      "type": "select-repeat",
+    },
+    Object {
+      "name": "イ",
+      "texts": Array [
+        "c",
+        "d",
+      ],
+      "type": "select",
+    },
+    Object {
+      "name": "ウ",
+      "texts": Array [
+        "e",
+        "f",
+      ],
+      "type": "select",
+    },
+  ],
+  "ok": true,
+}
+`;
