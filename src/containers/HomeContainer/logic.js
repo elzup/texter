@@ -1,6 +1,7 @@
 // @flow
 import _ from 'lodash'
 import moment from 'moment'
+import copy from 'copy-text-to-clipboard'
 
 import type { ThunkAction, Block } from '../../types'
 import parser from '../../parser'
@@ -61,5 +62,12 @@ export function logId({ id }: { id: string }): ThunkAction {
 			createdAt: moment().format(),
 		}
 		await dispatch(logActions.receiveLogs([...logs, log]))
+	}
+}
+
+export function copyGeneratedText(): ThunkAction {
+	return async (dispatch, getState) => {
+		const text = getState().HomeContainer.generatedText
+		copy(text)
 	}
 }

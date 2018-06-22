@@ -3,9 +3,11 @@ import * as React from 'react'
 import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
 import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
 
 type Props = {
 	text: string,
+	handleCopy: Function,
 }
 
 const GeneratedText = (props: Props) => (
@@ -27,6 +29,7 @@ const GeneratedText = (props: Props) => (
 			margin="normal"
 			fullWidth
 		/>
+		<Button onClick={props.handleCopy}>Copy</Button>
 	</Paper>
 )
 
