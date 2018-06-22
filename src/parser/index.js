@@ -86,6 +86,21 @@ export function parseUnit(text: string): Block[] {
 	return blocks
 }
 
+const trimActiveEscape = (text: string) =>
+	'()[]{}'.split('').reduce((p, c) => p.replace('\\' + c, c), text)
+
+function trimActiveEscapeFrom(blocks: Block[]): Block[] {
+	return blocks.map(b => {
+		if (b.type === 'text') {
+			return { ...b, text: trimActiveEscape(b.text) }
+		} else if (b.type === 'repeat') {
+			return { ...b, blocks: trimActiveEscapeFrom(b.blocks) }
+		} else {
+			return b
+		}
+	})
+}
+
 function parse(text: string): Block[] {
 	const blocksR = parseRepats(text)
 	let blocks = []
@@ -107,7 +122,7 @@ function parse(text: string): Block[] {
 			blocks = [...blocks, ...parseUnit(b.text)]
 		}
 	})
-	return blocks
+	return trimActiveEscapeFrom(blocks)
 }
 
 function parseTexter(text: string): ParseResult {
