@@ -21,15 +21,31 @@ export function calcText(): ThunkAction {
 	return async (dispatch, getState) => {
 		const { blocks } = getState().HomeContainer.result
 		const valueById = getState().ValueById
-		const generatedText = fillText('', blocks, valueById)
+		const generatedText = fillText(blocks, valueById)
 		dispatch(homeActions.updateGeneratedText(generatedText))
 	}
 }
 
 function fillText(
-	text: string,
 	blocks: Block[],
 	valueById: { [vid: string]: string },
+	prefix: string = '',
 ): string {
-	return 'hoge'
+	return blocks
+		.map(b => {
+			switch (b.type) {
+				case 'text':
+					return b.text
+				case 'input':
+				case 'select':
+					return valueById[prefix + b.vid]
+				case 'repeat':
+					return [...Array(b.count).keys()]
+						.map(i => fillText(b.blocks, valueById, `${b.name}-${i}-`))
+						.join('')
+				default:
+					return ''
+			}
+		})
+		.join('')
 }

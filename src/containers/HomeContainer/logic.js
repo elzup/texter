@@ -7,6 +7,7 @@ import parser from '../../parser'
 import * as actions from './actions'
 import * as logActions from '../LogContainer/actions'
 import * as logSelectors from '../LogContainer/selectors'
+import * as valueLogics from '../ValueById/logic'
 import * as selectors from './selectors'
 
 export function updateText({ text }: { text: string }): ThunkAction {
@@ -14,6 +15,7 @@ export function updateText({ text }: { text: string }): ThunkAction {
 		const result0 = parser(text)
 		const result = { ...result0, blocks: setIds(result0.blocks) }
 		await dispatch(actions.updateHome({ text, result, generatedText: '' }))
+		dispatch(valueLogics.calcText())
 	}
 }
 function setIds(blocks: Block[], prefix = ''): Block[] {
@@ -46,6 +48,7 @@ export function countChange({
 			return b
 		})
 		await dispatch(actions.updateBlocks(blocks))
+		dispatch(valueLogics.calcText())
 	}
 }
 

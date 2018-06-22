@@ -15,7 +15,7 @@ export default function(state: State = initialState, action: Action): State {
 		case Actions.UPDATE_GENERATED_TEXT:
 			return {
 				...state,
-				generatedText: state.generatedText,
+				generatedText: action.generatedText,
 			}
 
 		case Actions.UPDATE_BLOCKS:
