@@ -27,7 +27,13 @@ const BlockContainer = (props: Props) => {
 			<React.Fragment>
 				{isHeadBreak(block.text) && <Grid item xs={12} />}
 				<Grid item>
-					<Typography variant="title">{block.text}</Typography>
+					<Typography
+						variant="subheading"
+						gutterBottom
+						style={{ paddingTop: '20px', color: 'gray' }}
+					>
+						{block.text}
+					</Typography>
 				</Grid>
 				{isTailBreak(block.text) && <Grid item xs={12} />}
 			</React.Fragment>
@@ -35,11 +41,11 @@ const BlockContainer = (props: Props) => {
 	} else if (block.type === 'select') {
 		return (
 			<Grid item>
-				<Select
-					native
-					inputProps={{
-						name: 'age',
-						id: 'age-native-simple',
+				<TextField
+					select
+					label={block.name}
+					SelectProps={{
+						native: true,
 					}}
 				>
 					{block.texts.map((text, i) => (
@@ -47,13 +53,13 @@ const BlockContainer = (props: Props) => {
 							{text}
 						</option>
 					))}
-				</Select>
+				</TextField>
 			</Grid>
 		)
 	} else if (block.type === 'input') {
 		return (
 			<Grid item>
-				<TextField id={`${block.name}`} label={block.name} margin="normal" />
+				<TextField id={`${block.name}`} label={block.name} />
 			</Grid>
 		)
 	} else {
