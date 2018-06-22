@@ -17,8 +17,8 @@ function spliter(
 		return { ok: false }
 	}
 	const [all, hit] = m
-	const [before, after] = text.split(all)
-	return { ok: true, hit, before, after }
+	const [before, ...afters] = text.split(all)
+	return { ok: true, hit, before, after: afters.join(all) }
 }
 
 const textBlock = (text: string) => ({ type: 'text', text, vid: '' })
