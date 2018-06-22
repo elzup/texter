@@ -74,7 +74,8 @@ export function copyGeneratedText(): ThunkAction {
 
 export function copyShareUrl(): ThunkAction {
 	return async (dispatch, getState) => {
-		const text = encodeURI(getState().HomeContainer.text)
+		const text =
+			document.location.href + encodeURI(getState().HomeContainer.text)
 		copy(text)
 	}
 }
