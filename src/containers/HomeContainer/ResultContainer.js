@@ -3,7 +3,6 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
-import InputLabel from '@material-ui/core/InputLabel'
 import Select from '@material-ui/core/Select'
 
 import type { State, ParseResult } from '../../types'

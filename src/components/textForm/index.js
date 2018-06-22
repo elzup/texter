@@ -37,7 +37,7 @@ class textForm extends React.Component<Props> {
 			<form action="" onSubmit={this.onSubmit}>
 				<TextField
 					id="interval"
-					label="ID"
+					label="template"
 					multiline
 					rows="4"
 					type="text"
@@ -45,9 +45,11 @@ class textForm extends React.Component<Props> {
 					inputRef={r => {
 						this.textRef = r
 					}}
+					helperText=""
 					onChange={this.onChange}
 					inputProps={{ 'data-test': 'event-interval-time-input' }}
 					data-test="text-input"
+					fullWidth
 				/>
 				<Button onClick={this.onSubmit}>Like</Button>
 			</form>
