@@ -3,12 +3,12 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { type Match, type RouterHistory } from 'react-router-dom'
 // import Button from '@material-ui/core/Button'
-import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 import NavBar from '../NavBarContainer'
 import TextForm from './TextForm'
 import BlocksContainer from './BlocksContainer'
 import GeneratedText from './GeneratedText'
+import BlockRay from '../../components/BlockRay'
 
 import type { State, ParseResult } from '../../types'
 import * as selectors from './selectors'
@@ -40,7 +40,7 @@ class Container extends React.Component<Props> {
 				<Grid container justify="center" spacing={16}>
 					<Grid item xs={12} md={10}>
 						<TextForm text={props.text} />
-						<Typography variant="title">{props.text}</Typography>
+						<BlockRay blocks={props.result.blocks} />
 						<BlocksContainer blocks={props.result.blocks} prefix="" />
 						<GeneratedText />
 					</Grid>

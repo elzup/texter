@@ -13,7 +13,7 @@ type Props = {
 }
 
 const BlocksContainer = (props: Props) => (
-	<Paper style={{ padding: '10px' }}>
+	<Paper style={{ padding: '10px', marginTop: '10px' }}>
 		<Grid container spacing={16}>
 			{props.blocks.map(block => (
 				<BlockContainer block={block} prefix={props.prefix} />
