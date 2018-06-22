@@ -2,9 +2,8 @@
 import type { ParseResult, Block } from '../types'
 
 const reInput = /(?<!\\)\((.*?[^\\])\)/
-const reSelect = /\[(.*?:.*?)\]/
-// const reNum = /<(.*?)>/
-const reRepeat = /\{(.*?:.*?)\}/
+const reSelect = /(?<!\\)\[(.*?:.*?[^\\])\]/
+const reRepeat = /(?<!\\)\{(.*?:.*?[^\\])\}/
 
 const noEmptyTextBlock = (b: Block) => b.type !== 'text' || b.text !== ''
 

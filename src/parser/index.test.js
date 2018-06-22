@@ -13,6 +13,7 @@ test('works', () => {
 	).toMatchSnapshot('repeat')
 
 	expect(m('hoge(match)-\\(not match) (not match\\)')).toMatchSnapshot('escape')
+	expect(m('hoge{match-\\{not match} [not match\\]}')).toMatchSnapshot('escape')
 })
 
 test('parseUnit', () => {
