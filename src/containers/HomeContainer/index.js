@@ -7,10 +7,10 @@ import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 import NavBar from '../NavBarContainer'
 import TextForm from './TextForm'
-import ResultContainer from './ResultContainer'
+import BlocksContainer from './BlocksContainer'
 
-import type { State } from '../../types'
-// import * as selectors from './selectors'
+import type { State, ParseResult } from '../../types'
+import * as selectors from './selectors'
 import * as logics from './logic'
 
 type OProps = {
@@ -21,11 +21,14 @@ type OProps = {
 type Props = {
 	text: string,
 	updateText: typeof logics.updateText,
+	result: ParseResult,
 }
 
 class Container extends React.Component<Props> {
 	componentWillReceiveProps(nextProps) {
-		this.props.updateText({ text: nextProps.text })
+		if (this.props.text !== nextProps.text) {
+			this.props.updateText({ text: nextProps.text })
+		}
 	}
 	render() {
 		const { props } = this
@@ -37,7 +40,7 @@ class Container extends React.Component<Props> {
 					<Grid item xs={12} md={10}>
 						<TextForm text={props.text} />
 						<Typography variant="title">{props.text}</Typography>
-						<ResultContainer />
+						<BlocksContainer blocks={props.result.blocks} />
 					</Grid>
 				</Grid>
 			</div>
@@ -47,7 +50,7 @@ class Container extends React.Component<Props> {
 
 const ms = (state: State, op: OProps) => {
 	const text = op.match.params.text || ''
-	return { text }
+	return { text, result: selectors.getResult(state) }
 }
 
 const conn = connect(ms, { updateText: logics.updateText })
