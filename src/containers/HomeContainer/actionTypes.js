@@ -1,11 +1,14 @@
 // @flow
-import type { Home } from '../../types'
+import type { Home, Block } from '../../types'
 
 export const UPDATE_HOME: 'HomeContainer/UPDATE_HOME' =
 	'HomeContainer/UPDATE_HOME'
+export const UPDATE_BLOCKS: 'HomeContainer/UPDATE_BLOCKS' =
+	'HomeContainer/UPDATE_BLOCKS'
 
 export const Actions = {
 	UPDATE_HOME,
+	UPDATE_BLOCKS,
 }
 
 export type UpdateHome = {
@@ -13,4 +16,9 @@ export type UpdateHome = {
 	home: Home,
 }
 
-export type Action = UpdateHome
+export type UpdateBlocks = {
+	type: typeof UPDATE_BLOCKS,
+	blocks: Block[],
+}
+
+export type Action = UpdateHome | UpdateBlocks

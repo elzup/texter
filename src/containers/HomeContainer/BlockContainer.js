@@ -3,11 +3,15 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
+import RemoveIcon from '@material-ui/icons/Remove'
+import AddIcon from '@material-ui/icons/Add'
 import BlocksContainer from './BlocksContainer'
 
 import type { State, Block } from '../../types'
 // import * as selectors from './selectors'
+import * as logics from './logic'
 import * as valueActions from '../ValueById/actions'
 
 type OProps = {
@@ -17,6 +21,7 @@ type Props = {
 	block: Block,
 	valueById: { [vid: string]: string },
 	setValue: typeof valueActions.setValue,
+	countChange: typeof logics.countChange,
 }
 
 const isHeadBreak = (str: string) => str[0] === '\n'
@@ -72,11 +77,28 @@ const BlockContainer = (props: Props) => {
 			</Grid>
 		)
 	} else {
-		return [...Array(5).keys()].map(() => (
+		return (
 			<Grid item xs={12}>
-				<BlocksContainer blocks={block.blocks} />
+				<Button
+					disabled={block.count <= 1}
+					onClick={() => {
+						props.countChange({ name: block.name, count: block.count - 1 })
+					}}
+				>
+					<RemoveIcon />
+				</Button>
+				<Button
+					onClick={() => {
+						props.countChange({ name: block.name, count: block.count + 1 })
+					}}
+				>
+					<AddIcon />
+				</Button>
+				{[...Array(block.count).keys()].map(() => (
+					<BlocksContainer blocks={block.blocks} />
+				))}
 			</Grid>
-		))
+		)
 	}
 }
 
@@ -87,6 +109,7 @@ const ms = (state: State, op: OProps) => ({
 
 const conn = connect(ms, {
 	setValue: valueActions.setValue,
+	countChange: logics.countChange,
 })
 
 export default conn(BlockContainer)

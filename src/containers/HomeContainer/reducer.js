@@ -11,6 +11,15 @@ export const initialState: State = {
 
 export default function(state: State = initialState, action: Action): State {
 	switch (action.type) {
+		case Actions.UPDATE_BLOCKS:
+			return {
+				...state,
+				result: {
+					...state.result,
+					blocks: action.blocks,
+				},
+			}
+
 		case Actions.UPDATE_HOME:
 			return action.home
 

@@ -7,6 +7,7 @@ import parser from '../../parser'
 import * as actions from './actions'
 import * as logActions from '../LogContainer/actions'
 import * as logSelectors from '../LogContainer/selectors'
+import * as selectors from './selectors'
 
 export function updateText({ text }: { text: string }): ThunkAction {
 	return async (dispatch, getState) => {
@@ -27,6 +28,25 @@ function setIds(blocks: Block[], prefix = ''): Block[] {
 		}
 		return v
 	})
+}
+
+export function countChange({
+	name,
+	count,
+}: {
+	name: string,
+	count: number,
+}): ThunkAction {
+	return async (dispatch, getState) => {
+		const result = selectors.getResult(getState())
+		const blocks = result.blocks.map(b => {
+			if (b.type === 'repeat' && b.name === name) {
+				return { ...b, count }
+			}
+			return b
+		})
+		await dispatch(actions.updateBlocks(blocks))
+	}
 }
 
 export function logId({ id }: { id: string }): ThunkAction {
