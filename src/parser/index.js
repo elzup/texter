@@ -21,7 +21,7 @@ function spliter(
 	return { ok: true, hit, before, after }
 }
 
-const textBlock = (text: string) => ({ type: 'text', text })
+const textBlock = (text: string) => ({ type: 'text', text, vid: '' })
 
 export function parseInputs(text: string): Block[] {
 	const blocks: Block[] = []
@@ -29,7 +29,7 @@ export function parseInputs(text: string): Block[] {
 	let res = spliter(remaining, reInput)
 	while (res.ok) {
 		blocks.push(textBlock(res.before))
-		blocks.push({ type: 'input', name: res.hit })
+		blocks.push({ type: 'input', name: res.hit, vid: '' })
 		remaining = res.after
 		res = spliter(remaining, reInput)
 	}
@@ -45,7 +45,7 @@ export function parseSelects(text: string): Block[] {
 		blocks.push(textBlock(res.before))
 		const [name, textsText] = res.hit.split(':')
 		const texts = textsText.split('|')
-		blocks.push({ type: 'select', name, texts })
+		blocks.push({ type: 'select', name, texts, vid: '' })
 		remaining = res.after
 		res = spliter(remaining, reSelect)
 	}
@@ -60,7 +60,12 @@ function parseRepats(text: string): Block[] {
 	while (res.ok) {
 		blocks.push(textBlock(res.before))
 		const [name, ...tails] = res.hit.split(':')
-		blocks.push({ type: 'repeat', name, blocks: [textBlock(tails.join(':'))] })
+		blocks.push({
+			type: 'repeat',
+			name,
+			blocks: [textBlock(tails.join(':'))],
+			vid: '',
+		})
 		remaining = res.after
 		res = spliter(remaining, reRepeat)
 	}

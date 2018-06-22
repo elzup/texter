@@ -39,21 +39,20 @@ export type TextBlock = {
 export type InputBlock = {
 	type: 'input',
 	name: string,
-	value?: string,
+	vid: string,
 }
 
 export type SelectBlock = {
 	type: 'select',
 	name: string,
 	texts: string[],
-	value?: string,
+	vid: string,
 }
 
 export type RepeatBlock = {
 	type: 'repeat',
 	name: string,
 	blocks: Block[],
-	value?: string[],
 }
 
 export type Block = TextBlock | InputBlock | SelectBlock | RepeatBlock

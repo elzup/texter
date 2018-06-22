@@ -9,10 +9,12 @@ Array [
       "b",
     ],
     "type": "select",
+    "vid": "",
   },
   Object {
     "name": "a",
     "type": "input",
+    "vid": "",
   },
 ]
 `;
@@ -22,10 +24,12 @@ Array [
   Object {
     "text": "[ア:a|b]",
     "type": "text",
+    "vid": "",
   },
   Object {
     "name": "a",
     "type": "input",
+    "vid": "",
   },
 ]
 `;
@@ -39,10 +43,12 @@ Array [
       "b",
     ],
     "type": "select",
+    "vid": "",
   },
   Object {
     "text": "(a)",
     "type": "text",
+    "vid": "",
   },
 ]
 `;
@@ -53,14 +59,17 @@ Object {
     Object {
       "text": "my name is ",
       "type": "text",
+      "vid": "",
     },
     Object {
       "name": "name",
       "type": "input",
+      "vid": "",
     },
     Object {
       "text": ".",
       "type": "text",
+      "vid": "",
     },
   ],
   "ok": true,
@@ -77,10 +86,12 @@ Object {
         "b",
       ],
       "type": "select",
+      "vid": "",
     },
     Object {
       "name": "a",
       "type": "input",
+      "vid": "",
     },
   ],
   "ok": true,
@@ -97,6 +108,7 @@ Object {
         "b",
       ],
       "type": "select",
+      "vid": "",
     },
     Object {
       "name": "イ",
@@ -105,6 +117,7 @@ Object {
         "d",
       ],
       "type": "select",
+      "vid": "",
     },
     Object {
       "name": "ウ",
@@ -113,6 +126,7 @@ Object {
         "f",
       ],
       "type": "select",
+      "vid": "",
     },
   ],
   "ok": true,
@@ -125,6 +139,7 @@ Object {
     Object {
       "text": "kyoko kyoko toshino.",
       "type": "text",
+      "vid": "",
     },
   ],
   "ok": true,
@@ -137,20 +152,24 @@ Object {
     Object {
       "text": "before",
       "type": "text",
+      "vid": "",
     },
     Object {
       "name": "m1",
       "type": "input",
+      "vid": "",
     },
     Object {
       "blocks": Array [
         Object {
           "name": "stage",
           "type": "input",
+          "vid": "",
         },
         Object {
           "text": "（",
           "type": "text",
+          "vid": "",
         },
         Object {
           "name": "rule",
@@ -159,10 +178,12 @@ Object {
             "b",
           ],
           "type": "select",
+          "vid": "",
         },
         Object {
           "text": "）",
           "type": "text",
+          "vid": "",
         },
         Object {
           "name": "result",
@@ -171,6 +192,7 @@ Object {
             "☓",
           ],
           "type": "select",
+          "vid": "",
         },
       ],
       "name": "buttle",
@@ -179,10 +201,12 @@ Object {
     Object {
       "name": "m2",
       "type": "input",
+      "vid": "",
     },
     Object {
       "text": "after",
       "type": "text",
+      "vid": "",
     },
   ],
   "ok": true,
@@ -195,6 +219,7 @@ Object {
     Object {
       "text": "私は",
       "type": "text",
+      "vid": "",
     },
     Object {
       "name": "poke",
@@ -204,10 +229,12 @@ Object {
         "フシギダネ",
       ],
       "type": "select",
+      "vid": "",
     },
     Object {
       "text": "を選んだ",
       "type": "text",
+      "vid": "",
     },
   ],
   "ok": true,
