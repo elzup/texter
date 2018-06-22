@@ -26,6 +26,9 @@ type Props = {
 }
 
 class Container extends React.Component<Props> {
+	componentDidMount() {
+		this.props.updateText({ text: this.props.text })
+	}
 	componentWillReceiveProps(nextProps) {
 		if (this.props.text !== nextProps.text) {
 			this.props.updateText({ text: nextProps.text })
