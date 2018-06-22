@@ -17,13 +17,20 @@ type Props = {
 	block: Block,
 }
 
+const isHeadBreak = (str: string) => str[0] === '\n'
+const isTailBreak = (str: string) => str[str.length - 1] === '\n'
+
 const BlockContainer = (props: Props) => {
 	const { block } = props
 	if (block.type === 'text') {
 		return (
-			<Grid item>
-				<Typography variant="title">{block.text}</Typography>
-			</Grid>
+			<React.Fragment>
+				{isHeadBreak(block.text) && <Grid item xs={12} />}
+				<Grid item>
+					<Typography variant="title">{block.text}</Typography>
+				</Grid>
+				{isTailBreak(block.text) && <Grid item xs={12} />}
+			</React.Fragment>
 		)
 	} else if (block.type === 'select') {
 		return (
