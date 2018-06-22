@@ -58,6 +58,7 @@ const BlockContainer = (props: Props) => {
 						native: true,
 					}}
 					value={props.valueById[vid]}
+					error={props.valueById[vid] === undefined}
 					onChange={e => {
 						props.saveValue({ vid, value: e.target.value })
 					}}
@@ -78,6 +79,7 @@ const BlockContainer = (props: Props) => {
 					id={`${block.name}`}
 					label={block.name}
 					value={props.valueById[vid]}
+					error={props.valueById[vid] === undefined}
 					onChange={e => {
 						props.saveValue({ vid, value: e.target.value })
 					}}
