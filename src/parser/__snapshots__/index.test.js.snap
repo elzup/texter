@@ -195,6 +195,7 @@ Object {
           "vid": "",
         },
       ],
+      "count": 1,
       "name": "buttle",
       "type": "repeat",
     },

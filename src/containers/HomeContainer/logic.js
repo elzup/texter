@@ -18,7 +18,7 @@ export function updateText({ text }: { text: string }): ThunkAction {
 function setIds(blocks: Block[], prefix = ''): Block[] {
 	return blocks.map((v, i) => {
 		if (v.type === 'repeat') {
-			return { ...v, blocks: setIds(v.blocks, v.name) }
+			return { ...v, blocks: setIds(v.blocks, v.name), count: 1 }
 		} else if (v.type === 'select') {
 			// TODO: help
 			return { type: 'select', name: v.name, texts: v.texts, vid: v.name }

@@ -52,6 +52,7 @@ export type SelectBlock = {
 export type RepeatBlock = {
 	type: 'repeat',
 	name: string,
+	count: number,
 	blocks: Block[],
 }
 

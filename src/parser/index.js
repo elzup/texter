@@ -62,6 +62,7 @@ function parseRepats(text: string): Block[] {
 		const [name, ...tails] = res.hit.split(':')
 		blocks.push({
 			type: 'repeat',
+			count: 1,
 			name,
 			blocks: [textBlock(tails.join(':'))],
 			vid: '',
@@ -99,6 +100,7 @@ function parse(text: string): Block[] {
 				type: 'repeat',
 				name: b.name,
 				blocks: parseUnit(sb.text),
+				count: 1,
 			})
 			return
 		}

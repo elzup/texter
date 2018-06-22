@@ -3,18 +3,20 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
-import Select from '@material-ui/core/Select'
 import Grid from '@material-ui/core/Grid'
 import BlocksContainer from './BlocksContainer'
 
 import type { State, Block } from '../../types'
 // import * as selectors from './selectors'
+import * as valueActions from '../ValueById/actions'
 
 type OProps = {
 	block: Block,
 }
 type Props = {
 	block: Block,
+	valueById: { [vid: string]: string },
+	setValue: typeof valueActions.setValue,
 }
 
 const isHeadBreak = (str: string) => str[0] === '\n'
@@ -59,7 +61,14 @@ const BlockContainer = (props: Props) => {
 	} else if (block.type === 'input') {
 		return (
 			<Grid item>
-				<TextField id={`${block.name}`} label={block.name} />
+				<TextField
+					id={`${block.name}`}
+					label={block.name}
+					value={props.valueById[block.vid]}
+					onChange={e => {
+						props.setValue(block.vid, e.target.value)
+					}}
+				/>
 			</Grid>
 		)
 	} else {
@@ -71,8 +80,13 @@ const BlockContainer = (props: Props) => {
 	}
 }
 
-const ms = (state: State, op: OProps) => ({ ...op })
+const ms = (state: State, op: OProps) => ({
+	...op,
+	valueById: state.ValueById,
+})
 
-const conn = connect(ms, {})
+const conn = connect(ms, {
+	setValue: valueActions.setValue,
+})
 
 export default conn(BlockContainer)
