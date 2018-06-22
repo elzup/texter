@@ -1,28 +1,11 @@
 // @flow
-import * as React from 'react'
 import { connect } from 'react-redux'
-import Typography from '@material-ui/core/Typography'
+
+import GeneratedText from '../../components/GeneratedText'
 
 import type { State } from '../../types'
 
-type OProps = {}
-
-type Props = {
-	text: string,
-}
-
-class GeneratedText extends React.Component<Props> {
-	render() {
-		const { props } = this
-		return (
-			<div>
-				<Typography variant="body1">{props.text}</Typography>
-			</div>
-		)
-	}
-}
-
-const ms = (state: State, op: OProps) => {
+const ms = (state: State) => {
 	return { text: state.HomeContainer.generatedText }
 }
 

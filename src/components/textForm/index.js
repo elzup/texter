@@ -43,7 +43,6 @@ class textForm extends React.Component<Props> {
 						id="interval"
 						type="text"
 						multiline
-						rows={3}
 						defaultValue={props.text}
 						inputRef={r => {
 							this.textRef = r
