@@ -3,13 +3,14 @@ import * as React from 'react'
 
 import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
-// import Button from '@material-ui/core/Button'
+import Button from '@material-ui/core/Button'
 import Paper from '@material-ui/core/Paper'
 
 type Props = {
 	text: string,
 	handleLike: ({ text: string }) => void,
 	handleChange: ({ text: string }) => void,
+	handleCopy: Function,
 }
 
 const sampleLink = {
@@ -63,6 +64,7 @@ class textForm extends React.Component<Props> {
 					<a href={sampleLink.link1}>(ex1</a>
 					<a href={sampleLink.link2}>(ex2</a>
 					{/*<Button onClick={this.onSubmit}>Save</Button> */}
+					<Button onClick={props.handleCopy}>共有URLをコピー</Button>
 				</form>
 			</Paper>
 		)

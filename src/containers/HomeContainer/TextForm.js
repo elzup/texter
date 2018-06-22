@@ -18,6 +18,7 @@ type Props = {
 	history: RouterHistory,
 	logId: typeof logics.logId,
 	handleLike: Function,
+	handleCopy: Function,
 }
 
 const Container = (props: Props) => (
@@ -33,6 +34,9 @@ const ms = (state: State, op: OProps) => {
 	return { text: op.text, history: op.history }
 }
 
-const conn = connect(ms, { handleLike: logics.logId })
+const conn = connect(ms, {
+	handleLike: logics.logId,
+	handleCopy: logics.copyShareUrl,
+})
 
 export default withRouter(conn(Container))
