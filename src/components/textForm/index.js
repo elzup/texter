@@ -12,6 +12,13 @@ type Props = {
 	handleChange: ({ text: string }) => void,
 }
 
+const sampleLink = {
+	link1:
+		'/#/日記%202018-(日付)%0A----%0A{出来事:[いつ:朝|昼|%08夜]%20-%20(内容)%0A}%0A----',
+	link2:
+		'/#/Hello%20my%20name%20is%20(name)[power:.|!|!!|!!!!].%20{comment:I%20love%20[thing:cat|dog|code].}',
+}
+
 class textForm extends React.Component<Props> {
 	textRef: ?HTMLInputElement
 
@@ -53,6 +60,8 @@ class textForm extends React.Component<Props> {
 						data-test="text-input"
 						fullWidth
 					/>
+					<a href={sampleLink.link1}>(ex1</a>
+					<a href={sampleLink.link2}>(ex2</a>
 					{/*<Button onClick={this.onSubmit}>Save</Button> */}
 				</form>
 			</Paper>
