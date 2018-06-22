@@ -1,59 +1,111 @@
 // @flow
 import type { ParseResult, Block } from '../types'
 
-const re = /\{(.*?)\}/
-const re2 = /\[(.*?)\]/
+const reInput = /\((.*?)\)/
+const reSelect = /\[(.*?:.*?)\]/
+// const reNum = /<(.*?)>/
+const reRepeat = /\{(.*?:.*?)\}/
 
 const noEmptyTextBlock = (b: Block) => b.type !== 'text' || b.text !== ''
 
-function parseTexter(text: string): ParseResult {
-	const blocks1: Block[] = [{ type: 'text', text }]
-	let m = re.exec(text)
-	while (m) {
-		const block = blocks1.pop()
-		if (block.type !== 'text') {
-			break
-		}
-		const [hit, name] = m
-		const [head, tail] = block.text.split(hit)
-		blocks1.push({ type: 'text', text: head })
-		blocks1.push({ type: 'input', name })
-		blocks1.push({ type: 'text', text: tail })
-		m = re.exec(tail)
+function spliter(
+	text: string,
+	reg: RegExp,
+): { ok: false } | { ok: true, before: string, hit: string, after: string } {
+	const m: string[] | null = reg.exec(text)
+	if (!m) {
+		return { ok: false }
 	}
-	const blocks2: Block[] = []
-	blocks1.forEach(block => {
-		if (block.type !== 'text') {
-			blocks2.push(block)
+	const [all, hit] = m
+	const [before, after] = text.split(all)
+	return { ok: true, hit, before, after }
+}
+
+const textBlock = (text: string) => ({ type: 'text', text })
+
+export function parseInputs(text: string): Block[] {
+	const blocks: Block[] = []
+	let remaining = text
+	let res = spliter(remaining, reInput)
+	while (res.ok) {
+		blocks.push(textBlock(res.before))
+		blocks.push({ type: 'input', name: res.hit })
+		remaining = res.after
+		res = spliter(remaining, reInput)
+	}
+	blocks.push(textBlock(remaining))
+	return blocks.filter(noEmptyTextBlock)
+}
+
+export function parseSelects(text: string): Block[] {
+	const blocks: Block[] = []
+	let remaining = text
+	let res = spliter(remaining, reSelect)
+	while (res.ok) {
+		blocks.push(textBlock(res.before))
+		const [name, textsText] = res.hit.split(':')
+		const texts = textsText.split('|')
+		blocks.push({ type: 'select', name, texts })
+		remaining = res.after
+		res = spliter(remaining, reSelect)
+	}
+	blocks.push(textBlock(remaining))
+	return blocks.filter(noEmptyTextBlock)
+}
+
+function parseRepats(text: string): Block[] {
+	const blocks: Block[] = []
+	let remaining = text
+	let res = spliter(remaining, reRepeat)
+	while (res.ok) {
+		blocks.push(textBlock(res.before))
+		const [name, ...tails] = res.hit.split(':')
+		blocks.push({ type: 'repeat', name, blocks: [textBlock(tails.join(':'))] })
+		remaining = res.after
+		res = spliter(remaining, reRepeat)
+	}
+	blocks.push(textBlock(remaining))
+	return blocks.filter(noEmptyTextBlock)
+}
+
+export function parseUnit(text: string): Block[] {
+	const blocksI = parseInputs(text)
+	let blocks = []
+	blocksI.forEach(b => {
+		if (b.type !== 'text') {
+			blocks.push(b)
 			return
 		}
-		let remaining = block.text
-		m = re2.exec(remaining)
-		while (true) {
-			if (!m) {
-				blocks2.push({ type: 'text', text: remaining })
+		blocks = [...blocks, ...parseSelects(b.text)]
+	})
+	return blocks
+}
+
+function parse(text: string): Block[] {
+	const blocksR = parseRepats(text)
+	let blocks = []
+	blocksR.forEach(b => {
+		if (b.type === 'repeat') {
+			const sb = b.blocks[0]
+			if (sb.type !== 'text') {
 				return
 			}
-			const [hit, nameText]: [string, string] = m
-			const [head, tail] = remaining.split(hit)
-			if (nameText.indexOf(':') === -1) {
-				return
-			}
-			const [name, textsText] = nameText.split(':')
-			const texts = textsText.split('|')
-			if (name[name.length - 1] === '*') {
-				blocks2.push({ type: 'text', text: head })
-				blocks2.push({ type: 'select-repeat', name, texts })
-			} else {
-				blocks2.push({ type: 'text', text: head })
-				blocks2.push({ type: 'select', name, texts })
-			}
-			remaining = tail
-			m = re2.exec(remaining)
+			blocks.push({
+				type: 'repeat',
+				name: b.name,
+				blocks: parseUnit(sb.text),
+			})
+			return
+		}
+		if (b.type === 'text') {
+			blocks = [...blocks, ...parseUnit(b.text)]
 		}
 	})
-	const blocks = blocks2.filter(noEmptyTextBlock)
-	return { ok: true, blocks }
+	return blocks
+}
+
+function parseTexter(text: string): ParseResult {
+	return { ok: true, blocks: parse(text) }
 }
 
 export default parseTexter

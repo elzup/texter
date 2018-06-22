@@ -1,43 +1,53 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`works 1`] = `
-Object {
-  "blocks": Array [
-    Object {
-      "text": "kyoko kyoko toshino.",
-      "type": "text",
-    },
-  ],
-  "ok": true,
-}
+exports[`parseUnit 1`] = `
+Array [
+  Object {
+    "name": "ア",
+    "texts": Array [
+      "a",
+      "b",
+    ],
+    "type": "select",
+  },
+  Object {
+    "name": "a",
+    "type": "input",
+  },
+]
 `;
 
-exports[`works 2`] = `
-Object {
-  "blocks": Array [
-    Object {
-      "text": "私は",
-      "type": "text",
-    },
-    Object {
-      "name": "poke",
-      "texts": Array [
-        "ゼニガメ",
-        "ヒトカゲ",
-        "フシギダネ",
-      ],
-      "type": "select",
-    },
-    Object {
-      "text": "を選んだ",
-      "type": "text",
-    },
-  ],
-  "ok": true,
-}
+exports[`parseUnit: parseInputs 1`] = `
+Array [
+  Object {
+    "text": "[ア:a|b]",
+    "type": "text",
+  },
+  Object {
+    "name": "a",
+    "type": "input",
+  },
+]
 `;
 
-exports[`works 3`] = `
+exports[`parseUnit: parseSelects 1`] = `
+Array [
+  Object {
+    "name": "ア",
+    "texts": Array [
+      "a",
+      "b",
+    ],
+    "type": "select",
+  },
+  Object {
+    "text": "(a)",
+    "type": "text",
+  },
+]
+`;
+
+exports[`works: input 1`] = `
 Object {
   "blocks": Array [
     Object {
@@ -57,7 +67,7 @@ Object {
 }
 `;
 
-exports[`works 4`] = `
+exports[`works: mix 1`] = `
 Object {
   "blocks": Array [
     Object {
@@ -77,36 +87,16 @@ Object {
 }
 `;
 
-exports[`works 5`] = `
+exports[`works: multiple 1`] = `
 Object {
   "blocks": Array [
     Object {
-      "name": "ア*",
+      "name": "ア",
       "texts": Array [
         "a",
         "b",
       ],
-      "type": "select-repeat",
-    },
-    Object {
-      "name": "a",
-      "type": "input",
-    },
-  ],
-  "ok": true,
-}
-`;
-
-exports[`works 6`] = `
-Object {
-  "blocks": Array [
-    Object {
-      "name": "ア*",
-      "texts": Array [
-        "a",
-        "b",
-      ],
-      "type": "select-repeat",
+      "type": "select",
     },
     Object {
       "name": "イ",
@@ -123,6 +113,101 @@ Object {
         "f",
       ],
       "type": "select",
+    },
+  ],
+  "ok": true,
+}
+`;
+
+exports[`works: plain 1`] = `
+Object {
+  "blocks": Array [
+    Object {
+      "text": "kyoko kyoko toshino.",
+      "type": "text",
+    },
+  ],
+  "ok": true,
+}
+`;
+
+exports[`works: repeat 1`] = `
+Object {
+  "blocks": Array [
+    Object {
+      "text": "before",
+      "type": "text",
+    },
+    Object {
+      "name": "m1",
+      "type": "input",
+    },
+    Object {
+      "blocks": Array [
+        Object {
+          "name": "stage",
+          "type": "input",
+        },
+        Object {
+          "text": "（",
+          "type": "text",
+        },
+        Object {
+          "name": "rule",
+          "texts": Array [
+            "a",
+            "b",
+          ],
+          "type": "select",
+        },
+        Object {
+          "text": "）",
+          "type": "text",
+        },
+        Object {
+          "name": "result",
+          "texts": Array [
+            "◯",
+            "☓",
+          ],
+          "type": "select",
+        },
+      ],
+      "name": "buttle",
+      "type": "repeat",
+    },
+    Object {
+      "name": "m2",
+      "type": "input",
+    },
+    Object {
+      "text": "after",
+      "type": "text",
+    },
+  ],
+  "ok": true,
+}
+`;
+
+exports[`works: select 1`] = `
+Object {
+  "blocks": Array [
+    Object {
+      "text": "私は",
+      "type": "text",
+    },
+    Object {
+      "name": "poke",
+      "texts": Array [
+        "ゼニガメ",
+        "ヒトカゲ",
+        "フシギダネ",
+      ],
+      "type": "select",
+    },
+    Object {
+      "text": "を選んだ",
+      "type": "text",
     },
   ],
   "ok": true,

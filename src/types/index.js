@@ -49,14 +49,14 @@ export type SelectBlock = {
 	value?: string,
 }
 
-export type SelectRepeatBlock = {
-	type: 'select-repeat',
+export type RepeatBlock = {
+	type: 'repeat',
 	name: string,
-	texts: string[],
+	blocks: Block[],
 	value?: string[],
 }
 
-export type Block = TextBlock | InputBlock | SelectBlock | SelectRepeatBlock
+export type Block = TextBlock | InputBlock | SelectBlock | RepeatBlock
 
 export type ParseResult = {
 	ok: boolean,
