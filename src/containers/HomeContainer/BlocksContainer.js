@@ -5,15 +5,18 @@ import { connect } from 'react-redux'
 import BlockContainer from './BlockContainer'
 import type { State, Block } from '../../types'
 import Grid from '@material-ui/core/Grid'
+import Paper from '@material-ui/core/Paper'
 
 type Props = {
 	blocks: Block[],
 }
 
 const BlocksContainer = (props: Props) => (
-	<Grid container spacing={16}>
-		{props.blocks.map(block => <BlockContainer block={block} />)}
-	</Grid>
+	<Paper style={{ padding: '10px' }}>
+		<Grid container spacing={16}>
+			{props.blocks.map(block => <BlockContainer block={block} />)}
+		</Grid>
+	</Paper>
 )
 
 const ms = (state: State, op) => ({ ...op })
