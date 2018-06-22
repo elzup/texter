@@ -53,6 +53,44 @@ Array [
 ]
 `;
 
+exports[`works: escape 1`] = `
+Object {
+  "blocks": Array [
+    Object {
+      "text": "hoge",
+      "type": "text",
+      "vid": "",
+    },
+    Object {
+      "name": "match",
+      "type": "input",
+      "vid": "",
+    },
+    Object {
+      "text": "-\\\\",
+      "type": "text",
+      "vid": "",
+    },
+    Object {
+      "name": "not match",
+      "type": "input",
+      "vid": "",
+    },
+    Object {
+      "text": " ",
+      "type": "text",
+      "vid": "",
+    },
+    Object {
+      "name": "not match\\\\",
+      "type": "input",
+      "vid": "",
+    },
+  ],
+  "ok": true,
+}
+`;
+
 exports[`works: input 1`] = `
 Object {
   "blocks": Array [

@@ -11,6 +11,8 @@ test('works', () => {
 	expect(
 		m('before(m1){buttle:(stage)（[rule:a|b]）[result:◯|☓]}(m2)after'),
 	).toMatchSnapshot('repeat')
+
+	expect(m('hoge(match)-\\(not match) (not match\\)')).toMatchSnapshot('escape')
 })
 
 test('parseUnit', () => {

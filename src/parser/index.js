@@ -1,7 +1,7 @@
 // @flow
 import type { ParseResult, Block } from '../types'
 
-const reInput = /\((.*?)\)/
+const reInput = /(?<!\\)\((.*?[^\\])\)/
 const reSelect = /\[(.*?:.*?)\]/
 // const reNum = /<(.*?)>/
 const reRepeat = /\{(.*?:.*?)\}/
