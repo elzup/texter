@@ -7,10 +7,17 @@ export type State = Home
 export const initialState: State = {
 	text: '',
 	result: { ok: false, blocks: [] },
+	generatedText: '',
 }
 
 export default function(state: State = initialState, action: Action): State {
 	switch (action.type) {
+		case Actions.UPDATE_GENERATED_TEXT:
+			return {
+				...state,
+				generatedText: state.generatedText,
+			}
+
 		case Actions.UPDATE_BLOCKS:
 			return {
 				...state,

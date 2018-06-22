@@ -13,7 +13,7 @@ export function updateText({ text }: { text: string }): ThunkAction {
 	return async (dispatch, getState) => {
 		const result0 = parser(text)
 		const result = { ...result0, blocks: setIds(result0.blocks) }
-		await dispatch(actions.updateHome({ text, result }))
+		await dispatch(actions.updateHome({ text, result, generatedText: '' }))
 	}
 }
 function setIds(blocks: Block[], prefix = ''): Block[] {

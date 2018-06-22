@@ -66,6 +66,7 @@ export type ParseResult = {
 export type Home = {
 	text: string,
 	result: ParseResult,
+	generatedText: string,
 }
 
 export type Log = {

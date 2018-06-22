@@ -8,6 +8,7 @@ import Grid from '@material-ui/core/Grid'
 import NavBar from '../NavBarContainer'
 import TextForm from './TextForm'
 import BlocksContainer from './BlocksContainer'
+import GeneratedText from './GeneratedText'
 
 import type { State, ParseResult } from '../../types'
 import * as selectors from './selectors'
@@ -41,6 +42,7 @@ class Container extends React.Component<Props> {
 						<TextForm text={props.text} />
 						<Typography variant="title">{props.text}</Typography>
 						<BlocksContainer blocks={props.result.blocks} prefix="" />
+						<GeneratedText />
 					</Grid>
 				</Grid>
 			</div>

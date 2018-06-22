@@ -12,7 +12,7 @@ import BlocksContainer from './BlocksContainer'
 import type { State, Block } from '../../types'
 // import * as selectors from './selectors'
 import * as logics from './logic'
-import * as valueActions from '../ValueById/actions'
+import * as valueLogics from '../ValueById/logic'
 
 type OProps = {
 	block: Block,
@@ -22,7 +22,7 @@ type Props = {
 	block: Block,
 	prefix: string,
 	valueById: { [vid: string]: string },
-	setValue: typeof valueActions.setValue,
+	saveValue: typeof valueLogics.saveValue,
 	countChange: typeof logics.countChange,
 }
 
@@ -59,7 +59,7 @@ const BlockContainer = (props: Props) => {
 					}}
 					value={props.valueById[vid]}
 					onChange={e => {
-						props.setValue(vid, e.target.value)
+						props.saveValue({ vid, value: e.target.value })
 					}}
 				>
 					{block.texts.map((text, i) => (
@@ -79,7 +79,7 @@ const BlockContainer = (props: Props) => {
 					label={block.name}
 					value={props.valueById[vid]}
 					onChange={e => {
-						props.setValue(vid, e.target.value)
+						props.saveValue({ vid, value: e.target.value })
 					}}
 				/>
 			</Grid>
@@ -120,7 +120,7 @@ const ms = (state: State, op: OProps) => ({
 })
 
 const conn = connect(ms, {
-	setValue: valueActions.setValue,
+	saveValue: valueLogics.saveValue,
 	countChange: logics.countChange,
 })
 
