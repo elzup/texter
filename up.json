@@ -11,7 +11,7 @@
 	},
 	"stages": {
 		"production": {
-			"domain": "texter.planckunits.io",
+			"domain": "texter.elzup.org",
 			"path": "/"
 		}
 	}
