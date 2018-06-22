@@ -16,9 +16,11 @@ import * as valueActions from '../ValueById/actions'
 
 type OProps = {
 	block: Block,
+	prefix: string,
 }
 type Props = {
 	block: Block,
+	prefix: string,
 	valueById: { [vid: string]: string },
 	setValue: typeof valueActions.setValue,
 	countChange: typeof logics.countChange,
@@ -46,6 +48,7 @@ const BlockContainer = (props: Props) => {
 			</React.Fragment>
 		)
 	} else if (block.type === 'select') {
+		const vid = props.prefix + block.vid
 		return (
 			<Grid item>
 				<TextField
@@ -53,6 +56,10 @@ const BlockContainer = (props: Props) => {
 					label={block.name}
 					SelectProps={{
 						native: true,
+					}}
+					value={props.valueById[vid]}
+					onChange={e => {
+						props.setValue(vid, e.target.value)
 					}}
 				>
 					{block.texts.map((text, i) => (
@@ -64,14 +71,15 @@ const BlockContainer = (props: Props) => {
 			</Grid>
 		)
 	} else if (block.type === 'input') {
+		const vid = props.prefix + block.vid
 		return (
 			<Grid item>
 				<TextField
 					id={`${block.name}`}
 					label={block.name}
-					value={props.valueById[block.vid]}
+					value={props.valueById[vid]}
 					onChange={e => {
-						props.setValue(block.vid, e.target.value)
+						props.setValue(vid, e.target.value)
 					}}
 				/>
 			</Grid>
@@ -94,8 +102,11 @@ const BlockContainer = (props: Props) => {
 				>
 					<AddIcon />
 				</Button>
-				{[...Array(block.count).keys()].map(() => (
-					<BlocksContainer blocks={block.blocks} />
+				{[...Array(block.count).keys()].map(n => (
+					<BlocksContainer
+						blocks={block.blocks}
+						prefix={`${block.name}-${n}-`}
+					/>
 				))}
 			</Grid>
 		)
@@ -103,7 +114,8 @@ const BlockContainer = (props: Props) => {
 }
 
 const ms = (state: State, op: OProps) => ({
-	...op,
+	block: op.block,
+	prefix: op.prefix,
 	valueById: state.ValueById,
 })
 

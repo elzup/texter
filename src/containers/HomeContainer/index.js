@@ -40,7 +40,7 @@ class Container extends React.Component<Props> {
 					<Grid item xs={12} md={10}>
 						<TextForm text={props.text} />
 						<Typography variant="title">{props.text}</Typography>
-						<BlocksContainer blocks={props.result.blocks} />
+						<BlocksContainer blocks={props.result.blocks} prefix="" />
 					</Grid>
 				</Grid>
 			</div>

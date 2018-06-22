@@ -9,12 +9,15 @@ import Paper from '@material-ui/core/Paper'
 
 type Props = {
 	blocks: Block[],
+	prefix: string,
 }
 
 const BlocksContainer = (props: Props) => (
 	<Paper style={{ padding: '10px' }}>
 		<Grid container spacing={16}>
-			{props.blocks.map(block => <BlockContainer block={block} />)}
+			{props.blocks.map(block => (
+				<BlockContainer block={block} prefix={props.prefix} />
+			))}
 		</Grid>
 	</Paper>
 )
