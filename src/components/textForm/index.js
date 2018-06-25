@@ -61,8 +61,12 @@ class textForm extends React.Component<Props> {
 						data-test="text-input"
 						fullWidth
 					/>
-					<a href={sampleLink.link1}>(ex1</a>
-					<a href={sampleLink.link2}>(ex2</a>
+					<a href={sampleLink.link1} style={{ marginLeft: '1em' }}>
+						例1
+					</a>
+					<a href={sampleLink.link2} style={{ marginLeft: '1em' }}>
+						例2
+					</a>
 					{/*<Button onClick={this.onSubmit}>Save</Button> */}
 					<Button onClick={props.handleCopy}>共有URLをコピー</Button>
 				</form>

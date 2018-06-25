@@ -67,7 +67,7 @@ Object {
       "vid": "",
     },
     Object {
-      "text": "-\\\\(not match) (not match\\\\)",
+      "text": "-(not match) (not match)",
       "type": "text",
       "vid": "",
     },
@@ -80,7 +80,7 @@ exports[`works: escape 2`] = `
 Object {
   "blocks": Array [
     Object {
-      "text": "hoge{match-\\\\{not match} [not match\\\\]}",
+      "text": "hoge{match-{not match} [not match]}",
       "type": "text",
       "vid": "",
     },

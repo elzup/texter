@@ -25,7 +25,7 @@ const Container = (props: Props) => (
 	<TextForm
 		{...props}
 		handleChange={({ text }) => {
-			props.history.push(encodeURI(text))
+			props.history.push({ pathname: encodeURI(text) })
 		}}
 	/>
 )

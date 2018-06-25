@@ -2460,6 +2460,10 @@ boxen@^0.6.0:
     string-width "^1.0.1"
     widest-line "^1.0.0"
 
+brace-expansion-parser@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/brace-expansion-parser/-/brace-expansion-parser-1.0.0.tgz#09ea709c6e7a6311512e776a713e0dd1dc1dd602"
+
 brace-expansion@^1.0.0, brace-expansion@^1.1.7:
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-1.1.8.tgz#c07b211c7c952ec1f8efd51a77ef0d1d3990a292"

@@ -10,11 +10,9 @@
 		"dev": "PORT=3000 node scripts/start.js",
 		"deploy": "up production",
 		"deploy:url": "up url production",
-		"coveralls":
-			"jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+		"coveralls": "jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
 		"flow": "flow",
-		"gen:env":
-			"cp templates/temp.env .env.development.local && cp templates/temp.env .env.production.local",
+		"gen:env": "cp templates/temp.env .env.development.local && cp templates/temp.env .env.production.local",
 		"precommit": "lint-staged",
 		"storybook": "start-storybook -p 6006",
 		"build-storybook": "build-storybook"
@@ -63,6 +61,7 @@
 		"babel-plugin-s2s-variable-initializing": "^0.1.7",
 		"babel-preset-react-app": "^3.1.1",
 		"babel-runtime": "6.26.0",
+		"brace-expansion-parser": "^1.0.0",
 		"case-sensitive-paths-webpack-plugin": "2.1.1",
 		"chalk": "2.3.1",
 		"coveralls": "^3.0.0",
@@ -100,11 +99,18 @@
 		"s2s-plugins-redux": "^0.4.4"
 	},
 	"lint-staged": {
-		"src/**/*.js": ["prettier --config ./.prettierrc --write", "git add"]
+		"src/**/*.js": [
+			"prettier --config ./.prettierrc --write",
+			"git add"
+		]
 	},
 	"jest": {
-		"collectCoverageFrom": ["src/**/*.{js,jsx,mjs}"],
-		"setupFiles": ["<rootDir>/config/polyfills.js"],
+		"collectCoverageFrom": [
+			"src/**/*.{js,jsx,mjs}"
+		],
+		"setupFiles": [
+			"<rootDir>/config/polyfills.js"
+		],
 		"testMatch": [
 			"<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}",
 			"<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}"
@@ -114,10 +120,11 @@
 		"transform": {
 			"^.+\\.(js|jsx|mjs)$": "<rootDir>/node_modules/babel-jest",
 			"^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
-			"^(?!.*\\.(js|jsx|mjs|css|json)$)":
-				"<rootDir>/config/jest/fileTransform.js"
+			"^(?!.*\\.(js|jsx|mjs|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
 		},
-		"transformIgnorePatterns": ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"],
+		"transformIgnorePatterns": [
+			"[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"
+		],
 		"moduleNameMapper": {
 			"^react-native$": "react-native-web"
 		},
