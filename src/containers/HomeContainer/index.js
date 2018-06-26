@@ -8,6 +8,7 @@ import NavBar from '../NavBarContainer'
 import TextForm from './TextForm'
 import BlocksContainer from './BlocksContainer'
 import GeneratedText from './GeneratedText'
+import ValueTable from '../ValueById/ValueTable'
 import BlockRay from '../../components/BlockRay'
 
 import type { State, ParseResult } from '../../types'
@@ -46,6 +47,7 @@ class Container extends React.Component<Props> {
 						<BlockRay blocks={props.result.blocks} />
 						<BlocksContainer blocks={props.result.blocks} prefix="" />
 						<GeneratedText />
+						<ValueTable />
 					</Grid>
 				</Grid>
 			</div>
@@ -58,6 +60,9 @@ const ms = (state: State, op: OProps) => {
 	return { text, result: selectors.getResult(state) }
 }
 
-const conn = connect(ms, { updateText: logics.updateText })
+const conn = connect(
+	ms,
+	{ updateText: logics.updateText },
+)
 
 export default conn(Container)
