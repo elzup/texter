@@ -8,6 +8,7 @@ import Grid from '@material-ui/core/Grid'
 import RemoveIcon from '@material-ui/icons/Remove'
 import AddIcon from '@material-ui/icons/Add'
 import BlocksContainer from './BlocksContainer'
+import InputBlock from '../ValueById/InputBlock'
 
 import type { State, Block } from '../../types'
 // import * as selectors from './selectors'
@@ -75,15 +76,7 @@ const BlockContainer = (props: Props) => {
 		const vid = props.prefix + block.vid
 		return (
 			<Grid item>
-				<TextField
-					id={`${block.name}`}
-					label={block.name}
-					value={props.valueById[vid]}
-					error={props.valueById[vid] === undefined}
-					onChange={e => {
-						props.saveValue({ vid, value: e.target.value })
-					}}
-				/>
+				<InputBlock vid={vid} viewLabel={true} />
 			</Grid>
 		)
 	} else {
@@ -121,9 +114,12 @@ const ms = (state: State, op: OProps) => ({
 	valueById: state.ValueById,
 })
 
-const conn = connect(ms, {
-	saveValue: valueLogics.saveValue,
-	countChange: logics.countChange,
-})
+const conn = connect(
+	ms,
+	{
+		saveValue: valueLogics.saveValue,
+		countChange: logics.countChange,
+	},
+)
 
 export default conn(BlockContainer)

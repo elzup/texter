@@ -3,7 +3,6 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import Typography from '@material-ui/core/Typography'
-import TextField from '@material-ui/core/TextField'
 import Paper from '@material-ui/core/Paper'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
@@ -12,6 +11,8 @@ import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Button from '@material-ui/core/Button'
 import RemoveIcon from '@material-ui/icons/Remove'
+
+import InputBlock from './InputBlock'
 
 import _ from 'lodash'
 
@@ -30,7 +31,9 @@ const ValueTable = (props: Props) => (
 		<Table>
 			<TableHead>
 				<TableRow>
-					<TableCell component="th">name</TableCell>
+					<TableCell component="th" style={{ width: '20%' }}>
+						name
+					</TableCell>
 					<TableCell component="th">value</TableCell>
 				</TableRow>
 			</TableHead>
@@ -38,7 +41,9 @@ const ValueTable = (props: Props) => (
 				{_.map(props.valueById, (value, vid) => (
 					<TableRow>
 						<TableCell>{vid}</TableCell>
-						<TableCell>{value}</TableCell>
+						<TableCell>
+							<InputBlock vid={vid} />
+						</TableCell>
 					</TableRow>
 				))}
 			</TableBody>
