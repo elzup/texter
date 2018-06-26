@@ -1,132 +1,99 @@
 // @flow
-import type { ParseResult, Block } from '../types'
-
-const reInput = /(?<!\\)\((.*?[^\\])\)/
-const reSelect = /(?<!\\)\[(.*?:.*?[^\\])\]/
-const reRepeat = /(?<!\\)\{(.*?:.*?[^\\])\}/
-
-const noEmptyTextBlock = (b: Block) => b.type !== 'text' || b.text !== ''
-
-function spliter(
-	text: string,
-	reg: RegExp,
-): { ok: false } | { ok: true, before: string, hit: string, after: string } {
-	const m: string[] | null = reg.exec(text)
-	if (!m) {
-		return { ok: false }
-	}
-	const [all, hit] = m
-	const [before, ...afters] = text.split(all)
-	return { ok: true, hit, before, after: afters.join(all) }
-}
-
-const textBlock = (text: string) => ({ type: 'text', text, vid: '' })
-
-export function parseInputs(text: string): Block[] {
-	const blocks: Block[] = []
-	let remaining = text
-	let res = spliter(remaining, reInput)
-	while (res.ok) {
-		blocks.push(textBlock(res.before))
-		blocks.push({ type: 'input', name: res.hit, vid: '' })
-		remaining = res.after
-		res = spliter(remaining, reInput)
-	}
-	blocks.push(textBlock(remaining))
-	return blocks.filter(noEmptyTextBlock)
-}
-
-export function parseSelects(text: string): Block[] {
-	const blocks: Block[] = []
-	let remaining = text
-	let res = spliter(remaining, reSelect)
-	while (res.ok) {
-		blocks.push(textBlock(res.before))
-		const [name, textsText] = res.hit.split(':')
-		const texts = textsText.split('|')
-		blocks.push({ type: 'select', name, texts, vid: '' })
-		remaining = res.after
-		res = spliter(remaining, reSelect)
-	}
-	blocks.push(textBlock(remaining))
-	return blocks.filter(noEmptyTextBlock)
-}
-
-function parseRepats(text: string): Block[] {
-	const blocks: Block[] = []
-	let remaining = text
-	let res = spliter(remaining, reRepeat)
-	while (res.ok) {
-		blocks.push(textBlock(res.before))
-		const [name, ...tails] = res.hit.split(':')
-		blocks.push({
-			type: 'repeat',
-			count: 1,
-			name,
-			blocks: [textBlock(tails.join(':'))],
-			vid: '',
-		})
-		remaining = res.after
-		res = spliter(remaining, reRepeat)
-	}
-	blocks.push(textBlock(remaining))
-	return blocks.filter(noEmptyTextBlock)
-}
-
-export function parseUnit(text: string): Block[] {
-	const blocksI = parseInputs(text)
-	let blocks = []
-	blocksI.forEach(b => {
-		if (b.type !== 'text') {
-			blocks.push(b)
-			return
-		}
-		blocks = [...blocks, ...parseSelects(b.text)]
-	})
-	return blocks
-}
-
-const trimActiveEscape = (text: string) =>
-	'()[]{}'.split('').reduce((p, c) => p.replace('\\' + c, c), text)
-
-function trimActiveEscapeFrom(blocks: Block[]): Block[] {
-	return blocks.map(b => {
-		if (b.type === 'text') {
-			return { ...b, text: trimActiveEscape(b.text) }
-		} else if (b.type === 'repeat') {
-			return { ...b, blocks: trimActiveEscapeFrom(b.blocks) }
-		} else {
-			return b
-		}
-	})
-}
-
-function parse(text: string): Block[] {
-	const blocksR = parseRepats(text)
-	let blocks = []
-	blocksR.forEach(b => {
-		if (b.type === 'repeat') {
-			const sb = b.blocks[0]
-			if (sb.type !== 'text') {
-				return
-			}
-			blocks.push({
-				type: 'repeat',
-				name: b.name,
-				blocks: parseUnit(sb.text),
-				count: 1,
-			})
-			return
-		}
-		if (b.type === 'text') {
-			blocks = [...blocks, ...parseUnit(b.text)]
-		}
-	})
-	return trimActiveEscapeFrom(blocks)
-}
+import type {
+	ParseResult,
+	Block,
+	TextBlock,
+	InputBlock,
+	SelectBlock,
+	RepeatBlock,
+} from '../types'
+import peeler from 'peeler'
+import type { PNode, PNodeText, PNodeBracket } from 'peeler/dist/types'
 
 function parseTexter(text: string): ParseResult {
-	return { ok: true, blocks: parse(text) }
+	try {
+		const nodes = peeler(text)
+		return { ok: true, blocks: nodes.map(convert) }
+	} catch (e) {
+		return { ok: false, blocks: [] }
+	}
+}
+
+function makeTextBlock(node: PNodeText): TextBlock {
+	return {
+		type: 'text',
+		text: node.content,
+	}
+}
+
+function makeInputBlock(node: PNodeBracket): InputBlock {
+	if (node.nodes.length !== 1 || node.nodes[0].nodeType !== 'text') {
+		throw new Error('構文エラー')
+	}
+	return {
+		type: 'input',
+		name: node.nodes[0].content,
+		vid: '',
+	}
+}
+
+function makeSelectBlock(node: PNodeBracket): SelectBlock {
+	if (node.nodes.length !== 1 || node.nodes[0].nodeType !== 'text') {
+		throw new Error('構文エラー')
+	}
+	const firstNode = node.nodes[0]
+	const { name, newNode } = splitName(firstNode)
+	return {
+		type: 'select',
+		name,
+		vid: '',
+		texts: newNode.content.split('|'),
+	}
+}
+
+function makeRepeatBlock(node: PNodeBracket): RepeatBlock {
+	if (node.nodes.length === 0 || node.nodes[0].nodeType !== 'text') {
+		throw new Error('構文エラー')
+	}
+	const firstNode = node.nodes[0]
+	const { name, newNode } = splitName(firstNode)
+	node.nodes[0] = newNode
+	return {
+		type: 'repeat',
+		name,
+		count: 1,
+		blocks: node.nodes.map(convert),
+	}
+}
+
+// TODO: const noLabelError = new Error('no label')
+
+function convert(node: PNode): Block {
+	if (node.nodeType === 'text') {
+		return makeTextBlock(node)
+	}
+	switch (node.open) {
+		case '{':
+			return makeRepeatBlock(node)
+		case '[':
+			return makeSelectBlock(node)
+		case '(':
+			return makeInputBlock(node)
+		default:
+			throw new Error('unreachable')
+	}
+}
+
+function splitName(node: PNode): { name: string, newNode: PNodeText } {
+	if (node.nodeType !== 'text') {
+		throw new Error('ラベルがない')
+	}
+	const texts = node.content.split(':')
+	if (texts.length !== 2) {
+		throw new Error('ラベルがない')
+	}
+	const [name, content] = texts
+	return { name, newNode: { ...node, content } }
 }
 
 export default parseTexter
