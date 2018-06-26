@@ -61,15 +61,33 @@ class textForm extends React.Component<Props> {
 						data-test="text-input"
 						fullWidth
 					/>
+				</form>
+				<div style={{ display: 'flex' }}>
+					<div style={{ flex: 1 }} />
+					<Button variant="outlined" onClick={props.handleCopy}>
+						共有URLをコピー
+					</Button>
+				</div>
+				<Typography variant="subheading">使い方・書き方</Typography>
+				<Typography variant="body1">
+					<p>
+						<code>{`(name)`}</code> 入力ブロック
+					</p>
+					<p>
+						<code>{`[name:たけのこ|きのこ]`}</code> 選択ブロック
+					</p>
+					<p>
+						<code>{`{name:内容}`}</code> リピートブロック
+					</p>
+					<p>{`※ それぞれ name 必須`}</p>
 					<a href={sampleLink.link1} style={{ marginLeft: '1em' }}>
 						例1
 					</a>
 					<a href={sampleLink.link2} style={{ marginLeft: '1em' }}>
 						例2
 					</a>
-					{/*<Button onClick={this.onSubmit}>Save</Button> */}
-					<Button onClick={props.handleCopy}>共有URLをコピー</Button>
-				</form>
+				</Typography>
+				{/*<Button onClick={this.onSubmit}>Save</Button> */}
 			</Paper>
 		)
 	}
