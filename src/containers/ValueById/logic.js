@@ -43,7 +43,7 @@ function fillText(
 					return valueById[prefix + b.vid]
 				case 'repeat':
 					return [...Array(b.count).keys()]
-						.map(i => fillText(b.blocks, valueById, `${b.name}-${i}-`))
+						.map(i => fillText(b.blocks, valueById, `${b.name}${i}-`))
 						.join('')
 				default:
 					return ''

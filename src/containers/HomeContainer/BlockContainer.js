@@ -23,6 +23,23 @@ type Props = {
 	valueById: { [vid: string]: string },
 	countChange: typeof logics.countChange,
 }
+const styles = {
+	block: {
+		margin: '5px',
+		marginTop: '10px',
+		borderRadius: '5px',
+		minWidth: '100px',
+		border: 'solid 1px #aaa',
+	},
+	blockText: {
+		margin: '5px',
+		marginTop: '10px',
+		background: '#ddd',
+		borderRadius: '5px',
+		minWidth: '100px',
+		border: 'solid 1px #aaa',
+	},
+}
 
 const isHeadBreak = (str: string) => str[0] === '\n'
 const isTailBreak = (str: string) => str[str.length - 1] === '\n'
@@ -33,11 +50,11 @@ const BlockComponent = (props: Props) => {
 		return (
 			<React.Fragment>
 				{isHeadBreak(block.text) && <Grid item xs={12} />}
-				<Grid item>
+				<Grid item style={styles.blockText}>
 					<Typography
 						variant="subheading"
 						gutterBottom
-						style={{ paddingTop: '20px', color: 'gray' }}
+						style={{ paddingTop: '20px' }}
 					>
 						{block.text}
 					</Typography>
@@ -48,20 +65,20 @@ const BlockComponent = (props: Props) => {
 	} else if (block.type === 'select') {
 		const vid = props.prefix + block.vid
 		return (
-			<Grid item>
+			<Grid item style={styles.block}>
 				<SelectBlock vid={vid} options={block.texts} />
 			</Grid>
 		)
 	} else if (block.type === 'input') {
 		const vid = props.prefix + block.vid
 		return (
-			<Grid item>
+			<Grid item style={styles.block}>
 				<InputBlock vid={vid} viewLabel={true} />
 			</Grid>
 		)
 	} else {
 		return (
-			<Grid item xs={12}>
+			<Grid item xs={12} style={styles.block}>
 				<Button
 					disabled={block.count <= 1}
 					onClick={() => {
