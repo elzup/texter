@@ -80,7 +80,7 @@ const BlockComponent = (props: Props) => {
 				{[...Array(block.count).keys()].map(n => (
 					<Grid container spacing={16}>
 						{block.blocks.map((child, i) => (
-							<BlockContainer block={child} prefix={`${block.name}${i}-`} />
+							<BlockContainer block={child} prefix={`${block.name}${n}-`} />
 						))}
 					</Grid>
 				))}
