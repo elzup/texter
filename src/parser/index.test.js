@@ -12,12 +12,8 @@ test('works', () => {
 		m('before(m1){buttle:(stage)（[rule:a|b]）[result:◯|☓]}(m2)after'),
 	).toMatchSnapshot('repeat')
 
-	expect(m('hoge(match)-\\(not match) (not match\\)')).toMatchSnapshot('escape')
-	expect(m('hoge{match-\\{not match} [not match\\]}')).toMatchSnapshot('escape')
-})
-
-test('parseUnit', () => {
-	expect(parseInputs('[ア:a|b](a)')).toMatchSnapshot('parseInputs')
-	expect(parseSelects('[ア:a|b](a)')).toMatchSnapshot('parseSelects')
-	expect(parseUnit('[ア:a|b](a)')).toMatchSnapshot()
+	expect(m('hoge(match)-(in\\(clu\\)ds)')).toMatchSnapshot('escape')
+	expect(m('hoge{a:match-\\{not match} [not match\\}]')).toMatchSnapshot(
+		'escape',
+	)
 })
