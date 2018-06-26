@@ -8,7 +8,7 @@ import NavBar from '../NavBarContainer'
 import TextForm from './TextForm'
 import BlocksContainer from './BlocksContainer'
 import GeneratedText from './GeneratedText'
-import ValueTable from '../ValueById/ValueTable'
+import ValueTable from '../ValuesTable'
 import BlockRay from '../../components/BlockRay'
 
 import type { State, ParseResult } from '../../types'

@@ -2,19 +2,20 @@
 import type { Action } from '../../types'
 import { Actions } from './actionTypes'
 
-export type State = { [id: string]: string }
+export type State = {
+	vids: string[],
+}
 
-export const initialState: State = {}
+export const initialState: State = {
+	vids: [],
+}
 
 export default function(state: State = initialState, action: Action): State {
 	switch (action.type) {
-		case Actions.REPLACE_VALUES:
-			return action.state
-
-		case Actions.SET_VALUE:
+		case Actions.UPDATE_VIDS:
 			return {
 				...state,
-				[action.key]: action.value,
+				vids: action.vids,
 			}
 
 		default:

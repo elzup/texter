@@ -12,17 +12,15 @@ import TableRow from '@material-ui/core/TableRow'
 import Button from '@material-ui/core/Button'
 import RemoveIcon from '@material-ui/icons/Remove'
 
-import InputBlock from './InputBlock'
-
-import _ from 'lodash'
+import InputBlock from '../ValueById/InputBlock'
 
 import type { State } from '../../types'
-// import * as selectors from './selectors'
+import * as selectors from './selectors'
 import * as logics from './logic'
 
 type Props = {
-	valueById: { [vid: string]: string },
-	saveValue: typeof logics.saveValue,
+	vids: string[],
+	revokeKey: typeof logics.revokeKey,
 }
 
 const ValueTable = (props: Props) => (
@@ -35,14 +33,20 @@ const ValueTable = (props: Props) => (
 						name
 					</TableCell>
 					<TableCell component="th">value</TableCell>
+					<TableCell component="th">manage</TableCell>
 				</TableRow>
 			</TableHead>
 			<TableBody>
-				{_.map(props.valueById, (value, vid) => (
+				{props.vids.map(vid => (
 					<TableRow>
 						<TableCell>{vid}</TableCell>
 						<TableCell>
 							<InputBlock vid={vid} />
+						</TableCell>
+						<TableCell>
+							<Button onClick={() => props.revokeKey({ vid })}>
+								<RemoveIcon />
+							</Button>
 						</TableCell>
 					</TableRow>
 				))}
@@ -52,13 +56,13 @@ const ValueTable = (props: Props) => (
 )
 
 const ms = (state: State) => ({
-	valueById: state.ValueById,
+	vids: selectors.getVids(state),
 })
 
 const conn = connect(
 	ms,
 	{
-		saveValue: logics.saveValue,
+		revokeKey: logics.revokeKey,
 	},
 )
 

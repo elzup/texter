@@ -81,7 +81,7 @@ const BlockContainer = (props: Props) => {
 				{[...Array(block.count).keys()].map(n => (
 					<BlocksContainer
 						blocks={block.blocks}
-						prefix={`${block.name}-${n}-`}
+						prefix={`${block.name}${n}-`}
 					/>
 				))}
 			</Grid>

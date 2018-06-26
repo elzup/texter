@@ -3,6 +3,7 @@
 import type { ThunkAction, Block } from '../../types'
 import * as actions from './actions'
 import * as homeActions from '../HomeContainer/actions'
+import * as valueTableLogics from '../ValuesTable/logic'
 
 export function saveValue({
 	vid,
@@ -12,6 +13,7 @@ export function saveValue({
 	value: string,
 }): ThunkAction {
 	return async (dispatch, getState) => {
+		await dispatch(valueTableLogics.addKeys([vid]))
 		await dispatch(actions.setValue(vid, value))
 		dispatch(calcText())
 	}
