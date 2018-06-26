@@ -10,17 +10,17 @@ import * as selectors from './selectors'
 
 type OProps = {
 	vid: string,
-	viewLabel?: boolean,
+	options: string[],
 }
 
 type Props = {
 	vid: string,
-	viewLabel: boolean,
+	options: string[],
 	value: string,
 	saveValue: typeof logics.saveValue,
 }
 
-class InputBlock extends React.Component<Props> {
+class SelectBlock extends React.Component<Props> {
 	vRef: ?HTMLInputElement
 
 	componentDidMount() {
@@ -38,25 +38,35 @@ class InputBlock extends React.Component<Props> {
 		const { props } = this
 		return (
 			<TextField
-				label={props.viewLabel ? props.vid : null}
+				select
+				label={props.vid}
+				SelectProps={{
+					native: true,
+				}}
+				error={!props.value}
 				inputRef={ref => {
 					this.vRef = ref
 				}}
 				InputLabelProps={{
 					shrink: true,
 				}}
-				error={!props.value}
 				onChange={e => {
 					props.saveValue({ vid: props.vid, value: e.target.value })
 				}}
-			/>
+			>
+				{props.options.map((text, i) => (
+					<option key={i} value={text}>
+						{text}
+					</option>
+				))}
+			</TextField>
 		)
 	}
 }
 
 const ms = (state: State, op: OProps) => ({
 	vid: op.vid,
-	viewLabel: op.viewLabel || false,
+	options: op.options,
 	value: selectors.getValue(state, op.vid),
 })
 
@@ -67,4 +77,4 @@ const conn = connect(
 	},
 )
 
-export default conn(InputBlock)
+export default conn(SelectBlock)

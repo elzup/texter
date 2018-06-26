@@ -2,18 +2,17 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import Typography from '@material-ui/core/Typography'
-import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import RemoveIcon from '@material-ui/icons/Remove'
 import AddIcon from '@material-ui/icons/Add'
 import BlocksContainer from './BlocksContainer'
 import InputBlock from '../ValueById/InputBlock'
+import SelectBlock from '../ValueById/SelectBlock'
 
 import type { State, Block } from '../../types'
 // import * as selectors from './selectors'
 import * as logics from './logic'
-import * as valueLogics from '../ValueById/logic'
 
 type OProps = {
 	block: Block,
@@ -23,7 +22,6 @@ type Props = {
 	block: Block,
 	prefix: string,
 	valueById: { [vid: string]: string },
-	saveValue: typeof valueLogics.saveValue,
 	countChange: typeof logics.countChange,
 }
 
@@ -52,24 +50,7 @@ const BlockContainer = (props: Props) => {
 		const vid = props.prefix + block.vid
 		return (
 			<Grid item>
-				<TextField
-					select
-					label={block.name}
-					SelectProps={{
-						native: true,
-					}}
-					value={props.valueById[vid]}
-					error={props.valueById[vid] === undefined}
-					onChange={e => {
-						props.saveValue({ vid, value: e.target.value })
-					}}
-				>
-					{block.texts.map((text, i) => (
-						<option key={i} value={text}>
-							{text}
-						</option>
-					))}
-				</TextField>
+				<SelectBlock vid={vid} options={block.texts} />
 			</Grid>
 		)
 	} else if (block.type === 'input') {
@@ -117,7 +98,6 @@ const ms = (state: State, op: OProps) => ({
 const conn = connect(
 	ms,
 	{
-		saveValue: valueLogics.saveValue,
 		countChange: logics.countChange,
 	},
 )
