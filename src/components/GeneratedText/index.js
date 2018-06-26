@@ -5,14 +5,19 @@ import Paper from '@material-ui/core/Paper'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 
+import Filter from '@material-ui/icons/Filter'
+
 type Props = {
 	text: string,
 	handleCopy: Function,
 }
 
 const GeneratedText = (props: Props) => (
-	<Paper style={{ padding: '10px', marginTop: '10px' }}>
-		<Typography variant="title">Result</Typography>
+	<Paper>
+		<Typography variant="title">
+			<Filter />
+			Result
+		</Typography>
 		<TextField
 			id="interval"
 			type="text"

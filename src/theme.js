@@ -19,11 +19,18 @@ const theme = createMuiTheme({
 			padding: '10px',
 		},
 	},
-	paper: {
-		padding: '10px',
-	},
-	tableCell: {
-		textAlign: 'center',
+	overrides: {
+		MuiPaper: {
+			root: {
+				padding: '10px',
+				marginTop: '10px',
+			},
+		},
+		MuiSvgIcon: {
+			root: {
+				// margin: '5px',
+			},
+		},
 	},
 })
 export default theme

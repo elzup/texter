@@ -4,6 +4,7 @@ import type { Block } from '../../types'
 
 import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
+import FilterBAndW from '@material-ui/icons/FilterBAndW'
 
 type Props = {
 	blocks: Block[],
@@ -64,8 +65,11 @@ const Rays = (props: Props) => (
 )
 
 const BlockRay = (props: Props) => (
-	<Paper style={{ padding: '10px', marginTop: '10px' }}>
-		<Typography variant="title">Parsed</Typography>
+	<Paper>
+		<Typography variant="title">
+			<FilterBAndW />
+			Parsed
+		</Typography>
 		<div style={{ display: 'flex' }}>
 			<Rays {...props} />
 		</div>

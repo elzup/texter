@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import Paper from '@material-ui/core/Paper'
+import FilterNone from '@material-ui/icons/FilterNone'
 
 type Props = {
 	text: string,
@@ -44,9 +45,12 @@ class textForm extends React.Component<Props> {
 	render() {
 		const { props } = this
 		return (
-			<Paper style={{ marginTop: '10px', padding: '10px' }}>
+			<Paper>
 				<form action="" onSubmit={this.onSubmit}>
-					<Typography variant="title">Template</Typography>
+					<Typography variant="title">
+						<FilterNone />
+						Template
+					</Typography>
 					<TextField
 						id="interval"
 						type="text"

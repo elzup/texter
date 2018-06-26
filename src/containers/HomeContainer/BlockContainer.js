@@ -6,7 +6,6 @@ import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import RemoveIcon from '@material-ui/icons/Remove'
 import AddIcon from '@material-ui/icons/Add'
-import BlocksContainer from './BlocksContainer'
 import InputBlock from '../ValueById/InputBlock'
 import SelectBlock from '../ValueById/SelectBlock'
 
@@ -28,7 +27,7 @@ type Props = {
 const isHeadBreak = (str: string) => str[0] === '\n'
 const isTailBreak = (str: string) => str[str.length - 1] === '\n'
 
-const BlockContainer = (props: Props) => {
+const BlockComponent = (props: Props) => {
 	const { block } = props
 	if (block.type === 'text') {
 		return (
@@ -79,10 +78,11 @@ const BlockContainer = (props: Props) => {
 					<AddIcon />
 				</Button>
 				{[...Array(block.count).keys()].map(n => (
-					<BlocksContainer
-						blocks={block.blocks}
-						prefix={`${block.name}${n}-`}
-					/>
+					<Grid container spacing={16}>
+						{block.blocks.map((child, i) => (
+							<BlockContainer block={child} prefix={`${block.name}${i}-`} />
+						))}
+					</Grid>
 				))}
 			</Grid>
 		)
@@ -102,4 +102,5 @@ const conn = connect(
 	},
 )
 
-export default conn(BlockContainer)
+const BlockContainer = conn(BlockComponent)
+export default BlockContainer

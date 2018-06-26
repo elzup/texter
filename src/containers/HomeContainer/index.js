@@ -41,7 +41,7 @@ class Container extends React.Component<Props> {
 		return (
 			<div>
 				<NavBar />
-				<Grid container justify="center" spacing={16}>
+				<Grid container justify="center" style={{ marginBottom: '100px' }}>
 					<Grid item xs={12} md={10}>
 						<TextForm text={props.text} />
 						<BlockRay blocks={props.result.blocks} />
