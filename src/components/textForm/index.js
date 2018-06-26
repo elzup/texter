@@ -7,6 +7,8 @@ import Button from '@material-ui/core/Button'
 import Paper from '@material-ui/core/Paper'
 import FilterNone from '@material-ui/icons/FilterNone'
 
+import Title from '../Title'
+
 type Props = {
 	text: string,
 	handleLike: ({ text: string }) => void,
@@ -47,10 +49,7 @@ class textForm extends React.Component<Props> {
 		return (
 			<Paper>
 				<form action="" onSubmit={this.onSubmit}>
-					<Typography variant="title">
-						<FilterNone />
-						Template
-					</Typography>
+					<Title text={'Template'} icon={<FilterNone />} />
 					<TextField
 						id="interval"
 						type="text"

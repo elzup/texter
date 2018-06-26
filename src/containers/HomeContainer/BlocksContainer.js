@@ -6,8 +6,9 @@ import BlockContainer from './BlockContainer'
 import type { State, Block } from '../../types'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
-import Typography from '@material-ui/core/Typography'
 import FilterHdr from '@material-ui/icons/FilterHdr'
+
+import Title from '../../components/Title'
 
 type Props = {
 	blocks: Block[],
@@ -16,9 +17,7 @@ type Props = {
 
 const BlocksContainer = (props: Props) => (
 	<Paper>
-		<Typography variant="title">
-			<FilterHdr />Form
-		</Typography>
+		<Title text={'Form'} icon={<FilterHdr />} />
 		<Grid container spacing={16}>
 			{props.blocks.map(block => (
 				<BlockContainer block={block} prefix={props.prefix} />

@@ -4,8 +4,9 @@ import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-
 import Filter from '@material-ui/icons/Filter'
+
+import Title from '../Title'
 
 type Props = {
 	text: string,
@@ -14,10 +15,7 @@ type Props = {
 
 const GeneratedText = (props: Props) => (
 	<Paper>
-		<Typography variant="title">
-			<Filter />
-			Result
-		</Typography>
+		<Title text={'Result'} icon={<Filter />} />
 		<TextField
 			id="interval"
 			type="text"

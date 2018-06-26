@@ -28,7 +28,8 @@ const theme = createMuiTheme({
 		},
 		MuiSvgIcon: {
 			root: {
-				// margin: '5px',
+				marginTop: '5px',
+				marginRight: '5px',
 			},
 		},
 	},

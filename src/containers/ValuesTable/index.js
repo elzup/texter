@@ -13,10 +13,13 @@ import Button from '@material-ui/core/Button'
 import RemoveIcon from '@material-ui/icons/Remove'
 
 import InputBlock from '../ValueById/InputBlock'
+import Title from '../../components/Title'
 
 import type { State } from '../../types'
 import * as selectors from './selectors'
 import * as logics from './logic'
+
+import ChangeHistory from '@material-ui/icons/ChangeHistory'
 
 type Props = {
 	vids: string[],
@@ -25,7 +28,7 @@ type Props = {
 
 const ValueTable = (props: Props) => (
 	<Paper>
-		<Typography variant="title">Memory Table</Typography>
+		<Title text={'Memory Table'} icon={<ChangeHistory />} />
 		<Table>
 			<TableHead>
 				<TableRow>
