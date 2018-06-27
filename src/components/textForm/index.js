@@ -58,6 +58,7 @@ class textForm extends React.Component<Props> {
 						inputRef={r => {
 							this.textRef = r
 						}}
+						rows={props.text.split('\n').length}
 						helperText=""
 						onChange={this.onChange}
 						inputProps={{ 'data-test': 'event-interval-time-input' }}
