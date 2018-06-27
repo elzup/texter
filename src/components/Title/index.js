@@ -8,7 +8,7 @@ type Props = {
 }
 
 const Title = (props: Props) => (
-	<Typography variant="heading" component="h2">
+	<Typography variant="headline" component="h2">
 		{props.icon}
 		{props.text}
 	</Typography>

@@ -5,9 +5,6 @@ import Typography from '@material-ui/core/Typography'
 
 import type { TextBlock } from '../../types'
 
-const splitKeep = (str: string, separator: string) =>
-	str.split(separator).reduce((p, c) => [...p, separator, c], [])
-
 const styles = {
 	blockText: {
 		margin: '5px',
@@ -26,7 +23,6 @@ const visible = (text: string) => text.replace(/[\s　]/g, '_')
 
 const TextGrids = (props: Props) => {
 	const { block } = props
-	const br = <Grid item xs={12} />
 	const textParts = block.text.split('\n')
 	return (
 		<React.Fragment>
@@ -34,9 +30,9 @@ const TextGrids = (props: Props) => {
 				const hasNext = i < textParts.length - 1
 				const text = visible(tp + (hasNext ? '↩' : ''))
 				return (
-					<React.Fragment>
+					<React.Fragment key={i}>
 						{text && (
-							<Grid item style={styles.blockText}>
+							<Grid item style={styles.blockText} key={i}>
 								<Typography
 									variant="subheading"
 									gutterBottom
@@ -49,7 +45,7 @@ const TextGrids = (props: Props) => {
 								</Typography>
 							</Grid>
 						)}
-						{hasNext && br}
+						{hasNext && <Grid key={`br-${i}`} item xs={12} />}
 					</React.Fragment>
 				)
 			})}

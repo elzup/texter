@@ -40,7 +40,7 @@ const ValueTable = (props: Props) => (
 			</TableHead>
 			<TableBody>
 				{props.vids.map(vid => (
-					<TableRow>
+					<TableRow key={vid}>
 						<TableCell>{vid}</TableCell>
 						<TableCell>
 							<InputBlock vid={vid} />

@@ -62,7 +62,7 @@ const RayOne = ({ block }: { block: Block }) => {
 
 const Rays = (props: Props) => (
 	<React.Fragment>
-		{props.blocks.map(block => <RayOne block={block} />)}
+		{props.blocks.map((block, i) => <RayOne key={i} block={block} />)}
 	</React.Fragment>
 )
 

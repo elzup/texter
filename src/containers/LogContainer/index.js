@@ -20,7 +20,7 @@ class Container extends React.Component<Props> {
 		return (
 			<ul>
 				{props.logs.map(log => (
-					<li>
+					<li key={log.id}>
 						<Button
 							onClick={() => {
 								props.history.push(`/${log.id}`)
@@ -41,8 +41,11 @@ const ms = (state: State) => {
 	}
 }
 
-const conn = connect(ms, {
-	receiveLog: actions.receiveLog,
-})
+const conn = connect(
+	ms,
+	{
+		receiveLog: actions.receiveLog,
+	},
+)
 
 export default conn(withRouter(Container))

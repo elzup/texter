@@ -19,8 +19,8 @@ const BlocksContainer = (props: Props) => (
 	<Paper>
 		<Title text={'Form'} icon={<FilterHdr />} />
 		<Grid container spacing={16}>
-			{props.blocks.map(block => (
-				<BlockContainer block={block} prefix={props.prefix} />
+			{props.blocks.map((block, i) => (
+				<BlockContainer key={i} block={block} prefix={props.prefix} />
 			))}
 		</Grid>
 	</Paper>

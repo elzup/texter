@@ -1,11 +1,11 @@
 // @flow
 
 import _combineReducers from './combineReducers'
-let { NODE_ENV, REACT_APP_API_URL } = process.env
-
-if (!REACT_APP_API_URL) {
+let { NODE_ENV } = process.env
+const REACT_APP_API_URL = '-'
+// if (!REACT_APP_API_URL) {
+if (false) {
 	console.warn('Configuration not completed. must setup envioraments.')
-	REACT_APP_API_URL = '-'
 	console.info(process.env)
 }
 

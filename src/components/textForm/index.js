@@ -18,7 +18,7 @@ type Props = {
 
 const sampleLink = {
 	link1:
-		'/#/日記%202018-(日付)%0A----%0A{出来事:[いつ:朝|昼|%08夜]%20-%20(内容)%0A}%0A----',
+		'/#/日記%202018-(日付)%0A----%0A{出来事:[いつ:朝|昼|夜]%20-%20(内容)%0A}%0A----',
 	link2:
 		'/#/Hello%20my%20name%20is%20(name)[power:.|!|!!|!!!!].%20{comment:I%20love%20[thing:cat|dog|code].}',
 }
@@ -73,16 +73,10 @@ class textForm extends React.Component<Props> {
 				</div>
 				<Typography variant="subheading">使い方・書き方</Typography>
 				<Typography variant="body1">
-					<p>
-						<code>{`(name)`}</code> 入力ブロック
-					</p>
-					<p>
-						<code>{`[name:たけのこ|きのこ]`}</code> 選択ブロック
-					</p>
-					<p>
-						<code>{`{name:内容}`}</code> リピートブロック
-					</p>
-					<p>{`※ それぞれ name 必須`}</p>
+					<code>{`(name)`}</code> 入力ブロック<br />
+					<code>{`[name:たけのこ|きのこ]`}</code> 選択ブロック<br />
+					<code>{`{name:内容}`}</code> リピートブロック<br />
+					※ それぞれ name 必須<br />
 					<a href={sampleLink.link1} style={{ marginLeft: '1em' }}>
 						例1
 					</a>

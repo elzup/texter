@@ -70,9 +70,13 @@ const BlockComponent = (props: Props) => {
 					<AddIcon />
 				</Button>
 				{[...Array(block.count).keys()].map(n => (
-					<Grid container spacing={16}>
+					<Grid container spacing={16} key={n}>
 						{block.blocks.map((child, i) => (
-							<BlockContainer block={child} prefix={`${block.name}${n}-`} />
+							<BlockContainer
+								key={i}
+								block={child}
+								prefix={`${block.name}${n}-`}
+							/>
 						))}
 					</Grid>
 				))}
