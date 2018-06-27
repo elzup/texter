@@ -67,6 +67,7 @@ export type Home = {
 	text: string,
 	result: ParseResult,
 	generatedText: string,
+	shareUrl: string,
 }
 
 export type Log = {

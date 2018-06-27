@@ -2,6 +2,7 @@
 import _ from 'lodash'
 import moment from 'moment'
 import copy from 'copy-text-to-clipboard'
+import ShareUrl from 'share-url'
 
 import type { ThunkAction, Block } from '../../types'
 import parser from '../../parser'
@@ -15,7 +16,9 @@ export function updateText({ text }: { text: string }): ThunkAction {
 	return async (dispatch, getState) => {
 		const result0 = parser(text)
 		const result = { ...result0, blocks: setIds(result0.blocks) }
-		await dispatch(actions.updateHome({ text, result, generatedText: '' }))
+		const shareUrl = `${document.location.origin}/#/${encodeURI(text)}`
+
+		await dispatch(actions.updateHome({ text, result, shareUrl }))
 		dispatch(valueLogics.calcText())
 	}
 }
@@ -72,12 +75,21 @@ export function copyGeneratedText(): ThunkAction {
 	}
 }
 
+export function openShareTwitter(): ThunkAction {
+	return async (dispatch, getState) => {
+		const { shareUrl, generatedText } = getState().HomeContainer
+
+		const url = ShareUrl.twitter({
+			text: generatedText,
+			url: shareUrl,
+			hashtags: '#texter',
+		})
+		window.open(url)
+	}
+}
+
 export function copyShareUrl(): ThunkAction {
 	return async (dispatch, getState) => {
-		const text =
-			document.location.origin +
-			'/#/' +
-			encodeURI(getState().HomeContainer.text)
-		copy(text)
+		copy(getState().HomeContainer.shareUrl)
 	}
 }

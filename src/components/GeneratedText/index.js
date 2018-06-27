@@ -4,12 +4,15 @@ import Paper from '@material-ui/core/Paper'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Filter from '@material-ui/icons/Filter'
+import Share from '@material-ui/icons/Share'
+import ContentPaste from '@material-ui/icons/ContentPaste'
 
 import Title from '../Title'
 
 type Props = {
 	text: string,
 	handleCopy: Function,
+	handleShareTwitter: Function,
 }
 
 const GeneratedText = (props: Props) => (
@@ -30,7 +33,14 @@ const GeneratedText = (props: Props) => (
 			margin="normal"
 			fullWidth
 		/>
-		<Button onClick={props.handleCopy}>Copy</Button>
+		<Button variant="outlined" onClick={props.handleCopy}>
+			<ContentPaste />
+			Copy
+		</Button>
+		<Button variant="outlined" onClick={props.handleShareTwitter}>
+			<Share />
+			Tweet
+		</Button>
 	</Paper>
 )
 

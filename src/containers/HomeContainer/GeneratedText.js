@@ -10,8 +10,12 @@ const ms = (state: State) => {
 	return { text: state.HomeContainer.generatedText }
 }
 
-const conn = connect(ms, {
-	handleCopy: logics.copyGeneratedText,
-})
+const conn = connect(
+	ms,
+	{
+		handleCopy: logics.copyGeneratedText,
+		handleShareTwitter: logics.openShareTwitter,
+	},
+)
 
 export default conn(GeneratedText)

@@ -8,16 +8,11 @@ export const initialState: State = {
 	text: '',
 	result: { ok: false, blocks: [] },
 	generatedText: '',
+	shareUrl: '',
 }
 
 export default function(state: State = initialState, action: Action): State {
 	switch (action.type) {
-		case Actions.UPDATE_GENERATED_TEXT:
-			return {
-				...state,
-				generatedText: action.generatedText,
-			}
-
 		case Actions.UPDATE_BLOCKS:
 			return {
 				...state,
@@ -28,7 +23,7 @@ export default function(state: State = initialState, action: Action): State {
 			}
 
 		case Actions.UPDATE_HOME:
-			return action.home
+			return { ...state, ...action.home }
 
 		default:
 			return state

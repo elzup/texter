@@ -9511,6 +9511,10 @@ shallowequal@^0.2.2:
   dependencies:
     lodash.keys "^3.1.2"
 
+share-url@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/share-url/-/share-url-1.0.0.tgz#93ecfb54fd23ddabbd15038d35f38e14f0da1cb4"
+
 shebang-command@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/shebang-command/-/shebang-command-1.2.0.tgz#44aac65b695b03398968c39f363fee5deafdf1ea"

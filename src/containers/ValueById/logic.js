@@ -24,7 +24,8 @@ export function calcText(): ThunkAction {
 		const { blocks } = getState().HomeContainer.result
 		const valueById = getState().ValueById
 		const generatedText = fillText(blocks, valueById)
-		dispatch(homeActions.updateGeneratedText(generatedText))
+
+		dispatch(homeActions.updateHome({ generatedText }))
 	}
 }
 
