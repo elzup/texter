@@ -23,7 +23,7 @@ const theme = createMuiTheme({
 		MuiPaper: {
 			root: {
 				padding: '10px',
-				marginTop: '10px',
+				marginBottom: '10px',
 			},
 		},
 		MuiSvgIcon: {
