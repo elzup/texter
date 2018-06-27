@@ -12,8 +12,8 @@ const styles = {
 	blockText: {
 		margin: '5px',
 		marginTop: '10px',
-		background: '#ddd',
 		borderRadius: '5px',
+		background: '#ddd',
 		border: 'solid 1px #aaa',
 	},
 }
@@ -22,7 +22,7 @@ type Props = {
 	block: TextBlock,
 }
 
-const visible = (text: string) => text.replace(/[\s　]/g, '<space>')
+const visible = (text: string) => text.replace(/[\s　]/g, '_')
 
 const TextGrids = (props: Props) => {
 	const { block } = props
@@ -40,7 +40,10 @@ const TextGrids = (props: Props) => {
 								<Typography
 									variant="subheading"
 									gutterBottom
-									style={{ paddingTop: '20px' }}
+									style={{
+										marginTop: '20px',
+										background: 'white',
+									}}
 								>
 									{text}
 								</Typography>

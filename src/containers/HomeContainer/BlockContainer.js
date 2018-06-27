@@ -28,7 +28,7 @@ const styles = {
 		margin: '5px',
 		marginTop: '10px',
 		borderRadius: '5px',
-		minWidth: '100px',
+		minWidth: '150px',
 		border: 'solid 1px #aaa',
 	},
 }

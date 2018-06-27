@@ -32,6 +32,11 @@ const theme = createMuiTheme({
 				marginRight: '5px',
 			},
 		},
+		MuiFormControl: {
+			root: {
+				width: '100%',
+			},
+		},
 	},
 })
 export default theme
