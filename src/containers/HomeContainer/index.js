@@ -36,8 +36,10 @@ class Container extends React.Component<Props> {
 				<Grid container justify="center" style={{ marginBottom: '100px' }}>
 					<Grid item xs={12} md={10}>
 						<TextForm />
-						<BlockRay blocks={props.result.blocks} />
-						<BlocksContainer blocks={props.result.blocks} prefix="" />
+						{props.result.ok && (
+							<BlocksContainer blocks={props.result.blocks} prefix="" />
+						)}
+						{props.result.ok && <BlockRay blocks={props.result.blocks} />}
 						<GeneratedText />
 						<ValueTable />
 					</Grid>

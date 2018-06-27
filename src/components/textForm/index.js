@@ -7,10 +7,13 @@ import Button from '@material-ui/core/Button'
 import Paper from '@material-ui/core/Paper'
 import FilterNone from '@material-ui/icons/FilterNone'
 
+import type { ParseResult } from '../../types'
 import Title from '../Title'
+import ErrorBox from './ErrorBox'
 
 type Props = {
 	text: string,
+	result: ParseResult,
 	handleChange: Function,
 	handleCopy: Function,
 }
@@ -33,6 +36,7 @@ const TextForm = (props: Props) => (
 				defaultValue={props.text}
 				rows={props.text.split('\n').length}
 				helperText=""
+				error={!props.result.ok}
 				onChange={e => {
 					props.handleChange({ text: e.target.value })
 				}}
@@ -40,6 +44,7 @@ const TextForm = (props: Props) => (
 				data-test="text-input"
 				fullWidth
 			/>
+			{!props.result.ok && <ErrorBox result={props.result} text={props.text} />}
 		</form>
 		<div style={{ display: 'flex' }}>
 			<div style={{ flex: 1 }} />

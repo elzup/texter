@@ -21,11 +21,15 @@ export function saveValue({
 
 export function calcText(): ThunkAction {
 	return async (dispatch, getState) => {
-		const { blocks } = getState().HomeContainer.result
-		const valueById = getState().ValueById
-		const generatedText = fillText(blocks, valueById)
-
-		dispatch(homeActions.updateHome({ generatedText }))
+		const { result } = getState().HomeContainer
+		if (result.ok) {
+			const { blocks } = result
+			const valueById = getState().ValueById
+			const generatedText = fillText(blocks, valueById)
+			dispatch(homeActions.updateHome({ generatedText }))
+		} else {
+			dispatch(homeActions.updateHome({ generatedText: '' }))
+		}
 	}
 }
 

@@ -6,7 +6,7 @@ export type State = Home
 
 export const initialState: State = {
 	text: '',
-	result: { ok: false, blocks: [] },
+	result: { ok: false, message: 'No message', hilights: [] },
 	generatedText: '',
 	shareUrl: '',
 }
@@ -17,7 +17,7 @@ export default function(state: State = initialState, action: Action): State {
 			return {
 				...state,
 				result: {
-					...state.result,
+					ok: true,
 					blocks: action.blocks,
 				},
 			}

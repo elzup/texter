@@ -19,12 +19,23 @@ const toLoadUrl = (text: string) => {
 
 export function updateText({ text }: { text: string }): ThunkAction {
 	return async (dispatch, getState) => {
-		const result0 = parser(text)
-		const result = { ...result0, blocks: setIds(result0.blocks) }
-		const shareUrl = toLoadUrl(text)
+		const result = parser(text)
+		if (result.ok) {
+			const shareUrl = toLoadUrl(text)
 
-		await dispatch(actions.updateHome({ text, result, shareUrl }))
-		await dispatch(valueLogics.calcText())
+			await dispatch(
+				actions.updateHome({
+					text,
+					result: { ...result, blocks: setIds(result.blocks) },
+					shareUrl,
+				}),
+			)
+			await dispatch(valueLogics.calcText())
+		} else {
+			await dispatch(
+				actions.updateHome({ text, result, shareUrl: '', generatedText: '' }),
+			)
+		}
 	}
 }
 
@@ -57,6 +68,9 @@ export function countChange({
 }): ThunkAction {
 	return async (dispatch, getState) => {
 		const result = selectors.getResult(getState())
+		if (!result.ok) {
+			return
+		}
 		const blocks = result.blocks.map(b => {
 			if (b.type === 'repeat' && b.name === name) {
 				return { ...b, count }
