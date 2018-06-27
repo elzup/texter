@@ -2,7 +2,6 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { type Match, type RouterHistory } from 'react-router-dom'
-// import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import NavBar from '../NavBarContainer'
 import TextForm from './TextForm'
@@ -22,19 +21,17 @@ type OProps = {
 
 type Props = {
 	text: string,
-	updateText: typeof logics.updateText,
+	updateTextAndRedirect: typeof logics.updateTextAndRedirect,
 	result: ParseResult,
 }
 
 class Container extends React.Component<Props> {
 	componentDidMount() {
-		this.props.updateText({ text: this.props.text })
-	}
-	componentWillReceiveProps(nextProps) {
-		if (this.props.text !== nextProps.text) {
-			this.props.updateText({ text: nextProps.text })
+		if (this.props.text !== '') {
+			this.props.updateTextAndRedirect({ text: this.props.text })
 		}
 	}
+
 	render() {
 		const { props } = this
 		return (
@@ -42,7 +39,7 @@ class Container extends React.Component<Props> {
 				<NavBar />
 				<Grid container justify="center" style={{ marginBottom: '100px' }}>
 					<Grid item xs={12} md={10}>
-						<TextForm text={props.text} />
+						<TextForm />
 						<BlockRay blocks={props.result.blocks} />
 						<BlocksContainer blocks={props.result.blocks} prefix="" />
 						<GeneratedText />
@@ -61,7 +58,7 @@ const ms = (state: State, op: OProps) => {
 
 const conn = connect(
 	ms,
-	{ updateText: logics.updateText },
+	{ updateTextAndRedirect: logics.updateTextAndRedirect },
 )
 
 export default conn(Container)

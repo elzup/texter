@@ -11,8 +11,8 @@ import Title from '../Title'
 
 type Props = {
 	text: string,
-	handleLike: ({ text: string }) => void,
-	handleChange: ({ text: string }) => void,
+	handleLike: Function,
+	handleChange: Function,
 	handleCopy: Function,
 }
 
@@ -35,13 +35,6 @@ class textForm extends React.Component<Props> {
 
 	onChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
 		this.props.handleChange({ text: e.target.value })
-	}
-
-	componentWillReceiveProps(nextProps: Props) {
-		if (!this.textRef) {
-			return
-		}
-		this.textRef.value = nextProps.text
 	}
 
 	render() {

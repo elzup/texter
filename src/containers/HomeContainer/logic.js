@@ -16,10 +16,17 @@ export function updateText({ text }: { text: string }): ThunkAction {
 	return async (dispatch, getState) => {
 		const result0 = parser(text)
 		const result = { ...result0, blocks: setIds(result0.blocks) }
-		const shareUrl = `${document.location.origin}/#/${encodeURI(text)}`
+		const shareUrl = `${document.location.origin}/#/${encodeURIComponent(text)}`
 
 		await dispatch(actions.updateHome({ text, result, shareUrl }))
-		dispatch(valueLogics.calcText())
+		await dispatch(valueLogics.calcText())
+	}
+}
+
+export function updateTextAndRedirect({ text }: { text: string }): ThunkAction {
+	return async (dispatch, getState) => {
+		await dispatch(updateText({ text }))
+		document.location.href = '/'
 	}
 }
 function setIds(blocks: Block[], prefix = ''): Block[] {
