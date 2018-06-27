@@ -15,7 +15,15 @@ function parseTexter(text: string): ParseResult {
 		const nodes = peeler(text)
 		return { ok: true, blocks: nodes.map(convert) }
 	} catch (e) {
-		return { ok: false, blocks: [] }
+		if (e.message.match(/ParseError/)) {
+			const a = e.message.split(':')
+			const line = Number(a[a.length - 1])
+			return { ok: false, message: `対応する括弧がない`, hilights: [line] }
+		} else if (e.message.match(/BlockError|NoLabelError|MultiRepeatError/)) {
+			const [, message, nums] = e.message.split(':')
+			return { ok: false, message, hilights: nums.split(',').map(Number) }
+		}
+		return { ok: false, message: e.message, hilights: [] }
 	}
 }
 
@@ -27,22 +35,41 @@ function makeTextBlock(node: PNodeText): TextBlock {
 }
 
 function makeInputBlock(node: PNodeBracket): InputBlock {
-	if (node.nodes.length !== 1 || node.nodes[0].nodeType !== 'text') {
-		throw new Error('構文エラー')
+	if (node.nodes.length === 0) {
+		throw new Error(
+			`NoLabelError:入力ブロックのラベルがない:${node.pos.start},${
+				node.pos.end
+			}`,
+		)
+	}
+	const first = node.nodes[0]
+	if (node.nodes.length > 1 || first.nodeType !== 'text') {
+		throw new Error(
+			`BlockError:入力ブロックの中に括弧:${node.pos.start},${node.pos.end}`,
+		)
 	}
 	return {
 		type: 'input',
-		name: node.nodes[0].content,
+		name: first.content,
 		vid: '',
 	}
 }
 
 function makeSelectBlock(node: PNodeBracket): SelectBlock {
-	if (node.nodes.length !== 1 || node.nodes[0].nodeType !== 'text') {
-		throw new Error('構文エラー')
+	if (node.nodes.length === 0) {
+		throw new Error(
+			`NoLabelError:選択ブロックのラベルがない:${node.pos.start},${
+				node.pos.end
+			}`,
+		)
 	}
-	const firstNode = node.nodes[0]
-	const { name, newNode } = splitName(firstNode)
+	const first = node.nodes[0]
+	if (node.nodes.length > 1 || first.nodeType !== 'text') {
+		throw new Error(
+			`BlockError:選択ブロックの中に括弧:${node.pos.start},${node.pos.end}`,
+		)
+	}
+	const { name, newNode } = splitName(first)
 	return {
 		type: 'select',
 		name,
@@ -53,7 +80,11 @@ function makeSelectBlock(node: PNodeBracket): SelectBlock {
 
 function makeRepeatBlock(node: PNodeBracket): RepeatBlock {
 	if (node.nodes.length === 0 || node.nodes[0].nodeType !== 'text') {
-		throw new Error('構文エラー')
+		throw new Error(
+			`NoLabelError:リピートブロックのラベルがない:${node.pos.start},${
+				node.pos.end
+			}`,
+		)
 	}
 	const firstNode = node.nodes[0]
 	const { name, newNode } = splitName(firstNode)
@@ -80,17 +111,18 @@ function convert(node: PNode): Block {
 		case '(':
 			return makeInputBlock(node)
 		default:
-			throw new Error('unreachable')
+			throw new Error('ParseError: 謎のエラー')
 	}
 }
 
-function splitName(node: PNode): { name: string, newNode: PNodeText } {
-	if (node.nodeType !== 'text') {
-		throw new Error('ラベルがない')
-	}
+function splitName(node: PNodeText): { name: string, newNode: PNodeText } {
 	const texts = node.content.split(':')
 	if (texts.length !== 2) {
-		throw new Error('ラベルがない')
+		throw new Error(
+			`NoLabelError:ブロックのラベルが正しくない:${node.pos.start},${
+				node.pos.end
+			}`,
+		)
 	}
 	const [name, content] = texts
 	return { name, newNode: { ...node, content } }

@@ -58,10 +58,18 @@ export type RepeatBlock = {
 
 export type Block = TextBlock | InputBlock | SelectBlock | RepeatBlock
 
-export type ParseResult = {
-	ok: boolean,
+export type ParseResultSuccess = {
+	ok: true,
 	blocks: Block[],
 }
+
+export type ParseResultFail = {
+	ok: false,
+	message: string,
+	hilights: number[],
+}
+
+export type ParseResult = ParseResultSuccess | ParseResultFail
 
 export type Home = {
 	text: string,

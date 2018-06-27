@@ -24,7 +24,7 @@
 		"copy-text-to-clipboard": "^1.0.4",
 		"lodash": "^4.17.5",
 		"moment": "^2.22.2",
-		"peeler": "^1.0.3",
+		"peeler": "^1.1.0",
 		"query-string": "^6.1.0",
 		"react": "^16.2.0",
 		"react-addons-css-transition-group": "^15.6.2",

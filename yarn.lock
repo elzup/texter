@@ -7713,9 +7713,9 @@ pbkdf2@^3.0.3:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-peeler@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/peeler/-/peeler-1.0.3.tgz#b5755503b4d5474f046109b71892d01e8b1a3065"
+peeler@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/peeler/-/peeler-1.1.0.tgz#043e522dfc3a6a77073465ff16fcd280bfee4f33"
 
 pend@~1.2.0:
   version "1.2.0"

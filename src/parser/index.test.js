@@ -1,4 +1,4 @@
-import m, { parseUnit, parseInputs, parseSelects } from '.'
+import m from '.'
 
 test('works', () => {
 	expect(m('kyoko kyoko toshino.')).toMatchSnapshot('plain')
@@ -13,7 +13,28 @@ test('works', () => {
 	).toMatchSnapshot('repeat')
 
 	expect(m('hoge(match)-(in\\(clu\\)ds)')).toMatchSnapshot('escape')
-	expect(m('hoge{a:match-\\{not match} [not match\\}]')).toMatchSnapshot(
+	expect(m('hoge{a:match-\\{not match} [a:not match\\}]')).toMatchSnapshot(
 		'escape',
 	)
+})
+
+test('input block error', () => {
+	expect(m('hoge()')).toMatchSnapshot('no label')
+	expect(m('hoge([])')).toMatchSnapshot('has block')
+	expect(m('hoge(hoge[])')).toMatchSnapshot('has block')
+})
+
+test('select block error', () => {
+	expect(m('(hoge)-[fuga|piyo]')).toMatchSnapshot('no label')
+	expect(m('{hoge}')).toMatchSnapshot()
+})
+
+test('repeat block error', () => {
+	expect(m('(hoge)-[fuga|piyo]')).toMatchSnapshot('no label')
+	expect(m('{h{a:b}oge}')).toMatchSnapshot('multi repeat')
+})
+
+test('parse error', () => {
+	expect(m('(ho[ge)')).toMatchSnapshot('no pair')
+	expect(m('(ho[g(a)]e)')).toMatchSnapshot('deep nest')
 })
