@@ -3,8 +3,6 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 
-import _ from 'lodash'
-
 import Paper from '@material-ui/core/Paper'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
