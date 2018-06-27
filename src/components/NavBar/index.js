@@ -30,7 +30,7 @@ function SimpleAppBar(props: { doLogout: Function }) {
 							target={'_blank'}
 						>
 							<ContactIcon />
-							Hero
+							dev
 						</Button>
 					</div>
 				</Toolbar>

@@ -9,7 +9,7 @@ import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Button from '@material-ui/core/Button'
-import RemoveIcon from '@material-ui/icons/Remove'
+import RemoveIcon from '@material-ui/icons/Delete'
 
 import InputBlock from '../ValueById/InputBlock'
 import Title from '../../components/Title'
@@ -46,7 +46,11 @@ const ValueTable = (props: Props) => (
 							<InputBlock vid={vid} />
 						</TableCell>
 						<TableCell>
-							<Button onClick={() => props.revokeKey({ vid })}>
+							<Button
+								variant="outlined"
+								size="small"
+								onClick={() => props.revokeKey({ vid })}
+							>
 								<RemoveIcon />
 							</Button>
 						</TableCell>
