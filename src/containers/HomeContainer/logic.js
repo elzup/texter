@@ -82,7 +82,7 @@ export function openShareTwitter(): ThunkAction {
 		const url = ShareUrl.twitter({
 			text: generatedText,
 			url: shareUrl,
-			hashtags: '#texter',
+			hashtags: 'texter',
 		})
 		window.open(url)
 	}
