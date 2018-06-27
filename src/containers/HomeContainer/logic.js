@@ -12,11 +12,16 @@ import * as logSelectors from '../LogContainer/selectors'
 import * as valueLogics from '../ValueById/logic'
 import * as selectors from './selectors'
 
+const toLoadUrl = (text: string) => {
+	const { origin } = document.location
+	return `${origin}/#/load?text=${encodeURIComponent(text)}`
+}
+
 export function updateText({ text }: { text: string }): ThunkAction {
 	return async (dispatch, getState) => {
 		const result0 = parser(text)
 		const result = { ...result0, blocks: setIds(result0.blocks) }
-		const shareUrl = `${document.location.origin}/#/${encodeURIComponent(text)}`
+		const shareUrl = toLoadUrl(text)
 
 		await dispatch(actions.updateHome({ text, result, shareUrl }))
 		await dispatch(valueLogics.calcText())

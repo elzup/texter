@@ -12,7 +12,6 @@ import BlockRay from '../../components/BlockRay'
 
 import type { State, ParseResult } from '../../types'
 import * as selectors from './selectors'
-import * as logics from './logic'
 
 type OProps = {
 	match: Match,
@@ -20,18 +19,10 @@ type OProps = {
 }
 
 type Props = {
-	text: string,
-	updateTextAndRedirect: typeof logics.updateTextAndRedirect,
 	result: ParseResult,
 }
 
 class Container extends React.Component<Props> {
-	componentDidMount() {
-		if (this.props.text !== '') {
-			this.props.updateTextAndRedirect({ text: this.props.text })
-		}
-	}
-
 	render() {
 		const { props } = this
 		return (
@@ -52,13 +43,12 @@ class Container extends React.Component<Props> {
 }
 
 const ms = (state: State, op: OProps) => {
-	const text = decodeURIComponent(op.match.params.text || '')
-	return { text, result: selectors.getResult(state) }
+	return { result: selectors.getResult(state) }
 }
 
 const conn = connect(
 	ms,
-	{ updateTextAndRedirect: logics.updateTextAndRedirect },
+	{},
 )
 
 export default conn(Container)
