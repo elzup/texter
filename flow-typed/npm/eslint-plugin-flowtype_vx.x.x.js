@@ -1,4 +1,4 @@
-// flow-typed signature: c819ed89adc72228d64fe6efcbca5bb3
+// flow-typed signature: 6bea7d8dcdd130d8d8e3f6a162e5464e
 // flow-typed version: <<STUB>>/eslint-plugin-flowtype_v^2.43.0/flow_v0.74.0
 
 /**
@@ -30,6 +30,26 @@ declare module 'eslint-plugin-flowtype/dist/index' {
   declare module.exports: any;
 }
 
+declare module 'eslint-plugin-flowtype/dist/rules/arrayStyle/index' {
+  declare module.exports: any;
+}
+
+declare module 'eslint-plugin-flowtype/dist/rules/arrayStyle/isSimpleType' {
+  declare module.exports: any;
+}
+
+declare module 'eslint-plugin-flowtype/dist/rules/arrayStyle/needWrap' {
+  declare module.exports: any;
+}
+
+declare module 'eslint-plugin-flowtype/dist/rules/arrayStyleComplexType' {
+  declare module.exports: any;
+}
+
+declare module 'eslint-plugin-flowtype/dist/rules/arrayStyleSimpleType' {
+  declare module.exports: any;
+}
+
 declare module 'eslint-plugin-flowtype/dist/rules/booleanStyle' {
   declare module.exports: any;
 }
@@ -51,6 +71,10 @@ declare module 'eslint-plugin-flowtype/dist/rules/newlineAfterFlowAnnotation' {
 }
 
 declare module 'eslint-plugin-flowtype/dist/rules/noDupeKeys' {
+  declare module.exports: any;
+}
+
+declare module 'eslint-plugin-flowtype/dist/rules/noExistentialType' {
   declare module.exports: any;
 }
 
@@ -91,6 +115,10 @@ declare module 'eslint-plugin-flowtype/dist/rules/requireParameterType' {
 }
 
 declare module 'eslint-plugin-flowtype/dist/rules/requireReturnType' {
+  declare module.exports: any;
+}
+
+declare module 'eslint-plugin-flowtype/dist/rules/requireTypesAtTop' {
   declare module.exports: any;
 }
 
@@ -158,6 +186,10 @@ declare module 'eslint-plugin-flowtype/dist/rules/typeIdMatch' {
   declare module.exports: any;
 }
 
+declare module 'eslint-plugin-flowtype/dist/rules/typeImportStyle' {
+  declare module.exports: any;
+}
+
 declare module 'eslint-plugin-flowtype/dist/rules/unionIntersectionSpacing' {
   declare module.exports: any;
 }
@@ -221,6 +253,21 @@ declare module 'eslint-plugin-flowtype/bin/readmeAssertions.js' {
 declare module 'eslint-plugin-flowtype/dist/index.js' {
   declare module.exports: $Exports<'eslint-plugin-flowtype/dist/index'>;
 }
+declare module 'eslint-plugin-flowtype/dist/rules/arrayStyle/index.js' {
+  declare module.exports: $Exports<'eslint-plugin-flowtype/dist/rules/arrayStyle/index'>;
+}
+declare module 'eslint-plugin-flowtype/dist/rules/arrayStyle/isSimpleType.js' {
+  declare module.exports: $Exports<'eslint-plugin-flowtype/dist/rules/arrayStyle/isSimpleType'>;
+}
+declare module 'eslint-plugin-flowtype/dist/rules/arrayStyle/needWrap.js' {
+  declare module.exports: $Exports<'eslint-plugin-flowtype/dist/rules/arrayStyle/needWrap'>;
+}
+declare module 'eslint-plugin-flowtype/dist/rules/arrayStyleComplexType.js' {
+  declare module.exports: $Exports<'eslint-plugin-flowtype/dist/rules/arrayStyleComplexType'>;
+}
+declare module 'eslint-plugin-flowtype/dist/rules/arrayStyleSimpleType.js' {
+  declare module.exports: $Exports<'eslint-plugin-flowtype/dist/rules/arrayStyleSimpleType'>;
+}
 declare module 'eslint-plugin-flowtype/dist/rules/booleanStyle.js' {
   declare module.exports: $Exports<'eslint-plugin-flowtype/dist/rules/booleanStyle'>;
 }
@@ -238,6 +285,9 @@ declare module 'eslint-plugin-flowtype/dist/rules/newlineAfterFlowAnnotation.js'
 }
 declare module 'eslint-plugin-flowtype/dist/rules/noDupeKeys.js' {
   declare module.exports: $Exports<'eslint-plugin-flowtype/dist/rules/noDupeKeys'>;
+}
+declare module 'eslint-plugin-flowtype/dist/rules/noExistentialType.js' {
+  declare module.exports: $Exports<'eslint-plugin-flowtype/dist/rules/noExistentialType'>;
 }
 declare module 'eslint-plugin-flowtype/dist/rules/noFlowFixMeComments.js' {
   declare module.exports: $Exports<'eslint-plugin-flowtype/dist/rules/noFlowFixMeComments'>;
@@ -268,6 +318,9 @@ declare module 'eslint-plugin-flowtype/dist/rules/requireParameterType.js' {
 }
 declare module 'eslint-plugin-flowtype/dist/rules/requireReturnType.js' {
   declare module.exports: $Exports<'eslint-plugin-flowtype/dist/rules/requireReturnType'>;
+}
+declare module 'eslint-plugin-flowtype/dist/rules/requireTypesAtTop.js' {
+  declare module.exports: $Exports<'eslint-plugin-flowtype/dist/rules/requireTypesAtTop'>;
 }
 declare module 'eslint-plugin-flowtype/dist/rules/requireValidFileAnnotation.js' {
   declare module.exports: $Exports<'eslint-plugin-flowtype/dist/rules/requireValidFileAnnotation'>;
@@ -316,6 +369,9 @@ declare module 'eslint-plugin-flowtype/dist/rules/typeColonSpacing/reporter.js' 
 }
 declare module 'eslint-plugin-flowtype/dist/rules/typeIdMatch.js' {
   declare module.exports: $Exports<'eslint-plugin-flowtype/dist/rules/typeIdMatch'>;
+}
+declare module 'eslint-plugin-flowtype/dist/rules/typeImportStyle.js' {
+  declare module.exports: $Exports<'eslint-plugin-flowtype/dist/rules/typeImportStyle'>;
 }
 declare module 'eslint-plugin-flowtype/dist/rules/unionIntersectionSpacing.js' {
   declare module.exports: $Exports<'eslint-plugin-flowtype/dist/rules/unionIntersectionSpacing'>;

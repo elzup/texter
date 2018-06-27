@@ -1,4 +1,4 @@
-// flow-typed signature: 23dbe4726f7b51517bae33b44174a05e
+// flow-typed signature: 2f5277f6c9f01237bde1573e0832bb6c
 // flow-typed version: <<STUB>>/gh-pages_v^1.1.0/flow_v0.74.0
 
 /**
@@ -22,6 +22,14 @@ declare module 'gh-pages' {
  * require those files directly. Feel free to delete any files that aren't
  * needed.
  */
+declare module 'gh-pages/bin/gh-pages-clean' {
+  declare module.exports: any;
+}
+
+declare module 'gh-pages/bin/gh-pages' {
+  declare module.exports: any;
+}
+
 declare module 'gh-pages/lib/git' {
   declare module.exports: any;
 }
@@ -71,6 +79,12 @@ declare module 'gh-pages/test/lib/util.spec' {
 }
 
 // Filename aliases
+declare module 'gh-pages/bin/gh-pages-clean.js' {
+  declare module.exports: $Exports<'gh-pages/bin/gh-pages-clean'>;
+}
+declare module 'gh-pages/bin/gh-pages.js' {
+  declare module.exports: $Exports<'gh-pages/bin/gh-pages'>;
+}
 declare module 'gh-pages/lib/git.js' {
   declare module.exports: $Exports<'gh-pages/lib/git'>;
 }

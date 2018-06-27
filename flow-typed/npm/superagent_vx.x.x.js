@@ -1,4 +1,4 @@
-// flow-typed signature: 1a5ffff6a97ab72cd3e9fd5a8ea2ccc6
+// flow-typed signature: c94bdccb0c23d0639fdbcceebc11b747
 // flow-typed version: <<STUB>>/superagent_v^3.8.2/flow_v0.74.0
 
 /**
@@ -86,6 +86,10 @@ declare module 'superagent/superagent' {
   declare module.exports: any;
 }
 
+declare module 'superagent/test' {
+  declare module.exports: any;
+}
+
 // Filename aliases
 declare module 'superagent/lib/agent-base.js' {
   declare module.exports: $Exports<'superagent/lib/agent-base'>;
@@ -134,4 +138,7 @@ declare module 'superagent/lib/utils.js' {
 }
 declare module 'superagent/superagent.js' {
   declare module.exports: $Exports<'superagent/superagent'>;
+}
+declare module 'superagent/test.js' {
+  declare module.exports: $Exports<'superagent/test'>;
 }

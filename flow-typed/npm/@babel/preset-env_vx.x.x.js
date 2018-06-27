@@ -1,4 +1,4 @@
-// flow-typed signature: 57985f65430538e54f77270f26e1cbf9
+// flow-typed signature: fb32a2fb99d9ce334a4d1edede6dbb8a
 // flow-typed version: <<STUB>>/@babel/preset-env_v^7.0.0-beta.39/flow_v0.74.0
 
 /**
@@ -70,6 +70,10 @@ declare module '@babel/preset-env/lib/normalize-options' {
   declare module.exports: any;
 }
 
+declare module '@babel/preset-env/lib/options' {
+  declare module.exports: any;
+}
+
 declare module '@babel/preset-env/lib/targets-parser' {
   declare module.exports: any;
 }
@@ -122,6 +126,9 @@ declare module '@babel/preset-env/lib/module-transformations.js' {
 }
 declare module '@babel/preset-env/lib/normalize-options.js' {
   declare module.exports: $Exports<'@babel/preset-env/lib/normalize-options'>;
+}
+declare module '@babel/preset-env/lib/options.js' {
+  declare module.exports: $Exports<'@babel/preset-env/lib/options'>;
 }
 declare module '@babel/preset-env/lib/targets-parser.js' {
   declare module.exports: $Exports<'@babel/preset-env/lib/targets-parser'>;
