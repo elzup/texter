@@ -20,49 +20,26 @@ type Props = {
 	saveValue: typeof logics.saveValue,
 }
 
-class SelectBlock extends React.Component<Props> {
-	vRef: ?HTMLInputElement
-
-	componentDidMount() {
-		if (this.vRef) {
-			this.vRef.value = this.props.value
-		}
-	}
-	componentWillReceiveProps(p: Props) {
-		if (this.vRef) {
-			this.vRef.value = p.value
-		}
-	}
-
-	render() {
-		const { props } = this
-		return (
-			<TextField
-				select
-				label={props.vid}
-				SelectProps={{
-					native: true,
-				}}
-				error={!props.value}
-				inputRef={ref => {
-					this.vRef = ref
-				}}
-				InputLabelProps={{
-					shrink: true,
-				}}
-				onChange={e => {
-					props.saveValue({ vid: props.vid, value: e.target.value })
-				}}
-			>
-				{props.options.map((text, i) => (
-					<option key={i} value={text}>
-						{text}
-					</option>
-				))}
-			</TextField>
-		)
-	}
-}
+const SelectBlock = (props: Props) => (
+	<TextField
+		select
+		label={props.vid}
+		SelectProps={{
+			native: true,
+		}}
+		error={!props.value}
+		defaultValue={props.value}
+		onChange={e => {
+			props.saveValue({ vid: props.vid, value: e.target.value })
+		}}
+	>
+		{props.options.map((text, i) => (
+			<option key={i} value={text}>
+				{text}
+			</option>
+		))}
+	</TextField>
+)
 
 const ms = (state: State, op: OProps) => ({
 	vid: op.vid,

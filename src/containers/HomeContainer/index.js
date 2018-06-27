@@ -12,6 +12,7 @@ import BlockRay from '../../components/BlockRay'
 
 import type { State, ParseResult } from '../../types'
 import * as selectors from './selectors'
+import { calcText } from '../ValueById/logic'
 
 type OProps = {
 	match: Match,
@@ -20,9 +21,13 @@ type OProps = {
 
 type Props = {
 	result: ParseResult,
+	calcText: typeof calcText,
 }
 
 class Container extends React.Component<Props> {
+	componentDidMount() {
+		this.props.calcText()
+	}
 	render() {
 		const { props } = this
 		return (
@@ -48,7 +53,9 @@ const ms = (state: State, op: OProps) => {
 
 const conn = connect(
 	ms,
-	{},
+	{
+		calcText,
+	},
 )
 
 export default conn(Container)

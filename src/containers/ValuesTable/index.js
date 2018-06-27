@@ -2,6 +2,9 @@
 
 import * as React from 'react'
 import { connect } from 'react-redux'
+
+import _ from 'lodash'
+
 import Paper from '@material-ui/core/Paper'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
@@ -11,7 +14,6 @@ import TableRow from '@material-ui/core/TableRow'
 import Button from '@material-ui/core/Button'
 import RemoveIcon from '@material-ui/icons/Delete'
 
-import InputBlock from '../ValueById/InputBlock'
 import Title from '../../components/Title'
 
 import type { State } from '../../types'
@@ -22,6 +24,7 @@ import ChangeHistory from '@material-ui/icons/ChangeHistory'
 
 type Props = {
 	vids: string[],
+	valueById: { [vid: string]: string },
 	revokeKey: typeof logics.revokeKey,
 }
 
@@ -42,9 +45,7 @@ const ValueTable = (props: Props) => (
 				{props.vids.map(vid => (
 					<TableRow key={vid}>
 						<TableCell>{vid}</TableCell>
-						<TableCell>
-							<InputBlock vid={vid} />
-						</TableCell>
+						<TableCell>{props.valueById[vid]}</TableCell>
 						<TableCell>
 							<Button
 								variant="outlined"
@@ -63,6 +64,7 @@ const ValueTable = (props: Props) => (
 
 const ms = (state: State) => ({
 	vids: selectors.getVids(state),
+	valueById: state.ValueById,
 })
 
 const conn = connect(
