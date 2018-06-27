@@ -25,7 +25,7 @@ const Container = (props: Props) => (
 	<TextForm
 		{...props}
 		handleChange={({ text }) => {
-			props.history.push({ pathname: encodeURI(text) })
+			props.history.push(encodeURIComponent(text || ''))
 		}}
 	/>
 )
@@ -34,9 +34,12 @@ const ms = (state: State, op: OProps) => {
 	return { text: op.text, history: op.history }
 }
 
-const conn = connect(ms, {
-	handleLike: logics.logId,
-	handleCopy: logics.copyShareUrl,
-})
+const conn = connect(
+	ms,
+	{
+		handleLike: logics.logId,
+		handleCopy: logics.copyShareUrl,
+	},
+)
 
 export default withRouter(conn(Container))

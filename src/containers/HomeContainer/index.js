@@ -37,7 +37,6 @@ class Container extends React.Component<Props> {
 	}
 	render() {
 		const { props } = this
-		// props.history.push({ search: `?day=${day}` })
 		return (
 			<div>
 				<NavBar />
@@ -56,7 +55,7 @@ class Container extends React.Component<Props> {
 }
 
 const ms = (state: State, op: OProps) => {
-	const text = op.match.params.text || ''
+	const text = decodeURIComponent(op.match.params.text || '')
 	return { text, result: selectors.getResult(state) }
 }
 
