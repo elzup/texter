@@ -8,7 +8,6 @@ import TextForm from './TextForm'
 import BlocksContainer from './BlocksContainer'
 import GeneratedText from './GeneratedText'
 import ValueTable from '../ValuesTable'
-import BlockRay from '../../components/BlockRay'
 
 import type { State, ParseResult } from '../../types'
 import * as selectors from './selectors'
@@ -39,7 +38,6 @@ class Container extends React.Component<Props> {
 						{props.result.ok && (
 							<BlocksContainer blocks={props.result.blocks} prefix="" />
 						)}
-						{props.result.ok && <BlockRay blocks={props.result.blocks} />}
 						<GeneratedText />
 						<ValueTable />
 					</Grid>

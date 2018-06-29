@@ -16,7 +16,7 @@ type Props = {
 }
 
 const BlocksContainer = (props: Props) => (
-	<Paper>
+	<Paper style={{ paddingBottom: '30px' }}>
 		<Title text={'Form'} icon={<FilterHdr />} />
 		<Grid container spacing={16}>
 			{props.blocks.map((block, i) => (

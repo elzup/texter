@@ -35,7 +35,7 @@ const TextForm = (props: Props) => (
 				multiline
 				defaultValue={props.text}
 				rows={props.text.split('\n').length}
-				helperText=""
+				label="テキストを入力"
 				error={!props.result.ok}
 				onChange={e => {
 					props.handleChange({ text: e.target.value })
