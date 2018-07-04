@@ -7,7 +7,7 @@
 		"offbuild": "node scripts/build.js",
 		"build": "node scripts/build.js",
 		"test": "node scripts/test.js --env=jsdom",
-		"dev": "PORT=3000 node scripts/start.js",
+		"dev": "node scripts/start.js",
 		"deploy": "up production",
 		"deploy:url": "up url production",
 		"coveralls": "jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
