@@ -82,3 +82,7 @@ export type Log = {
 	id: string,
 	createdAt: string,
 }
+
+export type Auth = {
+	id: string,
+}
