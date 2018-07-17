@@ -22,6 +22,7 @@
 		"@material-ui/icons": "^1.1.0",
 		"camelcase-keys-recursive": "^0.8.2",
 		"copy-text-to-clipboard": "^1.0.4",
+		"firebase": "^5.2.0",
 		"lodash": "^4.17.5",
 		"moment": "^2.22.2",
 		"peeler": "^1.1.0",
