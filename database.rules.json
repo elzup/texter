@@ -1,15 +1,9 @@
 {
 	"rules": {
 		"users": {
-			".read": "auth !== null",
 			".write": "auth !== null",
-
 			"$user_id": {
-				".write": "auth.uid === $user_id",
-
-				"potatoes": {
-					".read": "auth.uid === $user_id"
-				}
+				".write": "auth.uid === $user_id"
 			}
 		},
 		"potatoes": {

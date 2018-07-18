@@ -3,12 +3,12 @@
 import _combineReducers from './combineReducers'
 let {
 	NODE_ENV,
-	RA_FIREBASE_API_KEY,
-	RA_FIREBASE_AUTH_DOMAIN,
-	RA_FIREBASE_DATABASE_URL,
-	RA_FIREBASE_PROJECT_ID,
-	RA_FIREBASE_STORAGE_BUCKET,
-	RA_FIREBASE_MESSAGING_SENDER_ID,
+	REACT_APP_FIREBASE_API_KEY,
+	REACT_APP_FIREBASE_AUTH_DOMAIN,
+	REACT_APP_FIREBASE_DATABASE_URL,
+	REACT_APP_FIREBASE_PROJECT_ID,
+	REACT_APP_FIREBASE_STOREACT_APPGE_BUCKET,
+	REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
 } = process.env
 const REACT_APP_API_URL = '-'
 // if (!REACT_APP_API_URL) {
@@ -40,12 +40,12 @@ const configProduction = {
 const config: Config = {
 	isDev,
 	firebase: {
-		apiKey: RA_FIREBASE_API_KEY || '',
-		authDomain: RA_FIREBASE_AUTH_DOMAIN || '',
-		databaseURL: RA_FIREBASE_DATABASE_URL || '',
-		projectId: RA_FIREBASE_PROJECT_ID || '',
-		storageBucket: RA_FIREBASE_STORAGE_BUCKET || '',
-		messagingSenderId: RA_FIREBASE_MESSAGING_SENDER_ID || '',
+		apiKey: REACT_APP_FIREBASE_API_KEY || '',
+		authDomain: REACT_APP_FIREBASE_AUTH_DOMAIN || '',
+		databaseURL: REACT_APP_FIREBASE_DATABASE_URL || '',
+		projectId: REACT_APP_FIREBASE_PROJECT_ID || '',
+		storageBucket: REACT_APP_FIREBASE_STOREACT_APPGE_BUCKET || '',
+		messagingSenderId: REACT_APP_FIREBASE_MESSAGING_SENDER_ID || '',
 	},
 	appPath: '/',
 	activeJudgeSpan: { minutes: 5 },
