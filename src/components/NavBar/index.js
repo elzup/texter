@@ -30,18 +30,18 @@ function SimpleAppBar(props: Props) {
 							@作者
 						</Button>
 						{props.auth.logined ? (
-							<Button color="inherit" onClick={props.doLogin}>
-								ログアウト
-							</Button>
-						) : (
 							<React.Fragment>
 								<Button color="inherit" onClick={props.doLogin}>
-									Twitter ログイン
+									ログアウト
 								</Button>
 								<Button color="inherit" onClick={props.doLogin}>
 									{JSON.stringify(props.auth)}
 								</Button>
 							</React.Fragment>
+						) : (
+							<Button color="inherit" onClick={props.doLogin}>
+								Twitter ログイン
+							</Button>
 						)}
 					</div>
 				</Toolbar>
