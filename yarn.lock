@@ -4850,19 +4850,19 @@ flow-bin@^0.74.0:
   version "0.74.0"
   resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.74.0.tgz#8017bb00efb37cbe8d81fbb7f464038bde06adc9"
 
-flow-execa@^0.2.0:
+flow-execa@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/flow-execa/-/flow-execa-0.2.1.tgz#7da5d06ccac77b2fe5c9c1ac496eea122f84f871"
   dependencies:
     execa "0.7.0"
 
 flow-faker@^0.2.2:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/flow-faker/-/flow-faker-0.2.1.tgz#f2a83110c7834911139f3da980fe63f8745447ed"
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/flow-faker/-/flow-faker-0.2.4.tgz#f45a75e93e427df75decb4a87d42c1b9626277ed"
   dependencies:
     babel-traverse "^6.26.0"
     babylon "^6.18.0"
-    flow-execa "^0.2.0"
+    flow-execa "^0.2.1"
 
 flush-write-stream@^1.0.0:
   version "1.0.3"
@@ -6886,9 +6886,13 @@ lodash.uniq@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
 
-"lodash@>=3.5 <5", lodash@^4.13.1, lodash@^4.15.0, lodash@^4.17.0, lodash@^4.17.10, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.0, lodash@^4.2.1, lodash@^4.3.0:
+"lodash@>=3.5 <5", lodash@^4.13.1, lodash@^4.15.0, lodash@^4.17.0, lodash@^4.17.10, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.2.1, lodash@^4.3.0:
   version "4.17.10"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
+
+lodash@^4.17.5:
+  version "4.17.15"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
 
 log-driver@^1.2.5:
   version "1.2.7"
