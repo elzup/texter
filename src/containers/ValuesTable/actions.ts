@@ -1,10 +1,5 @@
-// @flow
-import { UPDATE_VIDS } from './actionTypes'
-import type { UpdateVids } from './actionTypes'
+import { actionCreatorFactory } from 'typescript-fsa'
 
-export function updateVids(vids: string[]): UpdateVids {
-	return {
-		type: UPDATE_VIDS,
-		vids,
-	}
-}
+const actionCreator = actionCreatorFactory()
+
+export const updateVids = actionCreator<string[]>('updateVids')

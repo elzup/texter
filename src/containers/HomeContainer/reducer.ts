@@ -1,6 +1,6 @@
-// @flow
-import type { Action, Home } from '../../types'
-import { Actions } from './actionTypes'
+import { reducerWithInitialState } from 'typescript-fsa-reducers'
+import { Home } from '../../types'
+import * as actions from './actions'
 
 export type State = Home
 
@@ -11,21 +11,19 @@ export const initialState: State = {
 	shareUrl: '',
 }
 
-export default function(state: State = initialState, action: Action): State {
-	switch (action.type) {
-		case Actions.UPDATE_BLOCKS:
-			return {
-				...state,
-				result: {
-					ok: true,
-					blocks: action.blocks,
-				},
-			}
-
-		case Actions.UPDATE_HOME:
-			return { ...state, ...action.home }
-
-		default:
-			return state
-	}
-}
+export default reducerWithInitialState<State>(initialState)
+	.case(actions.updateBlocks, (state, blocks) => {
+		return {
+			...state,
+			result: {
+				ok: true,
+				blocks,
+			},
+		}
+	})
+	.case(actions.updateHome, (state, home) => {
+		return {
+			...state,
+			...home,
+		}
+	})

@@ -1,61 +1,36 @@
-// @flow
 import * as React from 'react'
-import { connect } from 'react-redux'
-import { type Match, type RouterHistory } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
 import Grid from '@material-ui/core/Grid'
 import NavBar from '../NavBarContainer'
+import ValueTable from '../ValuesTable'
+import { State, ParseResult } from '../../types'
+import { calcText } from '../ValueById/logic'
 import TextForm from './TextForm'
 import BlocksContainer from './BlocksContainer'
 import GeneratedText from './GeneratedText'
-import ValueTable from '../ValuesTable'
-
-import type { State, ParseResult } from '../../types'
 import * as selectors from './selectors'
-import { calcText } from '../ValueById/logic'
 
-type OProps = {
-	match: Match,
-	history: RouterHistory,
-}
+function HomeContainer() {
+	const dispatch = useDispatch()
 
-type Props = {
-	result: ParseResult,
-	calcText: typeof calcText,
-}
+	React.useEffect(() => {
+		dispatch(calcText())
+	}, [calcText])
+	const result = useSelector<State, ParseResult>(selectors.getResult)
 
-class Container extends React.Component<Props> {
-	componentDidMount() {
-		this.props.calcText()
-	}
-	render() {
-		const { props } = this
-		return (
-			<div>
-				<NavBar />
-				<Grid container justify="center" style={{ marginBottom: '100px' }}>
-					<Grid item xs={12} md={10}>
-						<TextForm />
-						{props.result.ok && (
-							<BlocksContainer blocks={props.result.blocks} prefix="" />
-						)}
-						<GeneratedText />
-						<ValueTable />
-					</Grid>
+	return (
+		<div>
+			<NavBar />
+			<Grid container justify="center" style={{ marginBottom: '100px' }}>
+				<Grid item xs={12} md={10}>
+					<TextForm />
+					{result.ok && <BlocksContainer blocks={result.blocks} prefix="" />}
+					<GeneratedText />
+					<ValueTable />
 				</Grid>
-			</div>
-		)
-	}
+			</Grid>
+		</div>
+	)
 }
 
-const ms = (state: State, op: OProps) => {
-	return { result: selectors.getResult(state) }
-}
-
-const conn = connect(
-	ms,
-	{
-		calcText,
-	},
-)
-
-export default conn(Container)
+export default HomeContainer

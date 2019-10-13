@@ -1,5 +1,3 @@
-// @flow
-
 import moment from 'moment'
 
 export function sleep(msec: number): Promise<void> {

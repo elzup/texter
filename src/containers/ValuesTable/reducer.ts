@@ -1,24 +1,17 @@
-// @flow
-import type { Action } from '../../types'
-import { Actions } from './actionTypes'
+import { reducerWithInitialState } from 'typescript-fsa-reducers'
+import * as actions from './actions'
 
 export type State = {
-	vids: string[],
+	vids: string[]
 }
 
 export const initialState: State = {
 	vids: [],
 }
 
-export default function(state: State = initialState, action: Action): State {
-	switch (action.type) {
-		case Actions.UPDATE_VIDS:
-			return {
-				...state,
-				vids: action.vids,
-			}
-
-		default:
-			return state
-	}
-}
+export default reducerWithInitialState<State>(initialState).case(
+	actions.updateVids,
+	(state, vids) => {
+		return { ...state, vids }
+	},
+)

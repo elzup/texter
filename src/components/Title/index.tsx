@@ -1,10 +1,9 @@
-// @flow
 import * as React from 'react'
 import Typography from '@material-ui/core/Typography'
 
 type Props = {
-	icon: any,
-	text: string,
+	icon: unknown
+	text: string
 }
 
 const Title = (props: Props) => (

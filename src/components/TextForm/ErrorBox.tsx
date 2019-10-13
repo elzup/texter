@@ -1,39 +1,35 @@
-// @flow
 import * as React from 'react'
-
 import Typography from '@material-ui/core/Typography'
+import styled from 'styled-components'
 
-import type { ParseResultFail } from '../../types'
+import { ParseResultFail } from '../../types'
 
 type Props = {
-	text: string,
-	result: ParseResultFail,
+	text: string
+	result: ParseResultFail
 }
 
-const ErrorBox = (props: Props) => (
-	<div style={{ borderBottom: 'orange solid 2px' }}>
-		<Typography variant="subheading">
-			{props.text.split('').map((c, i) => {
-				const isHit = props.result.hilights.indexOf(i) > -1
-				return (
-					<span
-						style={
-							isHit
-								? {
-										background: 'red',
-								  }
-								: {}
-						}
-					>
+const HitSpan = styled.span`
+	&[data-hit='true'] {
+		background: 'red';
+	}
+`
+
+function ErrorBox(props: Props) {
+	return (
+		<div style={{ borderBottom: 'orange solid 2px' }}>
+			<Typography variant="subtitle1">
+				{props.text.split('').map((c, i) => (
+					<HitSpan key={i} data-hit={props.result.hilights.includes(i)}>
 						{c}
-					</span>
-				)
-			})}
-		</Typography>
-		<Typography color="error" variant="subheading">
-			エラーあり: {props.result.message}
-		</Typography>
-	</div>
-)
+					</HitSpan>
+				))}
+			</Typography>
+			<Typography color="error" variant="subtitle1">
+				エラーあり: {props.result.message}
+			</Typography>
+		</div>
+	)
+}
 
 export default ErrorBox

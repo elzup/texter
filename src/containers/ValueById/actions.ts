@@ -1,17 +1,11 @@
-// @flow
-import { SET_VALUE, REPLACE_VALUES } from './actionTypes'
-import type { SetValue, ReplaceValues } from './actionTypes'
+import { actionCreatorFactory } from 'typescript-fsa'
 
-export function setValue(key: string, value: string): SetValue {
-	return {
-		type: SET_VALUE,
-		key,
-		value,
-	}
-}
-export function replaceValues(state: { [id: string]: string }): ReplaceValues {
-	return {
-		type: REPLACE_VALUES,
-		state,
-	}
-}
+const actionCreator = actionCreatorFactory()
+
+export const setValue = actionCreator<{ key: string; value: string }>(
+	'setValue',
+)
+
+export const replaceValues = actionCreator<{ [id: string]: string }>(
+	'replaceValues',
+)

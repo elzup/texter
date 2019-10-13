@@ -1,101 +1,87 @@
-// @flow
-
-import type { Store as ReduxStore, Dispatch as ReduxDispatch } from 'redux'
-import type { Action as _Action } from './action'
-import type { State as _State } from './state'
-
-type RehydrateAction = {
-	type: 'persist/REHYDRATE',
-	payload: _State,
-}
+import { Action, AnyAction } from 'redux'
+import { ThunkAction as _ThunkAction } from 'redux-thunk'
+import { State as _State } from './state'
 
 export type State = _State
-export type Action = _Action | RehydrateAction
-
-export type Reducer = (state: State, action: Action) => State
-export type Reducers = {
-	[key: string]: Reducer,
-}
 
 export type GetState = () => State
 
-export type ThunkAction = (
-	dispatch: ReduxDispatch<*>,
-	getState: GetState,
-) => void | Promise<void>
+export type ThunkAction = _ThunkAction<
+	void | Promise<void>,
+	State,
+	undefined,
+	AnyAction | Action<unknown>
+>
 
-type ThunkDispatch<A> = (ta: ThunkAction) => A
-
-export type Dispatch = ReduxDispatch<Action> & ThunkDispatch<Action>
-export type Store = ReduxStore<State, Action, Dispatch>
+type ThunkDispatch<T> = (ta: ThunkAction) => T
 
 export type BlockType = 'text' | 'input' | 'select'
 
 export type TextBlock = {
-	type: 'text',
-	text: string,
+	type: 'text'
+	text: string
 }
 
 export type InputBlock = {
-	type: 'input',
-	name: string,
-	vid: string,
+	type: 'input'
+	name: string
+	vid: string
 }
 
 export type SelectBlock = {
-	type: 'select',
-	name: string,
-	texts: string[],
-	vid: string,
+	type: 'select'
+	name: string
+	texts: string[]
+	vid: string
 }
 
 export type RepeatBlock = {
-	type: 'repeat',
-	name: string,
-	count: number,
-	blocks: Block[],
+	type: 'repeat'
+	name: string
+	count: number
+	blocks: Block[]
 }
 
 export type Block = TextBlock | InputBlock | SelectBlock | RepeatBlock
 
 export type ParseResultSuccess = {
-	ok: true,
-	blocks: Block[],
+	ok: true
+	blocks: Block[]
 }
 
 export type ParseResultFail = {
-	ok: false,
-	message: string,
-	hilights: number[],
+	ok: false
+	message: string
+	hilights: number[]
 }
 
 export type ParseResult = ParseResultSuccess | ParseResultFail
 
 export type Home = {
-	text: string,
-	result: ParseResult,
-	generatedText: string,
-	shareUrl: string,
+	text: string
+	result: ParseResult
+	generatedText: string
+	shareUrl: string
 }
 
 export type Log = {
-	id: string,
-	createdAt: string,
+	id: string
+	createdAt: string
 }
 
 export type FirebaseUser = {
-	uid: string,
-	displayName: ?string,
-	email: ?string,
+	uid: string
+	displayName?: string
+	email?: string
 }
 
 export type Autholized = {
-	logined: true,
-	user: FirebaseUser,
+	logined: true
+	user: FirebaseUser
 }
 
 export type NoAutholized = {
-	logined: false,
+	logined: false
 }
 
 export type Auth = Autholized | NoAutholized

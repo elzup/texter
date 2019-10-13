@@ -1,7 +1,7 @@
-// @flow
-import type { State } from '../../types'
+import { State } from '../../types'
 
 export function getRehydrated(state: State): boolean {
-	const ps: any = state
+	const ps: unknown = state
+
 	return ps._persist.rehydrated
 }

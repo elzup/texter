@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react'
 import { connect } from 'react-redux'
 import Button from '@material-ui/core/Button'
@@ -9,19 +8,19 @@ import InputBlock from '../ValueById/InputBlock'
 import SelectBlock from '../ValueById/SelectBlock'
 import TextGrids from '../../components/TextGrids'
 
-import type { State, Block } from '../../types'
+import { State, Block } from '../../types'
 // import * as selectors from './selectors'
 import * as logics from './logic'
 
 type OProps = {
-	block: Block,
-	prefix: string,
+	block: Block
+	prefix: string
 }
 type Props = {
-	block: Block,
-	prefix: string,
-	valueById: { [vid: string]: string },
-	countChange: typeof logics.countChange,
+	block: Block
+	prefix: string
+	valueById: { [vid: string]: string }
+	countChange: typeof logics.countChange
 }
 const styles = {
 	block: {
@@ -35,10 +34,12 @@ const styles = {
 
 const BlockComponent = (props: Props) => {
 	const { block } = props
+
 	if (block.type === 'text') {
 		return <TextGrids block={block} />
 	} else if (block.type === 'select') {
 		const vid = props.prefix + block.vid
+
 		return (
 			<Grid item style={styles.block}>
 				<SelectBlock vid={vid} options={block.texts} />
@@ -46,9 +47,10 @@ const BlockComponent = (props: Props) => {
 		)
 	} else if (block.type === 'input') {
 		const vid = props.prefix + block.vid
+
 		return (
 			<Grid item style={styles.block}>
-				<InputBlock vid={vid} viewLabel={true} />
+				<InputBlock vid={vid} viewLabel />
 			</Grid>
 		)
 	} else {
@@ -99,4 +101,5 @@ const conn = connect(
 )
 
 const BlockContainer = conn(BlockComponent)
+
 export default BlockContainer

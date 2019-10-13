@@ -1,8 +1,7 @@
-// @flow
 import { connect } from 'react-redux'
 import TextForm from '../../components/TextForm'
 
-import type { State } from '../../types'
+import { State } from '../../types'
 import * as selectors from './selectors'
 import * as logics from './logic'
 

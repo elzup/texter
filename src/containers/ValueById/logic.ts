@@ -1,42 +1,13 @@
-// @flow
-
-import type { ThunkAction, Block } from '../../types'
-import * as actions from './actions'
+import _ from 'lodash'
+import { ThunkAction, Block } from '../../types'
 import * as homeActions from '../HomeContainer/actions'
 import * as valueTableLogics from '../ValuesTable/logic'
-
-export function saveValue({
-	vid,
-	value,
-}: {
-	vid: string,
-	value: string,
-}): ThunkAction {
-	return async (dispatch, getState) => {
-		await dispatch(valueTableLogics.addKeys([vid]))
-		await dispatch(actions.setValue(vid, value))
-		dispatch(calcText())
-	}
-}
-
-export function calcText(): ThunkAction {
-	return async (dispatch, getState) => {
-		const { result } = getState().HomeContainer
-		if (result.ok) {
-			const { blocks } = result
-			const valueById = getState().ValueById
-			const generatedText = fillText(blocks, valueById)
-			dispatch(homeActions.updateHome({ generatedText }))
-		} else {
-			dispatch(homeActions.updateHome({ generatedText: '' }))
-		}
-	}
-}
+import * as actions from './actions'
 
 function fillText(
 	blocks: Block[],
-	valueById: { [vid: string]: string },
-	prefix: string = '',
+	valueById: { [id: string]: string },
+	prefix = '',
 ): string {
 	return blocks
 		.map(b => {
@@ -47,7 +18,7 @@ function fillText(
 				case 'select':
 					return valueById[prefix + b.vid]
 				case 'repeat':
-					return [...Array(b.count).keys()]
+					return _.range(b.count)
 						.map(i => fillText(b.blocks, valueById, `${b.name}${i}-`))
 						.join('')
 				default:
@@ -55,4 +26,34 @@ function fillText(
 			}
 		})
 		.join('')
+}
+
+export function calcText(): ThunkAction {
+	return async (dispatch, getState) => {
+		const { result } = getState().HomeContainer
+
+		if (result.ok) {
+			const { blocks } = result
+			const valueById = getState().ValueById
+			const generatedText = fillText(blocks, valueById)
+
+			dispatch(homeActions.updateHome({ generatedText }))
+		} else {
+			dispatch(homeActions.updateHome({ generatedText: '' }))
+		}
+	}
+}
+
+export function saveValue({
+	vid,
+	value,
+}: {
+	vid: string
+	value: string
+}): ThunkAction {
+	return async dispatch => {
+		await dispatch(valueTableLogics.addKeys([vid]))
+		await dispatch(actions.setValue({ key: vid, value }))
+		dispatch(calcText())
+	}
 }

@@ -1,18 +1,17 @@
-// @flow
 import * as React from 'react'
 import Paper from '@material-ui/core/Paper'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Filter from '@material-ui/icons/Filter'
 import Share from '@material-ui/icons/Share'
-import ContentPaste from '@material-ui/icons/ContentPaste'
+import FileCopy from '@material-ui/icons/FileCopy'
 
 import Title from '../Title'
 
 type Props = {
-	text: string,
-	handleCopy: Function,
-	handleShareTwitter: Function,
+	text: string
+	handleCopy: () => void
+	handleShareTwitter: () => void
 }
 
 const GeneratedText = (props: Props) => (
@@ -34,7 +33,7 @@ const GeneratedText = (props: Props) => (
 			fullWidth
 		/>
 		<Button variant="outlined" onClick={props.handleCopy}>
-			<ContentPaste />
+			<FileCopy />
 			Copy
 		</Button>
 		<Button variant="outlined" onClick={props.handleShareTwitter}>

@@ -1,23 +1,21 @@
-// @flow
-
 import * as React from 'react'
 import { connect } from 'react-redux'
 import TextField from '@material-ui/core/TextField'
 
-import type { State } from '../../types'
+import { State } from '../../types'
 import * as logics from './logic'
 import * as selectors from './selectors'
 
 type OProps = {
-	vid: string,
-	options: string[],
+	vid: string
+	options: string[]
 }
 
 type Props = {
-	vid: string,
-	options: string[],
-	value: string,
-	saveValue: typeof logics.saveValue,
+	vid: string
+	options: string[]
+	value: string
+	saveValue: typeof logics.saveValue
 }
 
 const SelectBlock = (props: Props) => (

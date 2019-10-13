@@ -1,9 +1,8 @@
-// @flow
 import React from 'react'
 import { HashRouter as Router, Route, Switch } from 'react-router-dom'
 
 import HomeContainer from '../HomeContainer'
-import LoadContainer from '../HomeContainer/LoadContainer.js'
+import LoadContainer from '../HomeContainer/LoadContainer'
 
 // const PreComp = (props: any) => <div>{JSON.stringify(props)}</div>
 
@@ -15,4 +14,5 @@ const RouteApp = () => (
 		</Switch>
 	</Router>
 )
+
 export default RouteApp

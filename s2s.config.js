@@ -1,4 +1,3 @@
-// @flow
 const path = require('path')
 
 const actionTypesPlugin = require('babel-plugin-s2s-action-types').default

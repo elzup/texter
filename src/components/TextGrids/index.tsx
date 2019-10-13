@@ -1,9 +1,8 @@
-// @flow
 import * as React from 'react'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 
-import type { TextBlock } from '../../types'
+import { TextBlock } from '../../types'
 
 const styles = {
 	blockText: {
@@ -16,7 +15,7 @@ const styles = {
 }
 
 type Props = {
-	block: TextBlock,
+	block: TextBlock
 }
 
 const visible = (text: string) => text.replace(/[\s　]/g, '_')
@@ -24,17 +23,19 @@ const visible = (text: string) => text.replace(/[\s　]/g, '_')
 const TextGrids = (props: Props) => {
 	const { block } = props
 	const textParts = block.text.split('\n')
+
 	return (
 		<React.Fragment>
 			{textParts.map((tp, i) => {
 				const hasNext = i < textParts.length - 1
 				const text = visible(tp + (hasNext ? '↩' : ''))
+
 				return (
 					<React.Fragment key={i}>
 						{text && (
 							<Grid item style={styles.blockText} key={i}>
 								<Typography
-									variant="subheading"
+									variant="subtitle1"
 									gutterBottom
 									style={{
 										marginTop: '20px',

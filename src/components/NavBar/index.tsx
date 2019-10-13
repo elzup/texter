@@ -5,12 +5,12 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 
-import type { Auth } from '../../types'
+import { Auth } from '../../types'
 
 type Props = {
-	doLogout: Function,
-	doLogin: Function,
-	auth: Auth,
+	doLogout: () => void
+	doLogin: () => void
+	auth: Auth
 }
 
 function SimpleAppBar(props: Props) {
@@ -18,7 +18,7 @@ function SimpleAppBar(props: Props) {
 		<div>
 			<AppBar position="static" color="primary">
 				<Toolbar color="inherit">
-					<Typography variant="title" color="inherit" style={{ flex: 1 }}>
+					<Typography variant="h6" color="inherit" style={{ flex: 1 }}>
 						texter
 					</Typography>
 					<div>
@@ -31,15 +31,13 @@ function SimpleAppBar(props: Props) {
 						</Button>
 						{props.auth.logined ? (
 							<React.Fragment>
-								<Button color="inherit" onClick={props.doLogin}>
+								<Button color="inherit" onClick={() => props.doLogout()}>
 									ログアウト
 								</Button>
-								<Button color="inherit" onClick={props.doLogin}>
-									{JSON.stringify(props.auth)}
-								</Button>
+								<Button color="inherit">{JSON.stringify(props.auth)}</Button>
 							</React.Fragment>
 						) : (
-							<Button color="inherit" onClick={props.doLogin}>
+							<Button color="inherit" onClick={() => props.doLogin()}>
 								Twitter ログイン
 							</Button>
 						)}

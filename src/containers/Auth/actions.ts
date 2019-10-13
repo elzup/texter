@@ -1,12 +1,6 @@
-// @flow
-import type { Auth } from '../../types'
+import { actionCreatorFactory } from 'typescript-fsa'
+import { Auth } from '../../types'
 
-import { SAVE_LOGIN } from './actionTypes'
-import type { SaveLogin } from './actionTypes'
+const actionCreator = actionCreatorFactory()
 
-export function saveLogin(auth: Auth): SaveLogin {
-	return {
-		type: SAVE_LOGIN,
-		auth,
-	}
-}
+export const saveLogin = actionCreator<Auth>('saveLogin')

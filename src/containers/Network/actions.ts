@@ -1,14 +1,6 @@
-// @flow
-import { SYNC_START, SYNC_END } from './actionTypes'
-import type { SyncStart, SyncEnd } from './actionTypes'
+import { actionCreatorFactory } from 'typescript-fsa'
 
-export function syncStart(): SyncStart {
-	return {
-		type: SYNC_START,
-	}
-}
-export function syncEnd(): SyncEnd {
-	return {
-		type: SYNC_END,
-	}
-}
+const actionCreator = actionCreatorFactory()
+
+export const syncStart = actionCreator('syncStart')
+export const syncEnd = actionCreator('syncEnd')

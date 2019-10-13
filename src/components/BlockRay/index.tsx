@@ -1,15 +1,14 @@
-// @flow
 import * as React from 'react'
-import type { Block } from '../../types'
 
 import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
 import FilterBAndW from '@material-ui/icons/FilterBAndW'
+import { Block } from '../../types'
 
 import Title from '../Title'
 
 type Props = {
-	blocks: Block[],
+	blocks: Block[]
 }
 const leftBracket = '{'
 

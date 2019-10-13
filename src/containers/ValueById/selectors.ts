@@ -1,8 +1,7 @@
-// @flow
-import type { State } from '../../types'
+import { State } from '../../types'
 
 export const getValue = (state: State, vid: string) => {
-	if (state.ValuesTable.vids.indexOf(vid) === -1) {
+	if (!state.ValuesTable.vids.includes(vid)) {
 		return ''
 	}
 	return state.ValueById[vid] || ''

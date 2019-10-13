@@ -1,18 +1,17 @@
-// @flow
 import * as React from 'react'
 import { connect } from 'react-redux'
 
-import BlockContainer from './BlockContainer'
-import type { State, Block } from '../../types'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import FilterHdr from '@material-ui/icons/FilterHdr'
+import { State, Block } from '../../types'
 
 import Title from '../../components/Title'
+import BlockContainer from './BlockContainer'
 
 type Props = {
-	blocks: Block[],
-	prefix: string,
+	blocks: Block[]
+	prefix: string
 }
 
 const BlocksContainer = (props: Props) => (

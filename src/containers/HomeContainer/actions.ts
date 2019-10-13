@@ -1,18 +1,8 @@
-// @flow
-import type { Home, Block } from '../../types'
+import { actionCreatorFactory } from 'typescript-fsa'
 
-import { UPDATE_HOME, UPDATE_BLOCKS } from './actionTypes'
-import type { UpdateHome, UpdateBlocks } from './actionTypes'
+import { Home, Block } from '../../types'
 
-export function updateHome(home: $Shape<Home>): UpdateHome {
-	return {
-		type: UPDATE_HOME,
-		home,
-	}
-}
-export function updateBlocks(blocks: Block[]): UpdateBlocks {
-	return {
-		type: UPDATE_BLOCKS,
-		blocks,
-	}
-}
+const actionCreator = actionCreatorFactory()
+
+export const updateHome = actionCreator<Partial<Home>>('updateHome')
+export const updateBlocks = actionCreator<Block[]>('updateBlocks')

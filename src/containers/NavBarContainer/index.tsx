@@ -1,10 +1,8 @@
-// @flow
-
 import { connect } from 'react-redux'
 import NavBar from '../../components/NavBar'
-import type { State } from '../../types'
+import { State } from '../../types'
 import { getAuth } from '../Auth/selectors'
-import { doLogin } from '../Firebase/logic'
+import { doLogin, doLogout } from '../Firebase/logic'
 
 const ms = (state: State) => ({
 	auth: getAuth(state),
@@ -12,7 +10,7 @@ const ms = (state: State) => ({
 
 const conn = connect(
 	ms,
-	{ doLogin },
+	{ doLogin, doLogout },
 )
 
 export default conn(NavBar)

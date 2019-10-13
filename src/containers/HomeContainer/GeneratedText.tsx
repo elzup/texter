@@ -1,10 +1,8 @@
-// @flow
 import { connect } from 'react-redux'
 
 import GeneratedText from '../../components/GeneratedText'
+import { State } from '../../types'
 import * as logics from './logic'
-
-import type { State } from '../../types'
 
 const ms = (state: State) => {
 	return { text: state.HomeContainer.generatedText }

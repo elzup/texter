@@ -1,38 +1,30 @@
-// @flow
-import type { ThunkAction, FirebaseUser } from '../../types'
-
 import firebase from 'firebase'
-import { firebaseDb } from '../../services/firebase'
+import { ThunkAction } from '../../types'
+
+import { initializeFirebase } from '../../services/firebase'
+
+initializeFirebase()
+const firebaseDb = firebase.database()
 
 export function doLogin(): ThunkAction {
-	return dispatch => {
+	return () => {
 		const provider = new firebase.auth.GoogleAuthProvider()
+
 		firebase.auth().signInWithPopup(provider)
 	}
 }
 
-export function refLogin(): ThunkAction {
-	return dispatch => {
-		firebase.auth().onAuthStateChanged((user: ?FirebaseUser) => {
-			debugger
-			if (!user) {
-				return
-			}
-			// dispatch(actions.googleLogin(user))
-		})
-	}
-}
-
 export function doLogout(): ThunkAction {
-	return async dispatch => {
+	return async () => {
 		await firebase.auth().signOut()
 		// actions.googleLogout()
 	}
 }
 
 export function addPotato(text: string): ThunkAction {
-	return dispatch => {
+	return () => {
 		const user = firebase.auth().currentUser
+
 		if (!user) {
 			console.error('no auth login')
 			return

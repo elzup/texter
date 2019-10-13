@@ -1,6 +1,3 @@
-// @flow
-
-import _combineReducers from './combineReducers'
 let {
 	NODE_ENV,
 	REACT_APP_FIREBASE_API_KEY,
@@ -12,22 +9,12 @@ let {
 } = process.env
 const REACT_APP_API_URL = '-'
 // if (!REACT_APP_API_URL) {
+
 if (false) {
 	console.warn('Configuration not completed. must setup envioraments.')
 	console.info(process.env)
 }
 
-type Config = {
-	+isDev: boolean,
-	+firebase: $npm$firebase$Config,
-	+appName: string,
-	+appPath: string,
-	+activeJudgeSpan: { [key: string]: number },
-	+tabBarHeight: number,
-	+api: {
-		+url: string,
-	},
-}
 const isDev = NODE_ENV === 'development'
 
 const configDevelopment = {
@@ -37,7 +24,7 @@ const configProduction = {
 	appName: 'FarmController',
 }
 
-const config: Config = {
+const config = {
 	isDev,
 	firebase: {
 		apiKey: REACT_APP_FIREBASE_API_KEY || '',
@@ -55,7 +42,5 @@ const config: Config = {
 	tabBarHeight: 40,
 	...(isDev ? configDevelopment : configProduction),
 }
-
-export const combineReducers = _combineReducers
 
 export default config

@@ -1,5 +1,4 @@
-// @flow
-import type { State } from '../../types'
+import { State } from '../../types'
 
 export function getText(state: State) {
 	return state.HomeContainer.text

@@ -1,30 +1,14 @@
-// @flow
-import type { Action } from '../../types'
-import { Actions } from './actionTypes'
+import { reducerWithInitialState } from 'typescript-fsa-reducers'
+import * as actions from './actions'
 
 export type State = {
-	isLoading: boolean,
+	isLoading: boolean
 }
 
 export const initialState: State = {
 	isLoading: false,
 }
 
-export default function(state: State = initialState, action: Action): State {
-	switch (action.type) {
-		case Actions.SYNC_START:
-			return {
-				...state,
-				isLoading: true,
-			}
-
-		case Actions.SYNC_END:
-			return {
-				...state,
-				isLoading: false,
-			}
-
-		default:
-			return state
-	}
-}
+export default reducerWithInitialState<State>(initialState)
+	.case(actions.syncStart, () => ({ isLoading: true }))
+	.case(actions.syncEnd, () => ({ isLoading: true }))

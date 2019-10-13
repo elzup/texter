@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
@@ -8,15 +7,16 @@ import theme from '../src/theme'
 
 import App from '../src/containers/App'
 
-import registerServiceWorker from '../src/config/registerServiceWorker'
+import { register } from '../src/config/serviceWorker'
 import configureStore from '../src/store'
 
 import '../src/config/init'
 
 const { store, persistor } = configureStore()
-registerServiceWorker()
 
-export default () => (
+register()
+
+const IndexPage = () => (
 	<Provider store={store}>
 		<PersistGate loading={<h3>Loading</h3>} persistor={persistor}>
 			<CssBaseline />
@@ -26,3 +26,5 @@ export default () => (
 		</PersistGate>
 	</Provider>
 )
+
+export default IndexPage

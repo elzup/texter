@@ -1,5 +1,4 @@
-// @flow
-import { combineReducers } from './config'
+import { combineReducers } from 'redux'
 import Auth from './containers/Auth/reducer'
 import HomeContainer from './containers/HomeContainer/reducer'
 import LogContainer from './containers/LogContainer/reducer'
