@@ -1,59 +1,57 @@
 {
-	"name": "texter",
-	"version": "1.0.0",
-	"private": true,
-	"homepage": "https://texter.anozon.me",
-	"scripts": {
-		"build": "next build",
-		"export": "yarn build && next export",
-		"test": "jest",
-		"dev": "next",
-		"lint": "eslint --ext .ts,.tsx src",
-		"precommit": "lint-staged"
-	},
-	"dependencies": {
-		"@material-ui/core": "^4.5.1",
-		"@material-ui/icons": "^4.5.1",
-		"copy-text-to-clipboard": "^2.1.1",
-		"lodash": "^4.17.5",
-		"moment": "^2.24.0",
-		"next": "^9.1.0",
-		"peeler": "^1.1.0",
-		"query-string": "^6.1.0",
-		"react": "^16.10.2",
-		"react-dom": "^16.10.2",
-		"react-image": "^2.2.1",
-		"react-redux": "^7.1.1",
-		"react-router-dom": "^5.1.2",
-		"redux": "^4.0.4",
-		"redux-persist": "^6.0.0",
-		"redux-thunk": "^2.2.0",
-		"share-url": "^1.0.0",
-		"styled-components": "^4.4.0",
-		"typeor": "^1.1.1"
-	},
-	"devDependencies": {
-		"@types/jest": "^24.0.18",
-		"@types/lodash": "^4.14.142",
-		"@types/react-redux": "^7.1.4",
-		"@types/react-router-dom": "^5.1.0",
-		"@types/styled-components": "^4.1.19",
-		"@zeit/next-typescript": "^1.1.1",
-		"babel-plugin-lodash": "^3.3.4",
-		"eslint": "^6.5.1",
-		"eslint-config-nzap": "^1.2.4",
-		"husky": "^3.0.8",
-		"jest": "^24.9.0",
-		"lint-staged": "^9.4.2",
-		"prettier": "^1.13.6",
-		"typescript": "^3.6.3",
-		"typescript-fsa": "^3.0.0",
-		"typescript-fsa-reducers": "^1.2.1"
-	},
-	"lint-staged": {
-		"src/**/*.js": [
-			"prettier --config ./.prettierrc --write",
-			"git add"
-		]
-	}
+  "name": "texter",
+  "version": "1.0.0",
+  "dependencies": {
+    "@material-ui/core": "^4.5.1",
+    "@material-ui/icons": "^4.5.1",
+    "copy-text-to-clipboard": "^2.1.1",
+    "lodash": "^4.17.5",
+    "moment": "^2.24.0",
+    "next": "^9.1.0",
+    "peeler": "^1.1.0",
+    "query-string": "^6.1.0",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "react-image": "^2.2.1",
+    "react-redux": "^7.1.1",
+    "redux": "^4.0.4",
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^2.2.0",
+    "share-url": "^1.0.0",
+    "styled-components": "^4.4.0",
+    "typeor": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.18",
+    "@types/lodash": "^4.14.142",
+    "@types/react-redux": "^7.1.4",
+    "@types/styled-components": "^4.1.19",
+    "@zeit/next-typescript": "^1.1.1",
+    "babel-plugin-lodash": "^3.3.4",
+    "eslint": "^6.5.1",
+    "eslint-config-nzap": "^1.2.4",
+    "husky": "^3.0.8",
+    "jest": "^24.9.0",
+    "lint-staged": "^9.4.2",
+    "prettier": "^1.13.6",
+    "typescript": "^3.6.3",
+    "typescript-fsa": "^3.0.0",
+    "typescript-fsa-reducers": "^1.2.1"
+  },
+  "homepage": "https://texter.anozon.me",
+  "lint-staged": {
+    "src/**/*.js": [
+      "prettier --config ./.prettierrc --write",
+      "git add"
+    ]
+  },
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "dev": "next",
+    "export": "yarn build && next export",
+    "lint": "eslint --ext .ts,.tsx src",
+    "precommit": "lint-staged",
+    "test": "jest"
+  }
 }
