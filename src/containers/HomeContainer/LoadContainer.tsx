@@ -1,19 +1,20 @@
 import * as React from 'react'
-import queryString from 'query-string'
-import { useLocation } from 'react-router-dom'
 import { strOr } from 'typeor'
+import { useRouter } from 'next/router'
+import { useDispatch } from 'react-redux'
 import * as logics from './logic'
 
 type Props = {}
 
 function Container() {
-	const location = useLocation()
-	const parsed = queryString.parse(location.search)
-	const text = strOr(parsed.text)
+	const router = useRouter()
+	const dispatch = useDispatch()
+	const text = strOr(router.query.text)
 
 	React.useEffect(() => {
-		logics.updateTextAndRedirect({ text })
+		dispatch(logics.updateTextAndRedirect(text, () => {}))
 	}, [text])
+	router.push('/')
 
 	return <div />
 }
