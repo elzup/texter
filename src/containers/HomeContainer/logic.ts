@@ -3,7 +3,6 @@ import ShareUrl from 'share-url'
 
 import moment from 'moment'
 import _ from 'lodash'
-import { NextRouter } from 'next/router'
 import { ThunkAction, Block } from '../../types'
 import parser from '../../parser'
 import * as valueLogics from '../ValueById/logic'

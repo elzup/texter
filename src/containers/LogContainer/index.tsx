@@ -1,8 +1,7 @@
-import { useHistory } from 'react-router-dom'
-
 import { connect } from 'react-redux'
 import * as React from 'react'
 import Button from '@material-ui/core/Button'
+import { useRouter } from 'next/router'
 
 import { State, Log } from '../../types'
 import * as actions from './actions'
@@ -14,7 +13,7 @@ type Props = {
 }
 
 function Container(props: Props) {
-	const history = useHistory()
+	const router = useRouter()
 
 	return (
 		<ul>
@@ -22,7 +21,7 @@ function Container(props: Props) {
 				<li key={log.id}>
 					<Button
 						onClick={() => {
-							history.push(`/${log.id}`)
+							router.push(`/${log.id}`)
 						}}
 					>
 						{log.id}
