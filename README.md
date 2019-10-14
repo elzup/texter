@@ -1,5 +1,5 @@
-# Texter [![Build Status](https://travis-ci.org/elzup/texter.svg?branch=master)](https://travis-ci.org/elzup/texter) [![Coverage Status](https://coveralls.io/repos/github/elzup/texter/badge.svg?branch=master)](https://coveralls.io/github/elzup/texter?branch=master)[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
-![https://github.com/elzup/texter/raw/master/screenshot.gif](https://github.com/elzup/texter/raw/master/screenshot.gif)
+# Texter [![Netlify Status](https://api.netlify.com/api/v1/badges/ca39cd24-7aac-4c16-af0e-5cca6b2e62fb/deploy-status)](https://app.netlify.com/sites/affectionate-leavitt-6ef0a7/deploys)
+)![https://github.com/elzup/texter/raw/master/screenshot.gif](https://github.com/elzup/texter/raw/master/screenshot.gif)
 
 > 「定型文を作るための Web フォーム」を生成するツール
 
