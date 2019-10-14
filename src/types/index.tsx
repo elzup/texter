@@ -68,20 +68,3 @@ export type Log = {
 	id: string
 	createdAt: string
 }
-
-export type FirebaseUser = {
-	uid: string
-	displayName?: string
-	email?: string
-}
-
-export type Autholized = {
-	logined: true
-	user: FirebaseUser
-}
-
-export type NoAutholized = {
-	logined: false
-}
-
-export type Auth = Autholized | NoAutholized

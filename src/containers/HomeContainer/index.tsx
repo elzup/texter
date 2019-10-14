@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Grid from '@material-ui/core/Grid'
-import NavBar from '../NavBarContainer'
+import NavBar from '../../components/NavBar'
 import ValueTable from '../ValuesTable'
 import { State, ParseResult } from '../../types'
 import { calcText } from '../ValueById/logic'

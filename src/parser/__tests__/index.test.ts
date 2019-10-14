@@ -1,4 +1,4 @@
-import m from '.'
+import m from '..'
 
 test('works', () => {
 	expect(m('kyoko kyoko toshino.')).toMatchSnapshot('plain')

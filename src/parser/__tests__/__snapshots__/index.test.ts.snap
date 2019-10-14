@@ -1,0 +1,344 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`input block error: has block 1`] = `
+Object {
+  "hilights": Array [
+    4,
+    7,
+  ],
+  "message": "入力ブロックの中に括弧",
+  "ok": false,
+}
+`;
+
+exports[`input block error: has block 2`] = `
+Object {
+  "hilights": Array [
+    4,
+    11,
+  ],
+  "message": "入力ブロックの中に括弧",
+  "ok": false,
+}
+`;
+
+exports[`input block error: no label 1`] = `
+Object {
+  "hilights": Array [
+    4,
+    5,
+  ],
+  "message": "入力ブロックのラベルがない",
+  "ok": false,
+}
+`;
+
+exports[`parse error: deep nest 1`] = `
+Object {
+  "hilights": Array [
+    0,
+    10,
+  ],
+  "message": "入力ブロックの中に括弧",
+  "ok": false,
+}
+`;
+
+exports[`parse error: no pair 1`] = `
+Object {
+  "hilights": Array [
+    6,
+  ],
+  "message": "対応する括弧がない",
+  "ok": false,
+}
+`;
+
+exports[`repeat block error: multi repeat 1`] = `
+Object {
+  "hilights": Array [
+    1,
+    2,
+  ],
+  "message": "ブロックのラベルが正しくない",
+  "ok": false,
+}
+`;
+
+exports[`repeat block error: no label 1`] = `
+Object {
+  "hilights": Array [
+    8,
+    17,
+  ],
+  "message": "ブロックのラベルが正しくない",
+  "ok": false,
+}
+`;
+
+exports[`select block error 1`] = `
+Object {
+  "hilights": Array [
+    1,
+    5,
+  ],
+  "message": "ブロックのラベルが正しくない",
+  "ok": false,
+}
+`;
+
+exports[`select block error: no label 1`] = `
+Object {
+  "hilights": Array [
+    8,
+    17,
+  ],
+  "message": "ブロックのラベルが正しくない",
+  "ok": false,
+}
+`;
+
+exports[`works: escape 1`] = `
+Object {
+  "blocks": Array [
+    Object {
+      "text": "hoge",
+      "type": "text",
+    },
+    Object {
+      "name": "match",
+      "type": "input",
+      "vid": "",
+    },
+    Object {
+      "text": "-",
+      "type": "text",
+    },
+    Object {
+      "name": "in(clu)ds",
+      "type": "input",
+      "vid": "",
+    },
+  ],
+  "ok": true,
+}
+`;
+
+exports[`works: escape 2`] = `
+Object {
+  "blocks": Array [
+    Object {
+      "text": "hoge",
+      "type": "text",
+    },
+    Object {
+      "blocks": Array [
+        Object {
+          "text": "match-{not match",
+          "type": "text",
+        },
+      ],
+      "count": 1,
+      "name": "a",
+      "type": "repeat",
+    },
+    Object {
+      "text": " ",
+      "type": "text",
+    },
+    Object {
+      "name": "a",
+      "texts": Array [
+        "not match}",
+      ],
+      "type": "select",
+      "vid": "",
+    },
+  ],
+  "ok": true,
+}
+`;
+
+exports[`works: input 1`] = `
+Object {
+  "blocks": Array [
+    Object {
+      "text": "my name is ",
+      "type": "text",
+    },
+    Object {
+      "name": "name",
+      "type": "input",
+      "vid": "",
+    },
+    Object {
+      "text": ".",
+      "type": "text",
+    },
+  ],
+  "ok": true,
+}
+`;
+
+exports[`works: mix 1`] = `
+Object {
+  "blocks": Array [
+    Object {
+      "name": "ア",
+      "texts": Array [
+        "a",
+        "b",
+      ],
+      "type": "select",
+      "vid": "",
+    },
+    Object {
+      "name": "a",
+      "type": "input",
+      "vid": "",
+    },
+  ],
+  "ok": true,
+}
+`;
+
+exports[`works: multiple 1`] = `
+Object {
+  "blocks": Array [
+    Object {
+      "name": "ア",
+      "texts": Array [
+        "a",
+        "b",
+      ],
+      "type": "select",
+      "vid": "",
+    },
+    Object {
+      "name": "イ",
+      "texts": Array [
+        "c",
+        "d",
+      ],
+      "type": "select",
+      "vid": "",
+    },
+    Object {
+      "name": "ウ",
+      "texts": Array [
+        "e",
+        "f",
+      ],
+      "type": "select",
+      "vid": "",
+    },
+  ],
+  "ok": true,
+}
+`;
+
+exports[`works: plain 1`] = `
+Object {
+  "blocks": Array [
+    Object {
+      "text": "kyoko kyoko toshino.",
+      "type": "text",
+    },
+  ],
+  "ok": true,
+}
+`;
+
+exports[`works: repeat 1`] = `
+Object {
+  "blocks": Array [
+    Object {
+      "text": "before",
+      "type": "text",
+    },
+    Object {
+      "name": "m1",
+      "type": "input",
+      "vid": "",
+    },
+    Object {
+      "blocks": Array [
+        Object {
+          "text": "",
+          "type": "text",
+        },
+        Object {
+          "name": "stage",
+          "type": "input",
+          "vid": "",
+        },
+        Object {
+          "text": "（",
+          "type": "text",
+        },
+        Object {
+          "name": "rule",
+          "texts": Array [
+            "a",
+            "b",
+          ],
+          "type": "select",
+          "vid": "",
+        },
+        Object {
+          "text": "）",
+          "type": "text",
+        },
+        Object {
+          "name": "result",
+          "texts": Array [
+            "◯",
+            "☓",
+          ],
+          "type": "select",
+          "vid": "",
+        },
+      ],
+      "count": 1,
+      "name": "buttle",
+      "type": "repeat",
+    },
+    Object {
+      "name": "m2",
+      "type": "input",
+      "vid": "",
+    },
+    Object {
+      "text": "after",
+      "type": "text",
+    },
+  ],
+  "ok": true,
+}
+`;
+
+exports[`works: select 1`] = `
+Object {
+  "blocks": Array [
+    Object {
+      "text": "私は",
+      "type": "text",
+    },
+    Object {
+      "name": "poke",
+      "texts": Array [
+        "ゼニガメ",
+        "ヒトカゲ",
+        "フシギダネ",
+      ],
+      "type": "select",
+      "vid": "",
+    },
+    Object {
+      "text": "を選んだ",
+      "type": "text",
+    },
+  ],
+  "ok": true,
+}
+`;

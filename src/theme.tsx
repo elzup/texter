@@ -9,14 +9,6 @@ const theme = createMuiTheme({
 		error: orange,
 		// secondary: lime,
 	},
-	typography: {
-		display1: {
-			padding: '20px',
-		},
-		title: {
-			padding: '10px',
-		},
-	},
 	overrides: {
 		MuiPaper: {
 			root: {

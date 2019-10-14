@@ -1,30 +1,16 @@
-import * as React from 'react'
-import { Provider } from 'react-redux'
-import { PersistGate } from 'redux-persist/integration/react'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import { MuiThemeProvider } from '@material-ui/core/styles'
-import theme from '../src/theme'
+import React from 'react'
+import dynamic from 'next/dynamic'
 
-import App from '../src/containers/App'
+const DynamicComponentWithNoSSR = dynamic(() => import('../src/index'), {
+	ssr: false,
+})
 
-import { register } from '../src/config/serviceWorker'
-import configureStore from '../src/store'
+function Home() {
+	return (
+		<div>
+			<DynamicComponentWithNoSSR />
+		</div>
+	)
+}
 
-import '../src/config/init'
-
-const { store, persistor } = configureStore()
-
-register()
-
-const IndexPage = () => (
-	<Provider store={store}>
-		<PersistGate loading={<h3>Loading</h3>} persistor={persistor}>
-			<CssBaseline />
-			<MuiThemeProvider theme={theme}>
-				<App />
-			</MuiThemeProvider>
-		</PersistGate>
-	</Provider>
-)
-
-export default IndexPage
+export default Home

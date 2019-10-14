@@ -6,7 +6,10 @@ import * as selectors from './selectors'
 import * as logics from './logic'
 
 const ms = (state: State) => {
-	return { text: selectors.getText(state), result: selectors.getResult(state) }
+	return {
+		text: selectors.getText(state),
+		result: selectors.getResult(state),
+	}
 }
 
 const conn = connect(
