@@ -12,7 +12,7 @@
     "query-string": "6.13.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-image": "2.4.0",
+    "react-image": "4.0.3",
     "react-redux": "7.2.1",
     "redux": "4.0.5",
     "redux-persist": "6.0.0",
