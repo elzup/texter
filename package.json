@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "@types/jest": "26.0.10",
-    "@types/lodash": "4.14.159",
+    "@types/lodash": "4.14.161",
     "@types/react-redux": "7.1.9",
     "@types/styled-components": "5.1.2",
     "@zeit/next-typescript": "1.1.1",
@@ -31,9 +31,9 @@
     "eslint": "7.7.0",
     "eslint-config-nzap": "3.2.0",
     "husky": "4.2.5",
-    "jest": "26.4.0",
-    "lint-staged": "10.2.11",
-    "prettier": "2.0.5",
+    "jest": "26.4.2",
+    "lint-staged": "10.2.13",
+    "prettier": "2.1.1",
     "typescript": "3.9.7",
     "typescript-fsa": "3.0.0",
     "typescript-fsa-reducers": "1.2.2"
