@@ -23,6 +23,9 @@ jobs:
     - name: add nojekyll
       run: touch ./out/.nojekyll
 
+    - name: add CNAME
+      run: echo "texter.anozon.me" >> ./out/CNAME
+
     - name: deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
