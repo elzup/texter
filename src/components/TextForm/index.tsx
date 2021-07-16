@@ -1,11 +1,9 @@
-import * as React from 'react'
-
-import TextField from '@material-ui/core/TextField'
-import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import Paper from '@material-ui/core/Paper'
+import TextField from '@material-ui/core/TextField'
+import Typography from '@material-ui/core/Typography'
 import FilterNone from '@material-ui/icons/FilterNone'
-
+import * as React from 'react'
 import { ParseResult } from '../../types'
 import Title from '../Title'
 import ErrorBox from './ErrorBox'
@@ -37,7 +35,7 @@ const TextForm = (props: Props) => {
 					rows={props.text.split('\n').length}
 					label="テキストを入力"
 					error={!props.result.ok}
-					onChange={e => {
+					onChange={(e) => {
 						props.handleChange({ text: e.target.value })
 					}}
 					inputProps={{ 'data-test': 'event-interval-time-input' }}

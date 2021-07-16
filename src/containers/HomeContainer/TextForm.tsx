@@ -1,9 +1,8 @@
 import { connect } from 'react-redux'
 import TextForm from '../../components/TextForm'
-
 import { State } from '../../types'
-import * as selectors from './selectors'
 import * as logics from './logic'
+import * as selectors from './selectors'
 
 const ms = (state: State) => {
 	return {
@@ -12,14 +11,11 @@ const ms = (state: State) => {
 	}
 }
 
-const conn = connect(
-	ms,
-	{
-		updateText: logics.logId,
-		handleLike: logics.logId,
-		handleCopy: logics.copyShareUrl,
-		handleChange: logics.updateText,
-	},
-)
+const conn = connect(ms, {
+	updateText: logics.logId,
+	handleLike: logics.logId,
+	handleCopy: logics.copyShareUrl,
+	handleChange: logics.updateText,
+})
 
 export default conn(TextForm)
