@@ -11,7 +11,7 @@ const isDev = NODE_ENV === 'development'
 
 const config = {
 	isDev,
-	appPath: isDev ? '/' : '/texter/',
+	appPath: '/',
 	activeJudgeSpan: { minutes: 5 },
 	api: {
 		url: REACT_APP_API_URL,
