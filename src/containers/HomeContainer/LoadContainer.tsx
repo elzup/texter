@@ -1,7 +1,8 @@
-import * as React from 'react'
-import { strOr } from 'typeor'
 import { useRouter } from 'next/router'
+import * as React from 'react'
 import { useDispatch } from 'react-redux'
+import { strOr } from 'typeor'
+import config from '../../config'
 import * as logics from './logic'
 
 type Props = {}
@@ -14,7 +15,7 @@ function Container() {
 	React.useEffect(() => {
 		dispatch(logics.updateTextAndRedirect(text, () => {}))
 	}, [dispatch, text])
-	router.push('/')
+	router.push(config.appPath)
 
 	return <div />
 }

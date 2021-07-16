@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
 import FilterNone from '@material-ui/icons/FilterNone'
 import * as React from 'react'
+import config from '../../config'
 import { ParseResult } from '../../types'
 import Title from '../Title'
 import ErrorBox from './ErrorBox'
@@ -17,8 +18,10 @@ type Props = {
 
 const sampleLink = {
 	link1:
+		config.appPath +
 		'/load?text=日記%202018-(日付)%0A----%0A{出来事:[いつ:朝|昼|夜]%20-%20(内容)%0A}%0A----',
 	link2:
+		config.appPath +
 		'/load?text=Hello%20my%20name%20is%20(name)[power:.|!|!!|!!!!].%20{comment:I%20love%20[thing:cat|dog|code].}',
 }
 

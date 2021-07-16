@@ -14,26 +14,24 @@ import * as selectors from './selectors'
 const toLoadUrl = (text: string) => {
 	const { origin } = document.location
 
-	return `${origin}/#/load?text=${encodeURIComponent(text)}`
+	return `${origin}/load?text=${encodeURIComponent(text)}`
 }
 
 function setIds(blocks: Block[], prefix = ''): Block[] {
-	return blocks.map(
-		(v): Block => {
-			if (v.type === 'repeat') {
-				return { ...v, blocks: setIds(v.blocks, prefix + v.name), count: 1 }
-			} else if (v.type === 'select') {
-				// TODO: help
-				return { type: 'select', name: v.name, texts: v.texts, vid: v.name }
-			} else if (v.type === 'input') {
-				return { ...v, vid: v.name }
-			}
-			return v
-		},
-	)
+	return blocks.map((v): Block => {
+		if (v.type === 'repeat') {
+			return { ...v, blocks: setIds(v.blocks, prefix + v.name), count: 1 }
+		} else if (v.type === 'select') {
+			// TODO: help
+			return { type: 'select', name: v.name, texts: v.texts, vid: v.name }
+		} else if (v.type === 'input') {
+			return { ...v, vid: v.name }
+		}
+		return v
+	})
 }
 export function updateText({ text }: { text: string }): ThunkAction {
-	return async dispatch => {
+	return async (dispatch) => {
 		const result = parser(text)
 
 		if (result.ok) {
@@ -59,7 +57,7 @@ export function updateTextAndRedirect(
 	text: string,
 	callback: () => void,
 ): ThunkAction {
-	return async dispatch => {
+	return async (dispatch) => {
 		await dispatch(updateText({ text }))
 		callback()
 	}
@@ -78,7 +76,7 @@ export function countChange({
 		if (!result.ok) {
 			return
 		}
-		const blocks = result.blocks.map(b => {
+		const blocks = result.blocks.map((b) => {
 			if (b.type === 'repeat' && b.name === name) {
 				return { ...b, count }
 			}
@@ -102,7 +100,7 @@ export function logId({ id }: { id: string }): ThunkAction {
 	return async (dispatch, getState) => {
 		const logs = logSelectors.getLogs(getState())
 
-		_.remove(logs, log => log.id === id)
+		_.remove(logs, (log) => log.id === id)
 		const log = {
 			id,
 			createdAt: moment().format(),

@@ -9,22 +9,14 @@ if (false) {
 
 const isDev = NODE_ENV === 'development'
 
-const configDevelopment = {
-	appName: 'FarmController (Dev)',
-}
-const configProduction = {
-	appName: 'FarmController',
-}
-
 const config = {
 	isDev,
-	appPath: '/',
+	appPath: isDev ? '/' : '/texter/',
 	activeJudgeSpan: { minutes: 5 },
 	api: {
 		url: REACT_APP_API_URL,
 	},
 	tabBarHeight: 40,
-	...(isDev ? configDevelopment : configProduction),
 }
 
 export default config
