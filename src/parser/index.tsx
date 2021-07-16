@@ -1,13 +1,12 @@
-/* eslint @typescript-eslint/no-use-before-define: 0 */
 import peeler from 'peeler'
-import { PNode, PNodeText, PNodeBracket } from 'peeler/dist/types'
+import { PNode, PNodeBracket, PNodeText } from 'peeler/dist/types'
 import {
-	ParseResult,
 	Block,
-	TextBlock,
 	InputBlock,
-	SelectBlock,
+	ParseResult,
 	RepeatBlock,
+	SelectBlock,
+	TextBlock,
 } from '../types'
 
 function parseTexter(text: string): ParseResult {

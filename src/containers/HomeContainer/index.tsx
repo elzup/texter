@@ -1,21 +1,22 @@
-import * as React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
 import Grid from '@material-ui/core/Grid'
+import * as React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import NavBar from '../../components/NavBar'
-import ValueTable from '../ValuesTable'
-import { State, ParseResult } from '../../types'
+import { ParseResult, State } from '../../types'
 import { calcText } from '../ValueById/logic'
-import TextForm from './TextForm'
+import ValueTable from '../ValuesTable'
 import BlocksContainer from './BlocksContainer'
 import GeneratedText from './GeneratedText'
 import * as selectors from './selectors'
+import TextForm from './TextForm'
 
 function HomeContainer() {
 	const dispatch = useDispatch()
 
 	React.useEffect(() => {
+		console.log('calcText')
 		dispatch(calcText())
-	}, [calcText])
+	}, [dispatch])
 	const result = useSelector<State, ParseResult>(selectors.getResult)
 
 	return (

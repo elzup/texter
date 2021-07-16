@@ -1,8 +1,7 @@
-import { createStore, applyMiddleware, compose } from 'redux'
-import thunk from 'redux-thunk'
-import { persistStore, persistReducer } from 'redux-persist'
-
+import { applyMiddleware, compose, createStore } from 'redux'
+import { persistReducer, persistStore } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' // defaults to localStorage for web and AsyncStorage for react-native
+import thunk from 'redux-thunk'
 import reducer from './reducer'
 
 const persistConfig = {
@@ -10,7 +9,7 @@ const persistConfig = {
 	storage,
 }
 
-export default () => {
+const setup = () => {
 	const middleware = [thunk]
 	const enhancers = []
 
@@ -22,10 +21,7 @@ export default () => {
 		enhancers.push(devToolsExtension())
 	}
 
-	const composer = compose(
-		applyMiddleware(...middleware),
-		...enhancers,
-	)
+	const composer = compose(applyMiddleware(...middleware), ...enhancers)
 
 	const persistedReducer = persistReducer(persistConfig, reducer)
 	// @ts-ignore
@@ -34,3 +30,5 @@ export default () => {
 
 	return { store, persistor }
 }
+
+export default setup

@@ -13,7 +13,7 @@ function Container() {
 
 	React.useEffect(() => {
 		dispatch(logics.updateTextAndRedirect(text, () => {}))
-	}, [text])
+	}, [dispatch, text])
 	router.push('/')
 
 	return <div />

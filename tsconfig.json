@@ -2,7 +2,10 @@
   "main": "dist/index",
   "compilerOptions": {
     "target": "es5",
-    "lib": ["es7", "dom"],
+    "lib": [
+      "es7",
+      "dom"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -17,5 +20,10 @@
     "noImplicitAny": false,
     "jsx": "preserve"
   },
-  "include": ["src"]
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

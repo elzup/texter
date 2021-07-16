@@ -31,7 +31,7 @@
     "eslint": "7.30.0",
     "eslint-config-next": "^11.0.1",
     "eslint-config-nzap": "4.4.0",
-    "husky": "7.0.1",
+    "husky": "^7.0.0",
     "jest": "27.0.6",
     "lint-staged": "11.0.1",
     "prettier": "2.3.2",
@@ -53,6 +53,7 @@
     "export": "yarn build && next export",
     "lint": "eslint --ext .ts,.tsx src",
     "precommit": "lint-staged",
-    "test": "jest"
+    "test": "jest",
+    "prepare": "husky install"
   }
 }
