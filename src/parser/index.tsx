@@ -9,23 +9,36 @@ import {
 	TextBlock,
 } from '../types'
 
+const hasMessage = (e: unknown): e is { message: string } =>
+	typeof e === 'object' && e !== null && typeof e['message'] === 'string'
+
+const getMessage = (e: unknown): string => {
+	if (hasMessage(e)) {
+		return e.message
+	}
+	return 'UnknownError'
+}
+
 function parseTexter(text: string): ParseResult {
 	try {
 		const nodes = peeler(text)
 
 		return { ok: true, blocks: nodes.map(convert) }
 	} catch (e) {
-		if (e.message.match(/ParseError/)) {
-			const a = e.message.split(':')
-			const line = Number(a[a.length - 1])
+		if (e instanceof Error || e instanceof TypeError) {
+			if (e.message.match(/ParseError/)) {
+				const a = e.message.split(':')
+				const line = Number(a[a.length - 1])
 
-			return { ok: false, message: `対応する括弧がない`, hilights: [line] }
-		} else if (e.message.match(/BlockError|NoLabelError|MultiRepeatError/)) {
-			const [, message, nums] = e.message.split(':')
+				return { ok: false, message: `対応する括弧がない`, hilights: [line] }
+			} else if (e.message.match(/BlockError|NoLabelError|MultiRepeatError/)) {
+				const [, message, nums] = e.message.split(':')
 
-			return { ok: false, message, hilights: nums.split(',').map(Number) }
+				return { ok: false, message, hilights: nums.split(',').map(Number) }
+			}
 		}
-		return { ok: false, message: e.message, hilights: [] }
+
+		return { ok: false, message: getMessage(e), hilights: [] }
 	}
 }
 
