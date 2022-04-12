@@ -3,31 +3,31 @@ name: github pages
 on:
   push:
     branches:
-    - master
+      - main
 
 jobs:
   build-deploy:
     runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: setup node
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14.x'
-        cache: 'yarn'
+      - name: setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14.x'
+          cache: 'yarn'
 
-    - run: yarn install
-    - run: yarn export
+      - run: yarn install
+      - run: yarn export
 
-    - name: add nojekyll
-      run: touch ./out/.nojekyll
+      - name: add nojekyll
+        run: touch ./out/.nojekyll
 
-    - name: add CNAME
-      run: echo "texter.anozon.me" >> ./out/CNAME
+      - name: add CNAME
+        run: echo "texter.anozon.me" >> ./out/CNAME
 
-    - name: deploy
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./out
+      - name: deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
